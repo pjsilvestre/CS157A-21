@@ -7,13 +7,13 @@
 ## Project Overview
 whatdoiwear.today is a tool that helps you organize your closet, from shirts to socks to everything in between. You are interested in organizing your wardrobe in multiple ways, whether you want to see all pieces from a certain brand, pieces made from a certain material, and more. whatshouldiwear.today makes your life more coordinated as you up your fashion game.
 
-How we look and how we dress are important parts of daily life. From casual to business settings, it's important to project the image and appearance you feel best represents your style. Physical closets are limited in capacity by size and space and can quickly grow unorganized or frustrating to navigate. In a world with an evergrowing plethora of clothing options, whatdoiwear.today offers a virtually limitless storage for all your fashion wants and needs. Build toward a wardrobe completely of your choosing, with various filtering options to cater to your personal organizational needs. Save time and search for individual clothing items instantly. Whether you are a professional fashionista or a growing collector, whatdoiwear.today helps you dress to impress.
+How we look and how we dress are important parts of daily life. From casual to business settings, it's important to project the image and appearance you feel best represents your style. Physical closets are limited in capacity by size and space and can quickly grow unorganized or frustrating to navigate. In a world with an evergrowing plethora of clothing options, whatdoiwear.today offers a virtually limitless storage for all your fashion wants and needs. Build towards a wardrobe completely of your choosing, with various filtering options to cater to your personal organizational needs. Save time and search for individual clothing items instantly. Whether you are a professional fashionista or a growing collector, whatdoiwear.today helps you dress to impress.
 
 ### Goals
-* To provide a user-friendly application that allows seemless organization of a virtual wardrobe.
-* Accomodate the increased spending of youth on apparel with an application to represent and share their personal style.
-* Optimize relational databases for efficient searching and sorting queries within the application.
-* Provide a GUI component to drive user interaction that is both visually appealing and easy to use.
+* To provide a user-friendly application that allows seamless organization of a virtual wardrobe.
+* To accomodate the increased spending by youth on apparel with an application to represent and share their personal style.
+* To utilize relational databases for efficient searching and sorting queries within the application.
+* To provide a GUI component to drive user interaction that is both visually appealing and easy to use.
 
 ### Target Audience
 * Students/Young Adults: The highest percentage of annual income of many students and young adults are spent on clothes. 
@@ -28,6 +28,9 @@ whatdoiwear.today is based on a multi-tier design that supports three tiers of o
 
 
 ## Functional Requirements
+### Account Creation and Login
+A user should be able to create an account to uniquely link them to their closet.
+
 ### Adding Pieces
 A user should be able to add new pieces of clothing to their closet. They should be prompted to input the type (e.g. t-shirt), brand, material, and when they last wore the piece.
 
@@ -55,10 +58,10 @@ The application should be well-documented, readily resizable and scalable for fu
 A user should be able to store a sufficient amount of clothes in their closet or wardrobe.
 
 ### Recoverability
-A user's closet should retain the the same data/clothing items inbetween individual sessions.
+A user's closet should retain the the same data/clothing items in between individual sessions.
 
 ### Security
-User information should remain confidential with securely stored information.
+User information should remain confidential with securely stored information via user accounts.
 
 ### Usability 
 The application should be accessible and easy to use with clear instruction provided for non-trivial use cases.
