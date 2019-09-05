@@ -9,6 +9,17 @@ whatdoiwear.today is a tool that helps you organize your closet, from shirts to 
 
 How we look and how we dress are important parts of daily life. From casual to business settings, it's important to project the image and appearance you feel best represents your style. Physical closets are limited in capacity by size and space and can quickly grow unorganized or frustrating to navigate. In a world with an evergrowing plethora of clothing options, whatdoiwear.today offers a virtually limitless storage for all your fashion wants and needs. Build toward a wardrobe completely of your choosing, with various filtering options to cater to your personal organizational needs. Save time and search for individual clothing items instantly. Whether you are a professional fashionista or a growing collector, whatdoiwear.today helps you dress to impress.
 
+### Goals
+* To provide a user-friendly application that allows seemless organization of a virtual wardrobe.
+* Accomodate the increased spending of youth on apparel with an application to represent and share their personal style.
+* Optimize relational databases for efficient searching and sorting queries within the application.
+* Provide a GUI component to drive user interaction that is both visually appealing and easy to use.
+
+### Target Audience
+* Students/Young Adults: The highest percentage of annual income of many students and young adults are spent on clothes. 
+* Women: Ladies spend a disproportionately higher amount on apparel than similarly aged men.
+* Professionals: Industry designers that could benefit from a supplemental platform to organize and catalogue their brands, designs and ideas.
+
 
 ## System Environment
 <img src="https://i.imgur.com/tcb8xM8.png">
@@ -34,3 +45,20 @@ A user should be able to access a functional application on either a local deskt
 
 
 ## Non-Functional Issues
+### Performance
+Basic application I/O operations and queries should succeed with a fast response time.
+
+### Scalability
+The application should be well-documented, readily resizable and scalable for future iterations.
+
+### Capacity
+A user should be able to store a sufficient amount of clothes in their closet or wardrobe.
+
+### Recoverability
+A user's closet should retain the the same data/clothing items inbetween individual sessions.
+
+### Security
+User information should remain confidential with securely stored information.
+
+### Usability 
+The application should be accessible and easy to use with clear instruction provided for non-trivial use cases.
