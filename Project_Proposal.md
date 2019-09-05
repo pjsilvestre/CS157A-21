@@ -32,7 +32,7 @@ whatdoiwear.today is based on a multi-tier design that supports three tiers of o
 A user should be able to create an account to uniquely link them to their closet.
 
 ### Adding Pieces
-A user should be able to add new pieces of clothing to their closet. They should be prompted to input the type (e.g. t-shirt), brand, material, and when they last wore the piece.
+A user should be able to add new pieces of clothing to their closet. They should be prompted to input the type (e.g. t-shirt), brand, material, and when they lasaesteticallyt wore the piece.
 
 ### Viewing the Closet
 A user should be able to view and sort their closet in different ways, such as based on type, brand, material, and when the piece was last worn.
@@ -64,4 +64,10 @@ A user's closet should retain the the same data/clothing items in between indivi
 User information should remain confidential with securely stored information via user accounts.
 
 ### Usability 
-The application should be accessible and easy to use with clear instruction provided for non-trivial use cases.
+The application should be accessible and easy to use with clear instruction provided for non-trivial use cases. The application should have an aesthetically pleasing user interface design that helps engage users in continuously using the app.
+
+### Installability
+The application should be able to be installed, uninstalled, or reinstalled into a target environment.
+
+### Flexibility
+The application's graphical user interface should be able to adapt to different webpage environments across mobile phones and laptops. 
