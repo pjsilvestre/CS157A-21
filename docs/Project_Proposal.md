@@ -25,7 +25,7 @@ How we look and how we dress are important parts of daily life. From casual to b
 
 
 ## System Environment
-<img src="https://i.imgur.com/tcb8xM8.png">
+![Three-tier architecture diagram](./images/three-tier-architecture.png)
 
 whatdoiwear.today is based on a three-tier architecture. The application can be accessed on the web from any local PC and is displayed to the user via a combination of Java, HTML, CSS, and JavaScript. A relational database using in MySQL stores the user information and collects data to be displayed. Apache HTTP servers ensure that the highest and lowest tiers of the architecture can communicate at all times to allow for smooth access.
 
