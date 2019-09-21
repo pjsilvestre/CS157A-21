@@ -50,7 +50,7 @@ A user should be able to remove pieces from their closet.
 ## Non-Functional Issues
 
 ### Device Support
-A user should be able to access a functional application on local PC (e.g. desktop, laptop, phone).
+A user should be able to access a functional application on local PC (e.g. desktop, laptop).
 
 ### Performance
 Basic application I/O operations and queries should succeed with a fast response time.
@@ -74,4 +74,4 @@ The application should be accessible and easy to use with clear instruction prov
 The application should be able to be installed, uninstalled, or reinstalled into a target environment.
 
 ### Responsive Design
-The application's graphical user interface should be able to adapt to different webpage environments, specifically, responding to the display size of a users PC, from mobile to desktop.
+The application's graphical user interface should be able to adapt to different webpage environments, specifically, responding to the display size of a users PC, from laptops to desktops.
