@@ -1,4 +1,4 @@
-# whatdoiwear.today
+# whatdoiwear.today - Project Proposal
 ## Team 21
 * [Devin Gonzales](https://github.com/DJGonzales96)
 * [Claire Lin](https://github.com/clairelin23)
