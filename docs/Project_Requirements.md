@@ -12,13 +12,12 @@ The goal of this project is to facilitate a user-friendly application capable of
 This project was inspired by an absence in similar applications among the industry. Music, TV, and literature are all examples of domains with limitless streaming, collection and sharing capabilities. The fashion industry is a comparably large source of income expendature among multiple demographics with very limited technical representation. This application seeks to bring similar functionality of other social media or streaming services by allowing users to share and collect their favorite clothing items and brands in an adaptable, easy to follow format.
 
 ### Stakeholders
-* Teen to middle-age users
-   a. who has the desire to maintain a fashionable appearance
-   b. who has a physical closet and looking for ways reduce time spent on outfit planning 
-* Database manager 
-   a. who has to esnure the system clothing database is up-to-date with clothes that are sold on the market
+Teen to middle-age users
+* who has the desire to maintain a fashionable appearance
+* who has a physical closet and looking for ways reduce time spent on outfit planning 
 
-
+Database manager 
+* who has to esnure the system clothing database is up-to-date with clothes that are sold on the market
 
 
 
