@@ -26,6 +26,15 @@ This application will be based in the fashion and clothing domain.
 
 ### User Benefits
 
+Clear organization of clothing piece 
+* Users will be able to come up with outfit ideas more conviniently as they can clearly view their entire closet 
+* Users will no longer need to go through the steps of pulling out a piece of clothing from physical closet, try to pair it with another piece, and put/fold it back if not satisfied with the pairing. Users can decide their outfits in the application, and pick out the specific peices in their physical closet. 
+
+Reduce money spent on clothing 
+* Users will be able to avoid buying clothing similiar to the ones they already own because the application provides an easy and organized view of the user's entire clothing collection.  
+
+//Find out personal style
+//* Users will be able to discover their personal preference on clothing by viewing what clothing pieces they wear most //often/less often. 
 
 ## System Environment in Detail
 ### Structure
@@ -69,6 +78,9 @@ This application will be based in the fashion and clothing domain.
 ### Viewing the Closet
 * Users will be able to view their collected clothing articles in a list format. Additionally, users will be able to sort their wardrobe via various clothing characteristics. 
 * The application will retrieve all aggregated clothing articles in a user's saved collection and display them for view in a separate page. 
+
+//### Viewing most frequently worn and least frequently worn peices
+//* Users will be able to 
 
 ### Updating Pieces
 * Users will be able to edit infomation/characteristics of an existing clothing in their collection.
