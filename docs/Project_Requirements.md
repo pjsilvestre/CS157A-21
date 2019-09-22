@@ -6,12 +6,20 @@
 
 ## Project Description in Detail
 ### Goal
-The goal of this project is to facilitate a user-friendly application capable of providing users with a convenient way to collect, organize and share various articles of clothing in an ever growing market of apparel. Users will be presented with reccommended outfits based on their current clothing selection and supplied with sufficient collection, sorting and searching options in their wardrobe as well as a comfortable GUI to aid user ineraction.
+The goal of this project is to facilitate a user-friendly application capable of providing users with a convenient way to collect, organize and share various articles of clothing in an ever growing market of apparel. Users will be presented with recommended outfits based on their current clothing selection and supplied with sufficient collection, sorting and searching options in their wardrobe as well as a comfortable GUI to aid user ineraction.
 
 ### Motivation
 This project was inspired by an absence in similar applications among the industry. Music, TV, and literature are all examples of domains with limitless streaming, collection and sharing capabilities. The fashion industry is a comparably large source of income expendature among multiple demographics with very limited technical representation. This application seeks to bring similar functionality of other social media or streaming services by allowing users to share and collect their favorite clothing items and brands in an adaptable, easy to follow format.
 
 ### Stakeholders
+* Teen to middle-age users
+   a. who has the desire to maintain a fashionable appearance
+   b. who has a physical closet and looking for ways reduce time spent on outfit planning 
+* Database manager 
+   a. who has to esnure the system clothing database is up-to-date with clothes that are sold on the market
+
+
+
 
 
 ### Application Domain
@@ -64,9 +72,17 @@ This application will be based in the fashion and clothing domain.
 * The application will retrieve all aggregated clothing articles in a user's saved collection and display them for view in a separate page. 
 
 ### Updating Pieces
+* Users will be able to edit infomation/characteristics of an existing clothing in their collection.
+* The application will save the edited information.
 
 
 ### Removing Pieces
+* Users will be able to remove an exitsing clothing from their collection. 
+
+
+### Saving Favorite Outfits
+* Users will be able to create an outfit by selecting several existing pieces in their collection. 
+* The outfits will be stored in an outfit list within the user's collection and can be browsed through. 
 
 
 ## Non-Functional Issues in Detail
