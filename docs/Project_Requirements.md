@@ -77,6 +77,9 @@ This application will be based in the fashion and clothing domain.
 
 ### Account Creation and Login
 
+* New users will be able to create accounts.
+* Returning users will be able to log in to their accounts.
+
 ### Requesting Pieces
 
 * Users will be able to search for a piece of clothing via search box by inputting descriptors such as item type and brand. Additionally, users will be able to narrow their search through additional characteristic checkboxes, such as gender, size, and material.
@@ -111,6 +114,34 @@ This application will be based in the fashion and clothing domain.
 
 ### Graphical User Interface
 
+The team strives to create an aesthetic graphical user interface that aims to exhibit the best qualities of user interface design, from clarity to consistency. The front end will be built using a combination of custom CSS, in addition to the potential usage of third-party frameworks such as Bootstrap.
+
+* Account Creation and Login
+  * Upon opening the app, the user will be greeted with a login form, in addition to a link to an account creation form.
+    * The account creation form will be similar in nature to that of the login form.
+  * After successful login, the user will be presented with the main screen of the app, a visual display of their current closet, in addition to a navigation bar used for accessing additional functions.
+
+* Requesting Pieces
+  * The navigation bar will feature an option for requesting pieces.
+  * Once the user opts to request a piece, a search bar will appear, allowing for user input.
+  * Once the user finishes entering their input, the closet will reflect the result of their search.
+
+* Viewing the Closet
+  * The user can freely browse their closet, with pieces represented via text and images.
+  * The GUI will reflect any constraints set by the user, such as if a user opts to see all shirts by a certain brand.
+
+* Adding, Updating, and Removing Pieces
+  * The navigation bar will feature options for adding, updating, and removing pieces.
+  * When the user chooses to add a new piece, the app will present an easy-to-use form, allowing for user input.
+  * When updating and/or removing pieces, the app will present current information on a piece, in addition to confirming any changes/deletions.
+
+* Saving Favorite Outfits
+  * When assembling an outfit, the app will show the different pieces in the outfit as the user picks and chooses.
+
 ### Security
 
+We aim to ensure that a given user can see only their closet, and that a given closet can only be seen by its respective user. Security will be implemented through the use of basic access authentication, that is, a user name and password when making HTTP requests.
+
 ### Access Control
+
+Access control will be role-based. Standard users will be allowed to perform normal functions as described by our functional requirements (e.g. adding clothes, viewing the closet, etc.). Admin users will be allowed to perform additional functions to ensure proper functionality of the database application.
