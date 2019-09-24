@@ -77,13 +77,8 @@ This application will be based in the fashion and clothing domain.
 
 ### Account Creation and Login
 
-* New users will be able to create accounts.
-* Returning users will be able to log in to their accounts.
-
-### Requesting Pieces
-
-* Users will be able to search for a piece of clothing via search box by inputting descriptors such as item type and brand. Additionally, users will be able to narrow their search through additional characteristic checkboxes, such as gender, size, and material.
-* The application will present a list of clothing pieces that are the closest match for the given search parameter. In the event no clothing articles match the given search parameters, the user will be notified no pieces could be found.
+* New users will be able to create and register for accounts through an authentication sheet including username and password.
+* Returning users will be able to log in to their accounts by inputting the correct credentials.
 
 ### Adding Pieces
 
@@ -95,9 +90,9 @@ color, size, material type, and gender.
 
 ### Viewing the Closet
 
-* Users will be able to view their collected clothing articles in a list format. Additionally, users will be able to sort their wardrobe via various clothing characteristics.
+* Users will be able to view their collected clothing articles in a list format. Additionally, users will be able to sort their wardrobe via various clothing characteristics. 
+* Users may tag clothing items as their most frequently or least frequently worn pieces.
 * The application will retrieve all aggregated clothing articles in a user's saved collection and display them for view in a separate page.
-* The user will also be able to see their most frequently and least frequently worn pieces.
 
 ### Updating Pieces
 
@@ -107,11 +102,12 @@ color, size, material type, and gender.
 ### Removing Pieces
 
 * Users will be able to remove existing pieces from their collection.
+* The application will successfuly delete selected pieces from the users wardrobe.
 
 ### Saving Favorite Outfits
 
 * Users will be able to create an outfit by selecting several existing pieces in their collection.
-* The outfits will be stored in an outfit list within the user's collection and can be browsed through.
+* The application will store selected outfits as a list within the user's collection, ready for browsing.
 
 ## Non-Functional Issues in Detail
 
@@ -143,7 +139,7 @@ The team strives to create an aesthetic graphical user interface that aims to ex
 
 ### Security
 
-We aim to ensure that a given user can see only their closet, and that a given closet can only be seen by its respective user. Security will be implemented through the use of basic access authentication, that is, a user name and password when making HTTP requests.
+We aim to ensure that a given user can see only their closet, and that a given closet can only be seen by its respective user. Security will be implemented through the use of basic access authentication, that is, a user name and password when making HTTP requests. User credentials will be securely stored in a database not visible to standard users.
 
 ### Access Control
 
