@@ -54,7 +54,6 @@ This application will be based in the fashion and clothing domain.
   * Windows 10
 * IDEs
   * Eclipse
-  * IntelliJ IDEA
 
 ### RDBMS
 
