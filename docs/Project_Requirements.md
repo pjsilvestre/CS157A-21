@@ -72,6 +72,7 @@ This application will be based in the fashion and clothing domain.
 * HTML
 * CSS
 * JavaScript
+* JSP
 
 ## Functional Requirements in Detail
 
@@ -88,7 +89,10 @@ This application will be based in the fashion and clothing domain.
 ### Adding Pieces
 
 * Users will be able to add a piece of clothing to their collection through an on-screen prompt.
+* Users will be able to uplaod a picture of the clothing and enter text descriptions of the clothing, such as type, brand,   
+color, size, material type, and gender. 
 * The application will store this piece of clothing and all relevant information in the users wardrobe collection.
+
 
 ### Viewing the Closet
 
