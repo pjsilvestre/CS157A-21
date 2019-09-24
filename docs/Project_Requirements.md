@@ -53,7 +53,7 @@ This application will be based in the fashion and clothing domain.
   * macOS Mojave
   * Windows 10
 * IDEs
-  * Eclipse
+  * Eclipse IDE for Java EE
 
 ### RDBMS
 
