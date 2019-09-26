@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: patricksilvestre
-  Date: 9/14/19
-  Time: 7:07 PM
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
