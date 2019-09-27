@@ -3,3 +3,5 @@ This repo contains the project developed by Team 21 ([Devin Gonzales](https://gi
 [Project Proposal](https://github.com/pjsilvestre/CS157A-21/blob/master/docs/Project_Proposal.md)
 
 [Project Requirements](https://github.com/pjsilvestre/CS157A-21/blob/master/docs/Project_Requirements.md)
+
+[Three-Tier Architecture Demo Notes](https://github.com/pjsilvestre/CS157A-21/blob/master/docs/Three-Tier-Architecture-Demo-Notes.md)
