@@ -14,7 +14,7 @@ The Visual Closet is a weak entity set that has no attribute. The key of a Visua
 The Outfit entity set has one attribute: name. The key of an Outfit is the name. The Outfit entity set consists of clothing pieces that the users save as outfits. 
 
 ### Attire
-The Attire entity set has four attributes: type, size, brand, and id. The key of an Attire is the id. The Attire entity set consists of all the individual clothing pieces the users save.
+The Attire entity set has five attributes: type, size, brand, color, and id. The key of an Attire is the id. The Attire entity set consists of all the individual clothing pieces the users save.
 
 
 ## Relationship Descriptions
