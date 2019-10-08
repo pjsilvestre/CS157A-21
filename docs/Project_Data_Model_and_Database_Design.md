@@ -2,6 +2,8 @@
 
 ## Entity / Relationship Diagram
 
+![ER Diagram](./images/database_design_1.0.png)
+
 ## Entity Set Descriptions
 
 ### User
