@@ -40,6 +40,24 @@ A Closet contains zero or more pieces of attire, whereas a piece of attire is re
 
 An Outfit is composed of one or more pieces of Attire.
 
-## Database Schema TODO
+## Database Schema
+
+### Entity Sets
+
+* User (<ins>username</ins>, password)
+* Closet (<ins>ID</ins>, location)
+* Outfit (<ins>name</ins>, season)
+* Attire (<ins>ID</ins>, name, brand, color, size)
+* Category (<ins>type</ins>)
+* Tag (<ins>name</ins>)
+
+### Relationships
+
+* Owns (username, closetID)
+* Contains (closetID, outfitName)
+* Contains (closetID, attireID)
+* Is Composed Of (outfitName, attireID)
+* Has A (attireID, type)
+* Has A (outfitName, tagName)
 
 ## Tables TODO
