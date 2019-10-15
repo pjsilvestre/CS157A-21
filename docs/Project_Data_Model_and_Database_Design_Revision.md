@@ -46,7 +46,7 @@ An Outfit is composed of one or more pieces of Attire.
 
 ### Attire "has a" Type
 
-An piece of Attire has exactly one Category type (e.g. sweater, shoes), whereas a Category type is encompossed by zero to many piece(s) of Attire.
+A piece of Attire has exactly one Category type (e.g. sweater, shoes), whereas a Category type is encompassed by zero to many piece(s) of Attire.
 
 ### Outfit "has a" Tag
 
