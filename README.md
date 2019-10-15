@@ -10,4 +10,4 @@ This repo contains the project developed by Team 21 ([Devin Gonzales](https://gi
 
 [Project Data Model and Database Design](https://github.com/pjsilvestre/CS157A-21/blob/master/docs/Project_Data_Model_and_Database_Design.md)
 
-[Project Data Model and Database Design Revision](Project Data Model and Database Design Revision)
+[Project Data Model and Database Design Revision](https://github.com/pjsilvestre/CS157A-21/blob/master/docs/Project_Data_Model_and_Database_Design_Revision.md)
