@@ -65,22 +65,22 @@ An Outfit is composed of one or more pieces of Attire.
 ### Entity Set Tables
 
 * User
-![User](./images/table-screenshots/user.png)
+![User](./images/table-screenshots/User.png)
 * Closet
-![Closet](./images/table-screenshots/closet.png)
+![Closet](./images/table-screenshots/Closet.png)
 * Outfit
-![Outfit](./images/table-screenshots/outfit.png)
+![Outfit](./images/table-screenshots/Outfit.png)
 * Attire
-![Attire](./images/table-screenshots/attire.png)
+![Attire](./images/table-screenshots/Attire.png)
 * Category
-![Category](./images/table-screenshots/category.png)
+![Category](./images/table-screenshots/Category.png)
 * Tag
-![Tag](./images/table-screenshots/tag.png)
+![Tag](./images/table-screenshots/Tag.png)
 
 ### Relationships Tables
 
 * Owns
-![Owns](./images/table-screenshots/owns.png)
+![Owns](./images/table-screenshots/Owns.png)
 * closetContainsOutfit
 ![closetContainsOutfit](./images/table-screenshots/closetContainsOutfit.png)
 * closetContainsAttire
