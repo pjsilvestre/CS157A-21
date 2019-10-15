@@ -26,23 +26,31 @@ The Attire entity set has five attributes: ID, name, brand, color, and size. The
 
 The Category entity set has one attribute: type. This entity set serves to categorize pieces of Attire into types such as T-shirts, pants, etc.
 
-## Relationship Descriptions TODO
+## Relationship Descriptions
 
-### User "has a" Closet
+### User "owns a" Closet
 
-A User has zero or one Closet(s), but a Closet has exactly one User. A User may exist without a Closet, but a Closet cannot exist without a User. Hence, the User "has a" Closet relationship is supporting, many-one relationship.
+A User owns zero to many Closet(s), but a Closet is owned by exactly one User. A User may exist without a Closet, and a Closet cannot exist without a User.
 
 ### Closet "contains" Outfit(s)
 
-A Closet contains zero or more outfits, whereas an outfit is related to exactly one User's Closet.
+A Closet contains zero to many outfits, whereas an outfit is contained in to exactly one User's Closet.
 
 ### Closet "contains" Attire
 
-A Closet contains zero or more pieces of attire, whereas a piece of attire is related to exactly one User's Closet.
+A Closet contains zero to many pieces of Attire, whereas a piece of Attire is contained in exactly one User's Closet.
 
 ### Outfit "is composed of" Attire
 
 An Outfit is composed of one or more pieces of Attire.
+
+### Attire "has a" Type
+
+An piece of Attire has exactly one Category type (e.g. sweater, shoes), whereas a Category type is encompossed by zero to many piece(s) of Attire.
+
+### Outfit "has a" Tag
+
+In order to allow for the user to add more relevant information to an Outfit for filtering purposes, a User may associate an Outfit with zero to many Tag(s), whereas a Tag may be associated with zero to many Outfit(s).
 
 ## Database Schema
 
