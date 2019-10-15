@@ -54,10 +54,10 @@ An Outfit is composed of one or more pieces of Attire.
 ### Relationships
 
 * Owns (username, closetID)
-* Contains (closetID, outfitName)
-* Contains (closetID, attireID)
+* closetContainsOutfit (closetID, outfitName)
+* closetContainsAttire (closetID, attireID)
 * Is Composed Of (outfitName, attireID)
-* Has A (attireID, type)
-* Has A (outfitName, tagName)
+* attireHasAType (attireID, type)
+* outfitHasATag (outfitName, tagName)
 
 ## Tables TODO
