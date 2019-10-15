@@ -26,6 +26,9 @@ The Attire entity set has five attributes: ID, name, brand, color, and size. The
 
 The Category entity set has one attribute: type. This entity set serves to categorize pieces of Attire into types such as T-shirts, pants, etc.
 
+### Tag
+The Tag entity set has one attribute Name. This entity set serves to categorize collections of Outfits into different outfit catalogs as the users wish, such as Formal wear, Casual wear, outfits categorized by seasons, etc.
+
 ## Relationship Descriptions
 
 ### User "owns a" Closet
