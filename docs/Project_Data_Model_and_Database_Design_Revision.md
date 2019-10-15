@@ -60,4 +60,34 @@ An Outfit is composed of one or more pieces of Attire.
 * attireHasAType (attireID, type)
 * outfitHasATag (outfitName, tagName)
 
-## Tables TODO
+## Tables
+
+### Entity Set Tables
+
+* User
+![User](./images/table-screenshots/user.png)
+* Closet
+![Closet](./images/table-screenshots/closet.png)
+* Outfit
+![Outfit](./images/table-screenshots/outfit.png)
+* Attire
+![Attire](./images/table-screenshots/attire.png)
+* Category
+![Category](./images/table-screenshots/category.png)
+* Tag
+![Tag](./images/table-screenshots/tag.png)
+
+### Relationships Tables
+
+* Owns
+![Owns](./images/table-screenshots/owns.png)
+* closetContainsOutfit
+![closetContainsOutfit](./images/table-screenshots/closetContainsOutfit.png)
+* closetContainsAttire
+![closetContainsAttire](./images/table-screenshots/closetContainsAttire.png)
+* IsComposedOf
+![IsComposedOf](./images/table-screenshots/isComposedOf.png)
+* attireHasAType
+![attireHasAType](./images/table-screenshots/attireHasAType.png)
+* outfitHasATag
+![outfitHasATag](./images/table-screenshots/outfitHasATag.png)
