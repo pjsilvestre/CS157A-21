@@ -56,7 +56,7 @@ An Outfit is composed of one or more pieces of Attire.
 * Owns (username, closetID)
 * closetContainsOutfit (closetID, outfitName)
 * closetContainsAttire (closetID, attireID)
-* Is Composed Of (outfitName, attireID)
+* IsComposedOf (outfitName, attireID)
 * attireHasAType (attireID, type)
 * outfitHasATag (outfitName, tagName)
 
