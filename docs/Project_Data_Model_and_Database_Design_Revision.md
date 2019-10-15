@@ -1,10 +1,10 @@
-# whatdoiwear.today - Project Data Model and Database Design
+# whatdoiwear.today - Project Data Model and Database Design Revision
 
 ## Entity / Relationship Diagram
 
-![ER Diagram](./images/database_design_1.0.png)
+![ER Diagram](./images/database_design_2.0.png)
 
-## Entity Set Descriptions
+## Entity Set Descriptions TODO
 
 ### User
 
@@ -22,7 +22,7 @@ The Outfit entity set has one attribute: name. The key of an Outfit is the name.
 
 The Attire entity set has five attributes: ID, type, brand, color, and size. The key of an Attire is the ID. The Attire entity set consists of all the individual clothing pieces the users save.
 
-## Relationship Descriptions
+## Relationship Descriptions TODO
 
 ### User "has a" Closet
 
@@ -39,3 +39,7 @@ A Closet contains zero or more pieces of attire, whereas a piece of attire is re
 ### Outfit "is composed of" Attire
 
 An Outfit is composed of one or more pieces of Attire.
+
+## Database Schema TODO
+
+## Tables TODO
