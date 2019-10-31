@@ -96,6 +96,23 @@
 
         return table;
     }
+
+    public String getClosetID(Connection connection, String userName) throws Exception
+    {
+        int closetIDColumn = 2;
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM OWNS WHERE username = '" + userName + "'");
+
+        String closetID = "";
+
+        while (resultSet.next())
+        {
+            closetID += resultSet.getString(closetIDColumn);
+        }
+
+        return closetID;
+    }
 %>
 
 <%
@@ -104,14 +121,16 @@
 
     try (Connection connection = establishDatabaseConnection())
     {
-       if (isUser(connection, userName, password))
-       {
-          out.println("Valid user!");
-       }
-       else
-       {
-          out.println("Invalid user!");
-       }
+        if (isUser(connection, userName, password))
+        {
+            out.println("Valid user!<br>");
+            out.println("ClosetID: " + getClosetID(connection, userName));
+        }
+        else
+        {
+            out.println("Invalid user!");
+            return;
+        }
     }
     catch (SQLException e)
     {
