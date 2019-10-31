@@ -1,4 +1,5 @@
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -123,6 +124,34 @@
 
         return closetID;
     }
+
+    /**
+     * Gets AttireID's associated with a closetID.
+     * @param connection The connection to the database.
+     * @param closetID The closetID to match.
+     * @return The AttireID's associated with the given closetID.
+     * @throws Exception
+     */
+    public ArrayList<String> getAttireID(Connection connection, String closetID) throws Exception
+    {
+        int attireIDColumn = 2;
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement
+                .executeQuery("SELECT * FROM closetContainsAttire WHERE closetID = '" + closetID + "'");
+
+        ArrayList<String> attireID = new ArrayList<>();
+
+        while (resultSet.next())
+        {
+            attireID.add(resultSet.getString(attireIDColumn));
+        }
+
+        statement.close();
+        resultSet.close();
+
+        return attireID;
+    }
 %>
 
 <%
@@ -134,7 +163,12 @@
         if (isUser(connection, userName, password))
         {
             out.println("Welcome, " + userName + "!<br>");
-            out.println("Your ClosetID is " + getClosetID(connection, userName) + ".");
+
+            String closetID = getClosetID(connection, userName);
+            out.println("Your ClosetID is " + closetID + ".");
+
+            ArrayList<String> arrayID = getAttireID(connection, closetID);
+            out.println("Your closet contains the following (attireID): " + arrayID);
         }
         else
         {
