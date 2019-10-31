@@ -152,6 +152,33 @@
 
         return attireID;
     }
+
+    /**
+     * Returns the name of a piece of attire based on its ID.
+     * @param connection The connection to the database.
+     * @param attireID The ID of the piece of attire.
+     * @return The name of the attire, or null if it does not exist.
+     * @throws Exception
+     */
+    public String getAttireName(Connection connection, String attireID) throws Exception
+    {
+        int nameColumn = 2;
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Attire WHERE ID = '" + attireID + "'");
+
+        String name = null;
+
+        while (resultSet.next())
+        {
+            name = resultSet.getString(nameColumn);
+        }
+
+        statement.close();
+        resultSet.close();
+
+        return name;
+    }
 %>
 
 <%
@@ -165,10 +192,21 @@
             out.println("Welcome, " + userName + "!<br>");
 
             String closetID = getClosetID(connection, userName);
-            out.println("Your ClosetID is " + closetID + ".");
+            out.println("Your ClosetID is " + closetID + ".<br>");
 
-            ArrayList<String> arrayID = getAttireID(connection, closetID);
-            out.println("Your closet contains the following (attireID): " + arrayID);
+            out.println("Your closet contains: ");
+
+            ArrayList<String> attireID = getAttireID(connection, closetID);
+            for (int i = 0; i < attireID.size(); i++)
+            {
+                out.print(getAttireName(connection, attireID.get(i)));
+
+                if (i < attireID.size() - 1)
+                {
+                    out.print(", ");
+                }
+            }
+            out.println(".<br>");
         }
         else
         {
