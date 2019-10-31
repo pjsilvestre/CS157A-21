@@ -1,15 +1,13 @@
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
-    <title>whatdoiwear.today</title>
+    <title>whatdoiwear.today - Home</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
 </head>
-
 <body>
 <%!
     /**
@@ -98,26 +96,22 @@
 
         return table;
     }
-
 %>
 
 <%
+    String userName = request.getParameter("userName");
+    String password = request.getParameter("password");
+
     try (Connection connection = establishDatabaseConnection())
     {
-       %>
-    <form action="./home.jsp" method="POST" class="">
-        <div class="form-group">
-            <label for="userName">Enter Username: </label>
-            <input type="text" class="form-control " name="userName" id="userName" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Enter Password: </label>
-            <input type="password" class="form-control" name="password" id="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </form>
-    <%
+       if (isUser(connection, userName, password))
+       {
+          out.println("Valid user!");
+       }
+       else
+       {
+          out.println("Invalid user!");
+       }
     }
     catch (SQLException e)
     {
@@ -128,7 +122,6 @@
         System.err.println(e.getMessage());
     }
 %>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
