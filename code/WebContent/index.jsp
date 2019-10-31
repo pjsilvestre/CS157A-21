@@ -80,11 +80,11 @@
     }
     catch (SQLException e)
     {
-        out.println("<br/>SQL Error caught: " + e.getMessage());
+        System.err.println("SQL Error caught: " + e.getMessage());
     }
     catch (Exception e)
     {
-        out.println(e.getMessage());
+        System.err.println(e.getMessage());
     }
 %>
 
