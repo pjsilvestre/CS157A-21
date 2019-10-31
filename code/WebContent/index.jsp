@@ -19,11 +19,38 @@
      */
     public Connection establishDatabaseConnection() throws Exception
     {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         return (DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/whatdoiwear_today?serverTimezone=America/Los_Angeles",
                         "root", "password"));
+    }
+
+    /**
+     * Checks whether a user with a given username and password exists within the database.
+     * @param connection The connection to the database.
+     * @param username The username of the user.
+     * @param password The password of the user.
+     * @return True if the user exists within the database, false otherwise.
+     * @throws Exception
+     */
+    public boolean isUser(Connection connection, String username, String password) throws Exception
+    {
+        boolean isUser = false;
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(
+                "SELECT * FROM User WHERE username = '" + username + "'AND password = '" + password + "'");
+
+        if (resultSet.next())
+        {
+            isUser = true;
+        }
+
+        statement.close();
+        resultSet.close();
+
+        return isUser;
     }
 
     /**
@@ -71,12 +98,13 @@
 
         return table;
     }
+
+
 %>
 
 <%
     try (Connection connection = establishDatabaseConnection())
     {
-        out.println(getTable(connection, "User"));
     }
     catch (SQLException e)
     {
