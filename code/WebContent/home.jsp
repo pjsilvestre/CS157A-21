@@ -97,6 +97,13 @@
         return table;
     }
 
+    /**
+     * Gets a ClosetID associated with a User.
+     * @param connection The connection to the database.
+     * @param userName The username of the User.
+     * @return The ClosetID associated with the User, or null if none exist.
+     * @throws Exception
+     */
     public String getClosetID(Connection connection, String userName) throws Exception
     {
         int closetIDColumn = 2;
@@ -104,12 +111,15 @@
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM OWNS WHERE username = '" + userName + "'");
 
-        String closetID = "";
+        String closetID = null;
 
         while (resultSet.next())
         {
-            closetID += resultSet.getString(closetIDColumn);
+            closetID = resultSet.getString(closetIDColumn);
         }
+
+        statement.close();
+        resultSet.close();
 
         return closetID;
     }
@@ -123,8 +133,8 @@
     {
         if (isUser(connection, userName, password))
         {
-            out.println("Valid user!<br>");
-            out.println("ClosetID: " + getClosetID(connection, userName));
+            out.println("Welcome, " + userName + "!<br>");
+            out.println("Your ClosetID is " + getClosetID(connection, userName) + ".");
         }
         else
         {
