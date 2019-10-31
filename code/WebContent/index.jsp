@@ -12,66 +12,72 @@
 
 <body>
 <%!
-	/**
-	 * Gets a connection to the database.
-	 * @return A connection to the database.
-	 * @throws Exception
-	 */
-	public Connection establishDatabaseConnection() throws Exception
+    /**
+     * Gets a connection to the database.
+     * @return A connection to the database.
+     * @throws Exception
+     */
+    public Connection establishDatabaseConnection() throws Exception
     {
         Class.forName("com.mysql.jdbc.Driver");
 
         return (DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/whatdoiwear_today?serverTimezone=America/Los_Angeles",
-						"root", "password"));
+                .getConnection("jdbc:mysql://localhost:3306/whatdoiwear_today?serverTimezone=America/Los_Angeles",
+                        "root", "password"));
     }
 
-	/**
-	 * Gets a table from the database.
-	 * @param connection A connection to the database.
-	 * @param tableName The name of the table.
-	 * @return A table from the database in HTML.
-	 * @throws Exception
-	 */
-	public String getTable(Connection connection, String tableName) throws Exception
-	{
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
-		ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-		int numberOfColumns = resultSetMetaData.getColumnCount();
+    /**
+     * Gets a table from the database.
+     * @param connection A connection to the database.
+     * @param tableName The name of the table.
+     * @return A table from the database in HTML.
+     * @throws Exception
+     */
+    public String getTable(Connection connection, String tableName) throws Exception
+    {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+        int numberOfColumns = resultSetMetaData.getColumnCount();
 
-		String table = "";
+        String table = "";
 
-		while (resultSet.next())
-		{
-			//Add column headers to table
-			table = "<table class='table table-dark'>" +
-					"<thead>" +
-					"<tr>";
+        //Add column headers
+        table = "<table class='table table-dark'>" + "<thead>" + "<tr>";
 
-			for (int i = 1; i <= numberOfColumns; i++)
-			{
-				table += "<th scope = 'col'>" + resultSetMetaData.getColumnName(i)+"</th>";
-			}
+        for (int i = 1; i <= numberOfColumns; i++)
+        {
+            table += "<th scope = 'col'>" + resultSetMetaData.getColumnName(i) + "</th>";
+        }
+        table += "</thead>" + "<tbody>";
 
-			table += "</thead>" +
-					"</table>";
+        while (resultSet.next())
+        {
+            //Add row values
+            table += "<tr>";
 
-			//Add row values
-		}
+            for (int i = 1; i <= numberOfColumns; i++)
+            {
+                table += "<td>" + resultSet.getString(i) + "</td>";
+            }
 
-		statement.close();
-		resultSet.close();
+            table += "</tr>";
+        }
 
-		return table;
-	}
+        table += "</tbody>" + "</table>";
+
+        statement.close();
+        resultSet.close();
+
+        return table;
+    }
 %>
 
 <%
     try (Connection connection = establishDatabaseConnection())
     {
-    	out.println(getTable(connection, "User"));
-	}
+        out.println(getTable(connection, "User"));
+    }
     catch (SQLException e)
     {
         out.println("<br/>SQL Error caught: " + e.getMessage());
