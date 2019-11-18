@@ -91,21 +91,21 @@ CREATE TABLE IF NOT EXISTS is_friends_with (
 
 -- Initialize user
 INSERT INTO user VALUES 
-	('Eviscirator', 'LBFX8VF@w$nE'),
-    ('jeanralph90', 'qDqYJs&#EX5s'),
-    ('JWS5th', 'yz3&#^Sga%8m'),
-    ('Unit1224', 'hCkK&XF1M8Uq'),
-    ('TamBenched', '152y1V9S@Ybb'),
-    ('Lazzah', 'O@0ou^OacX3z'),
-    ('andynorm', 'U!KDovbclDDy'),
-    ('JoeGZZ', 'q^u!JFNzxdir'),
-    ('landerwi', 'q%EX6FqXEey@'),
-    ('NewWinn', 'WwSFO6I0D*W^'),
-    ('vexy12', 'J6^t1wePE8PZ'),
-    ('PointOfReferences', 'o@A%@@X7vi9^'),
-    ('geometrieva', 'h6qQGNSAhf#y'),
-    ('Potato559', 'ulzeQEb&ES1S'),
-    ('FubsyGamr', '4JsiswO@kT5$');
+	('Eviscirator', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('jeanralph90', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('JWS5th', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('Unit1224', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('TamBenched', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('Lazzah', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('andynorm', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('JoeGZZ', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('landerwi', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('NewWinn', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('vexy12', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('PointOfReferences', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('geometrieva', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('Potato559', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
+    ('FubsyGamr', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS');
     
 -- Initialize closet
 INSERT INTO closet VALUES
