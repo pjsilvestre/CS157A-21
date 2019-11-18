@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
 /* POST login page. */
 router.post('/', async (req, res, next) => {
     res.render('login');
-    console.log(req.body.username);
-    console.log(req.body.password);
 });
 
 module.exports = router;

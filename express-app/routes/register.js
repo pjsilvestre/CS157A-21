@@ -2,14 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const bcrypt = require('bcrypt');
-const mysql = require('mysql');
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'what_do_i_wear_today'
-});
+const database = require('../scripts/database');
 
 const saltRounds = 10;
 
@@ -23,8 +16,8 @@ router.post('/', async (req, res, next) => {
     try {
         const hashed_password = await bcrypt.hash(req.body.password, saltRounds);
 
-        connection.connect((err) => {
-            if (err) {j
+        database.connect((err) => {
+            if (err) {
                 console.error('Error connecting: ' + err.stack);
                 return;
             }
@@ -32,7 +25,7 @@ router.post('/', async (req, res, next) => {
 
         const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
 
-        connection.query(query, (err, results) => {
+        database.query(query, (err, results) => {
             if (err) throw err;
         })
     }
