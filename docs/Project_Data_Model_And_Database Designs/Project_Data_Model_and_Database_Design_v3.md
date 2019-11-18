@@ -66,7 +66,7 @@ A user can have zero to many friends.
 * wears (<ins>username</ins>, <ins>outfit_name</ins>, <ins>date</ins>)
 * is_friends_with (<ins>username1</ins>, <ins>username2</ins>)
 
-## Tables TODO
+## Tables
 
 ### Entity Set Tables
 
