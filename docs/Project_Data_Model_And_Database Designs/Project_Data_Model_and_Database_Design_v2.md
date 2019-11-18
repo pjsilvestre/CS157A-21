@@ -1,8 +1,8 @@
-# whatdoiwear.today - Project Data Model and Database Design Revision
+# whatdoiwear.today - Project Data Model and Database Design v2
 
 ## Entity / Relationship Diagram
 
-![ER Diagram](./images/database_design_2.0.png)
+![ER Diagram](../images/database_design_2.0.png)
 
 ## Entity Set Descriptions
 
@@ -80,29 +80,29 @@ In order to allow for the user to add more relevant information to an Outfit for
 ### Entity Set Tables
 
 * User
-![User](./images/table-screenshots/User.png)
+![User](../images/table-screenshots-design-v2/User.png)
 * Closet
-![Closet](./images/table-screenshots/Closet.png)
+![Closet](../images/table-screenshots-design-v2/Closet.png)
 * Outfit
-![Outfit](./images/table-screenshots/Outfit.png)
+![Outfit](../images/table-screenshots-design-v2/Outfit.png)
 * Attire
-![Attire](./images/table-screenshots/Attire.png)
+![Attire](../images/table-screenshots-design-v2/Attire.png)
 * Category
-![Category](./images/table-screenshots/Category.png)
+![Category](../images/table-screenshots-design-v2/Category.png)
 * Tag
-![Tag](./images/table-screenshots/Tag.png)
+![Tag](../images/table-screenshots-design-v2/Tag.png)
 
 ### Relationships Tables
 
 * Owns
-![Owns](./images/table-screenshots/Owns.png)
+![Owns](../images/table-screenshots-design-v2/Owns.png)
 * closetContainsOutfit
-![closetContainsOutfit](./images/table-screenshots/closetContainsOutfit.png)
+![closetContainsOutfit](../images/table-screenshots-design-v2/closetContainsOutfit.png)
 * closetContainsAttire
-![closetContainsAttire](./images/table-screenshots/closetContainsAttire.png)
+![closetContainsAttire](../images/table-screenshots-design-v2/closetContainsAttire.png)
 * IsComposedOf
-![IsComposedOf](./images/table-screenshots/isComposedOf.png)
+![IsComposedOf](../images/table-screenshots-design-v2/isComposedOf.png)
 * attireHasAType
-![attireHasAType](./images/table-screenshots/attireHasAType.png)
+![attireHasAType](../images/table-screenshots-design-v2/attireHasAType.png)
 * outfitHasATag
-![outfitHasATag](./images/table-screenshots/outfitHasATag.png)
+![outfitHasATag](../images/table-screenshots-design-v2/outfitHasATag.png)

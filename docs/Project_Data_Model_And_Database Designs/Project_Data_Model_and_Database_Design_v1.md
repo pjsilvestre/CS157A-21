@@ -1,8 +1,8 @@
-# whatdoiwear.today - Project Data Model and Database Design
+# whatdoiwear.today - Project Data Model and Database Design v1
 
 ## Entity / Relationship Diagram
 
-![ER Diagram](./images/database_design_1.0.png)
+![ER Diagram](../images/database_design_1.0.png)
 
 ## Entity Set Descriptions
 
