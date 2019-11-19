@@ -8,7 +8,7 @@
 
 ### user
 
-User is an entity set with three attributes: a unique id, a unique username and password. They key of user is user_id. The user entity set represents users of the application and their login information.
+User is an entity set with two attributes: a unique username and password. They key of user is username. The user entity set represents users of the application and their login information.
 
 ### closet
 
@@ -52,7 +52,7 @@ A user can have zero to many friends.
 
 ### Entity Sets
 
-* user (<ins>user_id</ins>, username, hashed_password)
+* user (<ins>username</ins>, hashed_password)
 * closet (<ins>closet_id</ins>, location)
 * outfit (<ins>outfit_name</ins>, season, tag)
 * attire (<ins>attire_id</ins>, type, name, brand, color, size)

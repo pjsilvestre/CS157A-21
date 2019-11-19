@@ -16,9 +16,7 @@ router.post('/', async (req, res, next) => {
     try {
         const hashed_password = await bcrypt.hashSync(req.body.password, saltRounds);
 
-        let user_id = Date.now();
-
-        const query = `INSERT INTO user VALUES ('${user_id}', '${req.body.username}', '${hashed_password}');`;
+        const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
 
         database.query(query, (err, results) => {
             if (err) throw err;

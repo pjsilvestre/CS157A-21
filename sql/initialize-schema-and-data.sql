@@ -9,10 +9,9 @@ USE what_do_i_wear_today;
 -- Entity Sets
 -- user
 CREATE TABLE IF NOT EXISTS user (
-    user_id BIGINT UNSIGNED,
     username VARCHAR(255) UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (user_id)
+    PRIMARY KEY (username)
 );
 
 -- closet
@@ -92,21 +91,21 @@ CREATE TABLE IF NOT EXISTS is_friends_with (
 
 -- Initialize user
 INSERT INTO user VALUES 
-	('1','Eviscirator', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('2', 'jeanralph90', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('3', 'JWS5th', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('4', 'Unit1224', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('5', 'TamBenched', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('6', 'Lazzah', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('7', 'andynorm', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('8', 'JoeGZZ', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('9', 'landerwi', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('10', 'NewWinn', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('11', 'vexy12', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('12', 'PointOfReferences', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('13', 'geometrieva', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('14', 'Potato559', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
-    ('15', 'FubsyGamr', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C');
+	('Eviscirator', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('jeanralph90', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('JWS5th', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('Unit1224', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('TamBenched', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('Lazzah', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('andynorm', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('JoeGZZ', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('landerwi', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('NewWinn', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('vexy12', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('PointOfReferences', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('geometrieva', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('Potato559', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('FubsyGamr', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C');
     
 -- Initialize closet
 INSERT INTO closet VALUES
