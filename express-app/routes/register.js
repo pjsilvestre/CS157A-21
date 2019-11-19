@@ -16,10 +16,6 @@ router.post('/', async (req, res, next) => {
     try {
         const hashed_password = await bcrypt.hash(req.body.password, saltRounds);
 
-        database.connect((err) => {
-            if (err) { throw err };
-        });
-
         let user_id = Date.now();
 
         const query = `INSERT INTO user VALUES ('${user_id}', '${req.body.username}', '${hashed_password}');`;
