@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    nav(class='navbar navbar-expand-xl navbar-dark bg-dark')
+        a(class='navbar-brand' href='/') whatdoiwear.today
+        ul(class='navbar-nav')
+            li(class='nav-item')
+                a(class='nav-link' href='./closet') Your Closet
+            form(class='form-inline' action='/logout?_method=DELETE' method='POST')
+                button(type='submit' class='btn btn-light') Logout
+    table(class='table')
+        thead
+            tr
+                th(scope='col') Type
+                th(scope='col') Name
+                th(scope='col') Brand
+                th(scope='col') Color
+                th(scope='col') Size
+        tbody
+            each attire in results
+                tr
+                    td #{attire.type}
+                    td #{attire.attire_name}
+                    td #{attire.brand}
+                    td #{attire.color}
+                    td #{attire.size}
