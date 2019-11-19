@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const bcrypt = require('bcrypt');
-const database = require('../scripts/database');
+const database = require('../config/database');
 
 const saltRounds = 10;
 
@@ -31,13 +31,13 @@ router.post('/', async (req, res, next) => {
             if (err) throw err;
         })
     }
-    catch {
+    catch (err) {
+        console.error(err.stack);
         res.redirect('/register');
     }
     finally {
         res.redirect('/login');
     }
-
 
 });
 

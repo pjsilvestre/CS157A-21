@@ -6,8 +6,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // dependencies
-const bcrypt = require('bcrypt');
-const mysql = require('mysql');
 
 // router dependencies
 const indexRouter = require('./routes/index');
@@ -16,7 +14,6 @@ const registerRouter = require('./routes/register');
 
 const app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -24,8 +21,6 @@ app.set('view engine', 'pug');
 // allow form data access inside req(uest) variables in POST methods
 app.use(express.urlencoded({ extended: false }));
 
-// temporary for login page testing
-const users = []
 
 app.use(logger('dev'));
 app.use(express.json());
