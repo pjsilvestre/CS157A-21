@@ -23,7 +23,9 @@ router.post('/', async (req, res, next) => {
             }
         })
 
-        const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
+        let user_id = Date.now();
+
+        const query = `INSERT INTO user VALUES ('${user_id}', '${req.body.username}', '${hashed_password}');`;
 
         database.query(query, (err, results) => {
             if (err) throw err;
@@ -33,7 +35,6 @@ router.post('/', async (req, res, next) => {
         res.redirect('/register');
     }
     finally {
-        //connection.close();
         res.redirect('/login');
     }
 
