@@ -14,7 +14,7 @@ function initialize(passport, user) {
 
             database.query(usernameQuery, (err, results) => {
                 if (results.length == 0) {
-                    return done(null, false, { message: 'User not found' });
+                    return done(null, false, { message: 'User not found!' });
                 }
                 else {
                     const hashed_password = results[0].hashed_password;
@@ -23,7 +23,7 @@ function initialize(passport, user) {
                         return done(null, user = { username: username, id: results[0].id });
                     }
                     else {
-                        return done(null, false, { message: 'Incorrect password' });
+                        return done(null, false, { message: 'Incorrect password!' });
                     }
                 }
             })
