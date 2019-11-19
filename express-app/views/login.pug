@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    a(href='./register') Register Page
+    h1= 'login'
+
+    if messages.error
+        div(class='alert alert-warning alert-dismissible fade show' role='alert') #{messages.error}
+            button(type='button' class='close' data-dismiss='alert' aria-label='close')
+                span(aria-hidden='true') &times;
+
+
+    form(action='/login' method='POST')
+        div(class='form-group')
+            label(for='username') Username: 
+            input(type='text' class='form-control' name='username' required)
+        div(class='form-group')
+            label(for='password') Password:
+            input(type='password' class='form-control' name='password' required)
+        button(type='submit' class='btn btn-primary') Submit
