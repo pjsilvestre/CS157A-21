@@ -1,11 +1,14 @@
 extends layout
 
 block content
-    h1= 'whatdoiwear.today'
+    h1 whatdoiwear.today
     if user
         p Welcome to whatdoiwear.today, #{user.username}!
-        form(action='/logout?_method=DELETE' method='POST')
-            button(type='submit' class='btn btn-primary') Logout
+        div
+            a(href='./closet') Your Closet
+        div
+            form(action='/logout?_method=DELETE' method='POST')
+                button(type='submit' class='btn btn-primary') Logout
     else
         p Welcome to whatdoiwear.today!
         div
