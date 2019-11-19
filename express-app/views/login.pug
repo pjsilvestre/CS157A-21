@@ -4,11 +4,14 @@ block content
     a(href='./register') Register Page
     h1= "login"
 
+    if messages.error
+        p #{messages.error}
+
     form(action='/login' method='POST')
         div
             label(for='username') Username: 
-            input(type='text', name='username' required)
+            input(type='text' name='username' required)
         div
             label(for='password') Password:
-            input(type='password', name='password' required)
+            input(type='password' name='password' required)
         button(type='submit') Submit

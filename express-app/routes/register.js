@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 /* POST register page. */
 router.post('/', async (req, res, next) => {
     try {
-        const hashed_password = await bcrypt.hash(req.body.password, saltRounds);
+        const hashed_password = await bcrypt.hashSync(req.body.password, saltRounds);
 
         let user_id = Date.now();
 

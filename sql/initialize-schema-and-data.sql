@@ -92,21 +92,21 @@ CREATE TABLE IF NOT EXISTS is_friends_with (
 
 -- Initialize user
 INSERT INTO user VALUES 
-	('1','Eviscirator', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('2', 'jeanralph90', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('3', 'JWS5th', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('4', 'Unit1224', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('5', 'TamBenched', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('6', 'Lazzah', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('7', 'andynorm', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('8', 'JoeGZZ', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('9', 'landerwi', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('10', 'NewWinn', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('11', 'vexy12', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('12', 'PointOfReferences', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('13', 'geometrieva', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('14', 'Potato559', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS'),
-    ('15', 'FubsyGamr', '$2b$10$HcdHo4yNDZhi2cXUCK7bAe6d15og1pheJSJcSTKer75NXA1UmnHoS');
+	('1','Eviscirator', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('2', 'jeanralph90', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('3', 'JWS5th', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('4', 'Unit1224', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('5', 'TamBenched', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('6', 'Lazzah', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('7', 'andynorm', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('8', 'JoeGZZ', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('9', 'landerwi', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('10', 'NewWinn', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('11', 'vexy12', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('12', 'PointOfReferences', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('13', 'geometrieva', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('14', 'Potato559', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
+    ('15', 'FubsyGamr', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C');
     
 -- Initialize closet
 INSERT INTO closet VALUES

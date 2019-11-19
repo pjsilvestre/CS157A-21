@@ -6,11 +6,16 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // dependencies
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session');
 
 // router dependencies
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
+const initializePassport = require('./config/passport');
+initializePassport(passport, user => (user));
 
 const app = express();
 
@@ -28,17 +33,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//enable session handling
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
