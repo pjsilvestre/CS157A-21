@@ -17,11 +17,8 @@ router.post('/', async (req, res, next) => {
         const hashed_password = await bcrypt.hash(req.body.password, saltRounds);
 
         database.connect((err) => {
-            if (err) {
-                console.error('Error connecting: ' + err.stack);
-                return;
-            }
-        })
+            if (err) { throw err };
+        });
 
         let user_id = Date.now();
 
