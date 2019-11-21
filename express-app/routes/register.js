@@ -7,7 +7,7 @@ const database = require("../config/database");
 const saltRounds = 10;
 
 /* GET register page. */
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect("/");
   }
@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
 });
 
 /* POST register page. */
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
   try {
     const hashed_password = await bcrypt.hashSync(
       req.body.password,
@@ -24,7 +24,7 @@ router.post("/", async (req, res, next) => {
 
     const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
 
-    database.query(query, (err, results) => {
+    database.query(query, err => {
       if (err) throw err;
     });
   } catch (err) {

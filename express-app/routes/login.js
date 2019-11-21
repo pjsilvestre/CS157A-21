@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require("passport");
 
 /* GET login page. */
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect("/");
   } else {

@@ -4,7 +4,7 @@ const router = express.Router();
 const database = require("../config/database");
 
 /* GET add-attire page */
-router.get("/", (req, res, next) => {
+router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.render("add-attire");
   } else {
@@ -13,7 +13,7 @@ router.get("/", (req, res, next) => {
 });
 
 /* POST add-attire page, redirecting to closet*/
-router.post("/", (req, res, next) => {
+router.post("/", (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const username = req.user.username;
@@ -34,7 +34,7 @@ router.post("/", (req, res, next) => {
         '${color}',
         '${size}');`;
 
-      database.query(query, (err, results) => {
+      database.query(query, err => {
         if (err) throw err;
       });
 

@@ -1,20 +1,19 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
-    res.render('index', { user: req.user });
-  }
-  else {
-    res.render('index');
+    res.render("index", { user: req.user });
+  } else {
+    res.render("index");
   }
 });
 
 /* DELETE home page (logout).*/
-router.delete('/logout', (req, res, next) => {
+router.delete("/logout", (req, res) => {
   req.logOut();
-  res.redirect('/');
+  res.redirect("/");
 });
 
 module.exports = router;
