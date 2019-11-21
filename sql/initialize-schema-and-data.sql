@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 -- closet
 CREATE TABLE IF NOT EXISTS closet (
-    closet_id INT UNSIGNED,
+    closet_id BIGINT UNSIGNED,
     location VARCHAR(255) NOT NULL,
     PRIMARY KEY (closet_id)
 );
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS outfit (
 
 -- attire
 CREATE TABLE IF NOT EXISTS attire (
-    attire_id INT UNSIGNED,
+    attire_id BIGINT UNSIGNED,
     type VARCHAR(255) NOT NULL,
     attire_name VARCHAR(255) NOT NULL,
     brand VARCHAR(255) NOT NULL,
@@ -43,29 +43,29 @@ CREATE TABLE IF NOT EXISTS attire (
 -- Relationships
 -- A user owns a closet
 CREATE TABLE IF NOT EXISTS owns (
-    closet_id INT UNSIGNED,
+    closet_id BIGINT UNSIGNED,
     username VARCHAR(255),
     PRIMARY KEY (closet_id , username)
 );
 
 -- A closet contains outfits
 CREATE TABLE IF NOT EXISTS closet_contains_outfit (
-    closet_id INT UNSIGNED,
+    closet_id BIGINT UNSIGNED,
     outfit_name VARCHAR(255),
     PRIMARY KEY (closet_id , outfit_name)
 );
 
 -- A closet contains attire
 CREATE TABLE IF NOT EXISTS closet_contains_attire (
-    closet_id INT UNSIGNED,
-    attire_id INT UNSIGNED,
+    closet_id BIGINT UNSIGNED,
+    attire_id BIGINT UNSIGNED,
     PRIMARY KEY (closet_id , attire_id)
 );
 
 -- An outfit is composed of attire
 CREATE TABLE IF NOT EXISTS is_composed_of (
     outfit_name VARCHAR(255),
-    attire_id INT UNSIGNED,
+    attire_id BIGINT UNSIGNED,
     PRIMARY KEY (outfit_name , attire_id)
 );
 
