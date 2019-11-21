@@ -10,8 +10,9 @@ const saltRounds = 10;
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect("/");
+  } else {
+    res.render("register");
   }
-  res.render("register");
 });
 
 /* POST register page. */
