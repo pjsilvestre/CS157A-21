@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    nav(class='navbar navbar-expand-xl navbar-dark bg-dark')
+        a(class='navbar-brand' href='/') whatdoiwear.today
+        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+        div(class="collapse navbar-collapse" id="navbarSupportedContent")
+            ul(class='navbar-nav')
+                li(class='nav-item')
+                    a(class='nav-link' href='./closet') Your Closet
+                li(class='nav-item')
+                    a(class='nav-link' href='./add-attire') Add Attire
+                form(class='form-inline' action='/logout?_method=DELETE' method='POST')
+                    button(type='submit' class='btn btn-light') Logout
+
+    form(action='/add-attire' method='POST')
+        div(class='form-group')
+            label(for='type') Type
+            input(type='text' class='form-control' name='type' aria-describedby='typeHelp' placeholder='Enter type' required)
+            small(id='typeHelp' class='form-text text-muted') e.g. sneaker, sweater, etc.
+        div(class='form-group')
+            label(for='name') Name
+            input(type='text' class='form-control' name='name' placeholder='Enter the name of the attire' required)
+        div(class='form-group')
+            label(for='brand') Brand
+            input(type='text' class='form-control' name='brand' placeholder='Enter brand' required)
+        div(class='form-group')
+            label(for='color') Color
+            input(type='text' class='form-control' name='color' placeholder='Enter color' required)
+        div(class='form-group')
+            label(for='size') Size
+            input(type='text' class='form-control' name='size' placeholder='Enter size' required)
+        button(type='submit' class='btn btn-dark') Submit
