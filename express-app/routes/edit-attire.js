@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
         let messages = { error: error };
         res.redirect("/closet", { messages });
       } else {
-        res.render("edit-attire", { results : results });
+        res.render("edit-attire", { results: results });
       }
     });
   } else {
@@ -36,7 +36,29 @@ router.get("/", (req, res) => {
 /* POST edit-attire page. */
 router.post("/", (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect("/closet");
+    const attireID = req.body.attireID;
+    const newType = req.body.newType;
+    const newAttireName = req.body.newAttireName;
+    const newBrand = req.body.newBrand;
+    const newColor = req.body.newColor;
+    const newSize = req.body.newSize;
+
+    let query = `UPDATE attire SET 
+                  type='${newType}', 
+                  attire_name='${newAttireName}', 
+                  brand='${newBrand}', 
+                  color='${newColor}', 
+                  size='${newSize}'
+                WHERE attire_id=${attireID};`;
+
+    database.query(query, error => {
+      if (error) {
+        let messages = { error: error };
+        res.render("edit-attire", { messages });
+      } else {
+        res.redirect("/closet");
+      }
+    });
   } else {
     res.redirect("/");
   }
