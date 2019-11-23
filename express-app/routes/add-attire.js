@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
 
       const attire_id = Date.now();
       const type = req.body.type;
-      const name = req.body.name;
+      const attire_name = req.body.name;
       const brand = req.body.brand;
       const color = req.body.color;
       const size = req.body.size;
@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
       let query = `INSERT INTO attire VALUES (
         '${attire_id}',
         '${type}',
-        '${name}',
+        '${attire_name}',
         '${brand}',
         '${color}',
         '${size}');`;
@@ -39,14 +39,14 @@ router.post("/", (req, res) => {
       });
 
       //get user's closet_id
-      query = `SELECT closet_id FROM owns WHERE username='${username}';`;
+      query = `SELECT closet_id FROM owned_by WHERE username='${username}';`;
 
       database.query(query, (err, results) => {
         if (err) throw err;
         let closet_id = results[0].closet_id;
 
         //associate attire with user's closet
-        query = `INSERT INTO closet_contains_attire VALUES ('${closet_id}', '${attire_id}');`;
+        query = `INSERT INTO attire_contained_by_closet VALUES ('${attire_id}', '${closet_id}');`;
 
         database.query(query, (err, results) => {
           if (err) throw err;

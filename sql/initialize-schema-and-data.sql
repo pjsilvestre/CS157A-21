@@ -41,40 +41,40 @@ CREATE TABLE IF NOT EXISTS attire (
 );
 
 -- Relationships
--- A user owns a closet
-CREATE TABLE IF NOT EXISTS owns (
+-- owned_by
+CREATE TABLE IF NOT EXISTS owned_by (
     closet_id BIGINT UNSIGNED,
-    username VARCHAR(255),
-    PRIMARY KEY (closet_id , username)
+    username VARCHAR(255) NOT NULL,
+    PRIMARY KEY (closet_id)
 );
 
--- A closet contains outfits
-CREATE TABLE IF NOT EXISTS closet_contains_outfit (
-    closet_id BIGINT UNSIGNED,
+-- outfit_contained_by_closet
+CREATE TABLE IF NOT EXISTS outfit_contained_by_closet (
     outfit_name VARCHAR(255),
-    PRIMARY KEY (closet_id , outfit_name)
+    closet_id BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (outfit_name)
 );
 
--- A closet contains attire
-CREATE TABLE IF NOT EXISTS closet_contains_attire (
-    closet_id BIGINT UNSIGNED,
+-- attire_contained_by_closet
+CREATE TABLE IF NOT EXISTS attire_contained_by_closet (
     attire_id BIGINT UNSIGNED,
-    PRIMARY KEY (closet_id , attire_id)
+    closet_id BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (attire_id)
 );
 
--- An outfit is composed of attire
+-- is_composed_of
 CREATE TABLE IF NOT EXISTS is_composed_of (
     outfit_name VARCHAR(255),
     attire_id BIGINT UNSIGNED,
     PRIMARY KEY (outfit_name , attire_id)
 );
 
--- A user wears an outfit
-CREATE TABLE IF NOT EXISTS wears (
-    username VARCHAR(255),
+-- worn_by
+CREATE TABLE IF NOT EXISTS worn_by (
     outfit_name VARCHAR(255),
     date DATE,
-    PRIMARY KEY (username , outfit_name , date)
+    username VARCHAR(255) NOT NULL,
+    PRIMARY KEY (outfit_name , date)
 );
 
 -- A user is friends with another user
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS is_friends_with (
 -- Initialize Data
 -- --------------------------------
 
--- Initialize user
+-- Initialize user (username, hashed_password)
 INSERT INTO user VALUES 
 	('Eviscirator', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
     ('jeanralph90', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
@@ -107,7 +107,7 @@ INSERT INTO user VALUES
     ('Potato559', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C'),
     ('FubsyGamr', '$2b$10$Uf81t8PzkpRwDsaM/GqV2OtaE9MU7cT9GwWV5HaQyWXR2NJ9wOy6C');
     
--- Initialize closet
+-- Initialize closet (closet_id, location)
 INSERT INTO closet VALUES
 	('676', 'Bedroom'),
     ('711', 'Bedroom'),
@@ -125,7 +125,7 @@ INSERT INTO closet VALUES
     ('1010', 'Hallway'),
     ('470', 'Bedroom');
     
--- Initialize outfit
+-- Initialize outfit (outfit_name, season, tag)
 INSERT INTO outfit VALUES
 	('Drip', 'Fall', 'Street'),
     ('Fire', 'Spring', 'Street'),
@@ -143,7 +143,7 @@ INSERT INTO outfit VALUES
     ('Inspo', 'Summer', NULL),
     ('Premium', 'Fall', NULL);
 
--- Initialize attire    
+-- Initialize attire (attire_id, type, attire_name, brand, color, size)
 INSERT INTO attire VALUES
 	('197', 'Sneaker', 'LD Waffle Sacai Black', 'Nike', 'Black', '9.5'),
     ('139', 'Sneaker', 'Yeezy Boost 350 V2', 'Adidas', 'Cloud White', '9.5'),
@@ -159,10 +159,15 @@ INSERT INTO attire VALUES
     ('896', 'T-shirt', 'Black Rhombus Short-Sleeve', 'A-Cold-Wall*', 'Black', 'Medium'),
     ('425', 'Jacket', '1st Camo Light Weight Down Jacket', 'A Bathing Ape', 'Green', 'Large'),
     ('633', 'Jacket', 'Duck Quilted Flannel-Lined Active Jacket', 'Carhartt', 'Gravel', 'Medium'),
-    ('520', 'Jeans', 'Palace Jean Black Stonewash', 'Palace', 'Black', '32');
+    ('520', 'Jeans', 'Palace Jean Black Stonewash', 'Palace', 'Black', '32'),
+    ('321', 'Sneaker', 'Air Force 1 Low Travis Scott Cactus Jack', 'Nike', 'Multi-Color', '9.5'),
+    ('123', 'Sneaker', 'Jordan 11 Retro Playoffs Bred (2019)', 'Jordan Brand', 'Bred', '10'),
+    ('524', 'Pants', 'Sportswear Tech Fleece', 'Nike', 'Black', 'S'),
+    ('601', 'Pants', 'Windproof Stretch Slim-Fit Chino Pants', 'Uniqlo', 'Black', '30'),
+    ('698', 'Pants', 'Ultra Stretch Skinny Fit Jeans', 'Uniqlo', 'Gray', '31');
     
--- Initialize owns
-INSERT INTO owns VALUES
+-- Initialize owned_by (closet_id, username)
+INSERT INTO owned_by VALUES
 	('676', 'Eviscirator'),
     ('711', 'jeanralph90'),
     ('141', 'JWS5th'),
@@ -179,82 +184,84 @@ INSERT INTO owns VALUES
     ('1010', 'Potato559'),
     ('470', 'FubsyGamr');
     
--- Initialize closet_contains_outfit
-INSERT INTO closet_contains_outfit VALUES
-	('676', 'Drip'),
-    ('711', 'Fire'),
-    ('141', 'Relax'),
-    ('67', 'Coordinated'),
-    ('895', 'Street'),
-    ('654', 'Fit'),
-    ('751', 'Casual'),
-    ('347', 'GOAT'),
-    ('804', 'Fly'),
-    ('221', 'Experimental'),
-    ('792', 'Branching'),
-    ('707', 'New'),
-    ('955', 'Perfection'),
-    ('1010', 'Inspo'),
-    ('470', 'Premium');
+-- Initialize outfit_contained_by_closet (outfit_name, closet_id)
+INSERT INTO outfit_contained_by_closet VALUES
+	('Drip', '676'),
+    ('Fire', '711'),
+    ('Relax', '141'),
+    ('Coordinated', '67'),
+    ('Street', '895'),
+    ('Fit', '654'),
+    ('Casual', '751'),
+    ('GOAT', '347'),
+    ('Fly', '804'),
+    ('Experimental', '221'),
+    ('Branching', '792'),
+    ('New', '707'),
+    ('Perfection', '955'),
+    ('Inspo', '1010'),
+    ('Premium', '470');
     
--- Initialize closet_contains_attire
-INSERT INTO closet_contains_attire VALUES
-	('676', '197'),
-    ('676', '520'),
-    ('676', '228'),
-    ('711', '139'),
-    ('711', '269'),
-    ('711', '13'),
-    ('141', '122'),
-    ('141', '896'),
-    ('141', '876'),
-    ('67', '197'),
-    ('67', '269'),
-    ('67', '893'),
-    ('895', '122'),
-    ('895', '520'),
-    ('895', '425');
+-- Initialize attire_contained_by_closet (atitre_id, closet_id)
+INSERT INTO attire_contained_by_closet VALUES
+	('197', '676'),
+    ('269', '676'),
+    ('689', '676'),
+    ('139', '711'),
+    ('520', '711'),
+    ('896', '711'),
+    ('122', '141'),
+    ('524', '141'),
+    ('228', '141'),
+    ('321', '67'),
+    ('601', '67'),
+    ('893', '67'),
+    ('123', '895'),
+    ('698', '895'),
+    ('425', '895'),
+    ('13', '676'),
+    ('527', '676'),
+    ('891', '676'),
+    ('876', '676'),
+    ('633', '676');
 
--- Initialize is_composed_of
+-- Initialize is_composed_of (outfit_name, attire_id)
 INSERT INTO is_composed_of VALUES
 	('Drip', '197'),
-    ('Drip', '520'),
-    ('Drip', '228'),
+    ('Drip', '269'),
+    ('Drip', '689'),
     ('Fire', '139'),
-    ('Fire', '269'),
-    ('Fire', '13'),
+    ('Fire', '520'),
+    ('Fire', '896'),
     ('Relax', '122'),
-    ('Relax', '896'),
-    ('Relax', '876'),
-    ('Coordinated', '197'),
-    ('Coordinated', '269'),
+    ('Relax', '524'),
+    ('Relax', '228'),
+    ('Coordinated', '321'),
+    ('Coordinated', '601'),
     ('Coordinated', '893'),
-    ('Street', '122'),
-    ('Street', '520'),
+    ('Street', '123'),
+    ('Street', '698'),
     ('Street', '425');
 
--- Initialize wears
-INSERT INTO wears VALUES
-	('Eviscirator', 'Drip', '2019-11-01'),
-    ('Eviscirator', 'Drip', '2019-11-02'),
-    ('Eviscirator', 'Drip', '2019-11-03'),
-    ('jeanralph90', 'Fire', '2019-11-01'),
-    ('jeanralph90', 'Fire', '2019-11-02'),
-    ('jeanralph90', 'Fire', '2019-11-03'),
-    ('JWS5th', 'Relax', '2019-11-01'),
-    ('JWS5th', 'Relax', '2019-11-02'),
-    ('JWS5th', 'Relax', '2019-11-03'),
-    ('Unit1224', 'Fire', '2019-11-01'),
-    ('Unit1224', 'Fire', '2019-11-02'),
-    ('Unit1224', 'Fire', '2019-11-03'),
-    ('TamBenched', 'Coordinated', '2019-11-01'),
-    ('TamBenched', 'Coordinated', '2019-11-02'),
-    ('TamBenched', 'Coordinated', '2019-11-03'),
-    ('Lazzah', 'Street', '2019-11-01'),
-    ('Lazzah', 'Street', '2019-11-02'),
-    ('Lazzah', 'Street', '2019-11-03');
+-- Initialize worn_by (outfit_name, date, username)
+INSERT INTO worn_by VALUES
+	('Drip', '2019-11-01', 'Eviscirator'),
+    ('Drip', '2019-11-02', 'Eviscirator'),
+    ('Drip', '2019-11-03', 'Eviscirator'),
+    ('Fire', '2019-11-01', 'jeanralph90'),
+    ('Fire', '2019-11-02', 'jeanralph90'),
+    ('Fire', '2019-11-03', 'jeanralph90'),
+    ('Relax', '2019-11-01', 'JWS5th'),
+    ('Relax', '2019-11-02', 'JWS5th'),
+    ('Relax', '2019-11-03', 'JWS5th'),
+    ('Coordinated', '2019-11-01', 'Unit1224'),
+    ('Coordinated', '2019-11-02', 'Unit1224'),
+    ('Coordinated', '2019-11-03', 'Unit1224'),
+    ('Street', '2019-11-01', 'TamBenched'),
+    ('Street', '2019-11-02', 'TamBenched'),
+    ('Street', '2019-11-03', 'TamBenched');
 
--- Initialize is_friends_with
+-- Initialize is_friends_with (username1, username2)
 INSERT INTO is_friends_with VALUES
 	('Eviscirator', 'jeanralph90'),
     ('Eviscirator', 'JWS5th'),
