@@ -13,9 +13,9 @@ router.get("/", (req, res) => {
             FROM
                 user
                     JOIN
-                owns USING (username)
+                owned_by USING (username)
 		            JOIN
-	            closet_contains_attire USING (closet_id)
+	            attire_contained_by_closet USING (closet_id)
 		            JOIN
 	            attire USING (attire_id)
             WHERE
