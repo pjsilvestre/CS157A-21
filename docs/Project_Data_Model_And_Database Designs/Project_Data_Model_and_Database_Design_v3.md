@@ -1,6 +1,6 @@
 # whatdoiwear.today - Project Data Model and Database Design v3
 
-## Entity / Relationship Diagram TODO
+## Entity / Relationship Diagram
 
 ![ER Diagram](../images/database_design_3.0.png)
 
@@ -66,7 +66,7 @@
 
 - outfit_contained_by_closet (<ins>outfit_name</ins>, closet_id)
 
-- attire_contained_by_closet(<ins>attire_id</ins>, closet_id)
+- attire_contained_by_closet (<ins>attire_id</ins>, closet_id)
 
 - is_composed_of (<ins>outfit_name</ins>, <ins>attire_id</ins>)
 
@@ -89,7 +89,7 @@
 | worn_by                    | {O, D, U}                                   | OD &rarr; U                             | Yes                      | Yes              |
 | is_friends_with            | {U<sub>1</sub>, U<sub>2</sub>}              | (none)                                  | N/A                      | Yes (by default) |
 
-## Tables TODO
+## Tables
 
 ### Entity Set Tables
 
