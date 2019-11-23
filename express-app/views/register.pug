@@ -2,12 +2,13 @@ extends layout
 
 block content
     include partials/navbar-unauthenticated
-    include partials/error-message-alert
-    form(action='/register' method='POST')
-        div(class='form-group')
-            label(for='username') Username: 
-            input(type='text' class='form-control' name='username' required)
-        div(class='form-group')
-            label(for='password') Password:
-            input(type='password' class='form-control' name='password' required)
-        button(type='submit' class='btn btn-dark') Register
+    div(class="container")
+        include partials/error-message-alert
+        form(action='/register' method='POST')
+            div(class='form-group-lg')
+                label(for='username') Username: 
+                input(type='text' class='form-control' name='username' required)
+            div(class='form-group-lg')
+                label(for='password') Password:
+                input(type='password' class='form-control' name='password' required)
+            button(type='submit' class='btn btn-dark') Register
