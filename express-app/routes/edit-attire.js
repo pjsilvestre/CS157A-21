@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
             SELECT 
-                type, attire_name, brand, color, size
+                attire_id, type, attire_name, brand, color, size
             FROM
                 user
                     JOIN

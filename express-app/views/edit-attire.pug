@@ -9,7 +9,10 @@ block content
             label(for="attireNameSelect") Choose Attire
             select(class="form-control" id="attireNameSelect")
                 each attire in results
-                    option #{attire.attire_name}
+                    option=`${attire.attire_name}`
+        div(class='form-group')
+            label(for="attireID") Attire ID
+            input(type="text" class="form-control" id="attireID" value=`${results[0].attire_id}` readonly)
         div(class='form-group')
             label(for="newType") New Type
             input(type="text" class="form-control" id="newType" value=`${results[0].type}`)
@@ -38,7 +41,8 @@ block content
 
         nameSelectElement.addEventListener('change', event => {
             const selectedAttire = results.find(element => element.attire_name === nameSelectElement.value);
-
+            
+            document.getElementById('attireID').value = selectedAttire.attire_id;
             document.getElementById('newType').value = selectedAttire.type;
             document.getElementById('newAttireName').value = selectedAttire.attire_name;
             document.getElementById('newBrand').value = selectedAttire.brand;
