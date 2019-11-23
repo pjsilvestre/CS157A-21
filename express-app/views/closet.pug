@@ -2,20 +2,20 @@ extends layout
 
 block content
     include partials/navbar-authenticated
-
-    table(class='table')
-        thead
-            tr
-                th(scope='col') Type
-                th(scope='col') Name
-                th(scope='col') Brand
-                th(scope='col') Color
-                th(scope='col') Size
-        tbody
-            each attire in results
+    div(class="container")
+        table(class='table')
+            thead
                 tr
-                    td #{attire.type}
-                    td #{attire.attire_name}
-                    td #{attire.brand}
-                    td #{attire.color}
-                    td #{attire.size}
+                    th(scope='col') Type
+                    th(scope='col') Name
+                    th(scope='col') Brand
+                    th(scope='col') Color
+                    th(scope='col') Size
+            tbody
+                each attire in results
+                    tr
+                        td #{attire.type}
+                        td #{attire.attire_name}
+                        td #{attire.brand}
+                        td #{attire.color}
+                        td #{attire.size}
