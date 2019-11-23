@@ -17,23 +17,18 @@ router.get("/", (req, res) => {
 
 /* POST register page. */
 router.post("/", async (req, res) => {
-  try {
-    const hashed_password = await bcrypt.hashSync(
-      req.body.password,
-      saltRounds
-    );
+  const hashed_password = await bcrypt.hashSync(req.body.password, saltRounds);
 
-    const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
+  const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
 
-    database.query(query, err => {
-      if (err) throw err;
-    });
-  } catch (err) {
-    console.error(err.stack);
-    res.redirect("/register");
-  } finally {
-    res.redirect("/login");
-  }
+  database.query(query, error => {
+    if (error) {
+      console.log(error);
+      res.render("register", { errorMessage: "Username already taken." });
+    } else {
+      res.redirect("/login");
+    }
+  });
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@ extends layout
 
 block content
     include partials/navbar-unauthenticated
-
+    include partials/error-message-alert
     form(action='/register' method='POST')
         div(class='form-group')
             label(for='username') Username: 
