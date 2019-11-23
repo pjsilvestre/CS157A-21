@@ -23,8 +23,8 @@ router.post("/", async (req, res) => {
 
   database.query(query, error => {
     if (error) {
-      console.log(error);
-      res.render("register", { errorMessage: "Username already taken." });
+      let messages = { error: "Username already taken." };
+      res.render("register", { messages });
     } else {
       res.redirect("/login");
     }
