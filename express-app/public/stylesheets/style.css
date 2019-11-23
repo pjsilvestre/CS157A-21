@@ -1,5 +1,8 @@
-.container-fluid {
-  width: 100%;
-  padding: 0px;
-  margin-bottom: 25px;
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
 }
