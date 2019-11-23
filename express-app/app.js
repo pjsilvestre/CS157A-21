@@ -19,6 +19,7 @@ const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const closetRouter = require("./routes/closet");
 const addAttireRouter = require("./routes/add-attire");
+const editAttireRouter = require("./routes/edit-attire");
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/closet", closetRouter);
 app.use("/add-attire", addAttireRouter);
+app.use("/edit-attire", editAttireRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
