@@ -47,10 +47,10 @@ Alternatively, navigate to `express-app/config/database.js`, and change authenti
 
 ### Populating the Database
 
-Run the following using MySQL:
+Run the following using MySQL, replacing `<...>` with the directory containing `CS157A-21`:
 
 ```sh
-mysql> source sql/initialize-schema-and-data.sql
+mysql> source <...>/CS157A-21/sql/initialize-schema-and-data.sql
 ```
 
 ### Running the App
