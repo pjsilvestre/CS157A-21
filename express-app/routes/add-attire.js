@@ -5,10 +5,10 @@ const database = require("../config/database");
 
 /* GET add-attire page */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("add-attire");
-  } else {
+  if (!req.isAuthenticated()) {
     res.redirect("/");
+  } else {
+    res.render("add-attire");
   }
 });
 

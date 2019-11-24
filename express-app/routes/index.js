@@ -3,10 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("index", { user: req.user });
-  } else {
+  if (!req.isAuthenticated()) {
     res.render("index");
+  } else {
+    res.render("index", { user: req.user });
   }
 });
 

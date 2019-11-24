@@ -5,20 +5,22 @@ const database = require("../config/database");
 
 /* GET edit-attire page. */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
     const query = `
-            SELECT 
-                attire_id, type, attire_name, brand, color, size
-            FROM
-                user
-                    JOIN
-                owned_by USING (username)
-		            JOIN
-	            attire_contained_by_closet USING (closet_id)
-		            JOIN
-	            attire USING (attire_id)
-            WHERE
-            username = '${req.user.username}';`;
+    SELECT 
+        attire_id, type, attire_name, brand, color, size
+    FROM
+        user
+            JOIN
+        owned_by USING (username)
+        JOIN
+      attire_contained_by_closet USING (closet_id)
+        JOIN
+      attire USING (attire_id)
+    WHERE
+    username = '${req.user.username}';`;
 
     database.query(query, (error, results) => {
       if (error) {
@@ -28,14 +30,14 @@ router.get("/", (req, res) => {
         res.render("edit-attire", { results: results });
       }
     });
-  } else {
-    res.redirect("/");
   }
 });
 
 /* POST edit-attire page. */
 router.post("/", (req, res) => {
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
     const attireID = req.body.attireID;
     const newType = req.body.newType;
     const newAttireName = req.body.newAttireName;
@@ -59,8 +61,6 @@ router.post("/", (req, res) => {
         res.redirect("/closet");
       }
     });
-  } else {
-    res.redirect("/");
   }
 });
 
