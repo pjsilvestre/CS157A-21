@@ -5,28 +5,28 @@ const database = require("../config/database");
 
 /* GET add-attire page */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("add-attire");
-  } else {
+  if (!req.isAuthenticated()) {
     res.redirect("/");
+  } else {
+    res.render("add-attire");
   }
 });
 
 /* POST add-attire page, redirecting to closet*/
 router.post("/", (req, res) => {
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    const username = req.user.username;
+    const attire_id = Date.now();
+    const type = req.body.type;
+    const attire_name = req.body.name;
+    const brand = req.body.brand;
+    const color = req.body.color;
+    const size = req.body.size;
+
     try {
-      const username = req.user.username;
-
-      const attire_id = Date.now();
-      const type = req.body.type;
-      const attire_name = req.body.name;
-      const brand = req.body.brand;
-      const color = req.body.color;
-      const size = req.body.size;
-
-      //add attire to attire table
-      let query = `INSERT INTO attire VALUES (
+      let insertAttireIntoAttireQuery = `INSERT INTO attire VALUES (
         '${attire_id}',
         '${type}',
         '${attire_name}',
@@ -34,33 +34,34 @@ router.post("/", (req, res) => {
         '${color}',
         '${size}');`;
 
-      database.query(query, err => {
-        if (err) throw err;
+      database.query(insertAttireIntoAttireQuery, error => {
+        if (error) {
+          throw error;
+        }
       });
 
-      //get user's closet_id
-      query = `SELECT closet_id FROM owned_by WHERE username='${username}';`;
+      let selectClosetIDQuery = `SELECT closet_id FROM owned_by WHERE username='${username}';`;
 
-      database.query(query, (err, results) => {
-        if (err) throw err;
-        let closet_id = results[0].closet_id;
+      database.query(selectClosetIDQuery, (error, results) => {
+        if (error) {
+          throw error;
+        } else {
+          let closet_id = results[0].closet_id;
 
-        //associate attire with user's closet
-        query = `INSERT INTO attire_contained_by_closet VALUES ('${attire_id}', '${closet_id}');`;
+          let insertAttireIntoClosetQuery = `INSERT INTO attire_contained_by_closet VALUES ('${attire_id}', '${closet_id}');`;
 
-        database.query(query, (err, results) => {
-          if (err) throw err;
-          closet_id = results.closet_id;
-        });
+          database.query(insertAttireIntoClosetQuery, error => {
+            if (error) {
+              throw error;
+            }
+          });
+        }
       });
-    } catch (err) {
-      console.error(err.stack);
-      res.redirect("/add-attire");
-    } finally {
+
       res.redirect("/closet");
+    } catch (error) {
+      res.render("add-attire"), { messages: error };
     }
-  } else {
-    res.redirect("/");
   }
 });
 
