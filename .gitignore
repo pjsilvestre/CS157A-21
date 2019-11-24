@@ -3,3 +3,4 @@
 docs/.DS_Store
 express-app/.vscode/settings.json
 .vscode/settings.json
+express-app/.eslintrc.js
