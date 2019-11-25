@@ -1,3 +1,4 @@
+//TODO: remove-attire.pug
 const express = require("express");
 const router = express.Router();
 
