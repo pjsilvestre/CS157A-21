@@ -1,5 +1,4 @@
 //TODO: friendlist.pug and add-friend.pug
-// Maybe consider combining these two
 const express = require("express");
 const router = express.Router();
 
