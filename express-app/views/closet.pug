@@ -9,20 +9,45 @@ block content
                 select(class="form-control" name="closet" id="closet" onchange="this.form.submit()")
                     each closet in closets
                         option(value=closet)=`${closet.location}`
-        div(class="container")
-            table(class="table")
-                thead
-                    tr
-                        th(scope="col") Type
-                        th(scope="col") Name
-                        th(scope="col") Brand
-                        th(scope="col") Color
-                        th(scope="col") Size
-                tbody
-                    each piece in attire
+            div(class="form-group")
+                select(class="form-control" name="displayChoice" id="displayChoice" onchange="this.form.submit()")
+                    each displayChoice in displayChoices
+                        option(value=displayChoice)=`${displayChoice}`
+        if attire
+            div(class="container")
+                table(class="table")
+                    thead
                         tr
-                            td=`${piece.type}`
-                            td=`${piece.attire_name}`
-                            td=`${piece.brand}`
-                            td=`${piece.color}`
-                            td=`${piece.size}`
+                            th(scope="col") Type
+                            th(scope="col") Name
+                            th(scope="col") Brand
+                            th(scope="col") Color
+                            th(scope="col") Size
+                    tbody
+                        each piece in attire
+                            tr
+                                td=`${piece.type}`
+                                td=`${piece.attire_name}`
+                                td=`${piece.brand}`
+                                td=`${piece.color}`
+                                td=`${piece.size}`
+        else
+            div(class="container")
+                table(class="table")
+                    thead
+                        tr
+                            th(scope="col") Outfit Name
+                            th(scope="col") Type
+                            th(scope="col") Name
+                            th(scope="col") Brand
+                            th(scope="col") Color
+                            th(scope="col") Size
+                    tbody
+                        each piece in outfits
+                            tr
+                                td=`${piece.outfit_name}`
+                                td=`${piece.type}`
+                                td=`${piece.attire_name}`
+                                td=`${piece.brand}`
+                                td=`${piece.color}`
+                                td=`${piece.size}`
