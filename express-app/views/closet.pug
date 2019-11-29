@@ -3,6 +3,7 @@ extends layout
 block content
     include partials/navbar-authenticated
     div(class="container")
+        h1 Your Closet
         include partials/error-message-alert
         form(class="form-inline" action="/closet" method="POST")
             div(class="form-group")
