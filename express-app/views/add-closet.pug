@@ -2,3 +2,13 @@ extends layout
 
 block content
     include partials/navbar-authenticated
+    div(class="container")
+        h1 Add Closet
+        include partials/error-message-alert
+        form(action="/add-closet" method="POST")
+            div(class="form-group")
+                label(for="location") Location
+                input(type="text" class="form-control" name="location" aria-describedby="locationHelp" placeholder="Enter location" required)
+                small(id="locationHelp" class="form-text text-muted") e.g. bedroom, hallway, etc.
+            button(type="submit" class="btn btn-dark") Add Closet
+
