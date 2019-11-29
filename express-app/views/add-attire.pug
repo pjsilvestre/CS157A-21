@@ -3,6 +3,7 @@ extends layout
 block content
     include partials/navbar-authenticated
     div(class="container")
+        h1 Add Attire
         form(action="/add-attire" method="POST")
             div(class="form-group")
                 label(for="closet") Closet Location
@@ -25,4 +26,4 @@ block content
             div(class="form-group")
                 label(for="size") Size
                 input(type="text" class="form-control" name="size" placeholder="Enter size" required)
-            button(type="submit" class="btn btn-dark") Submit
+            button(type="submit" class="btn btn-dark") Add Attire

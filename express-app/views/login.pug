@@ -3,6 +3,7 @@ extends layout
 block content
     include partials/navbar-unauthenticated
     div(class="container")
+        h1 Login
         include partials/error-message-alert
         form(action='/login' method='POST')
             div(class='form-group')
