@@ -3,9 +3,13 @@ extends layout
 block content
     if user
         include partials/navbar-authenticated
+        div(class="container")
+            include partials/error-message-alert
         div(class="jumbotron")
             h1 Welcome, #{user.username}.
     else
         include partials/navbar-unauthenticated
+        div(class="container")
+            include partials/error-message-alert
         div(class="jumbotron")
             h1 #[a(href='./login') Login] if you have an account, or #[a(href='./register') register] today.

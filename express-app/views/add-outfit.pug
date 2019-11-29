@@ -1,0 +1,95 @@
+extends layout
+
+block content
+    include partials/navbar-authenticated
+    div(class="container")
+        h1 Add Outfit
+        include partials/error-message-alert
+    div(class="container")
+        form(action="/add-outfit" method="POST")
+            div(class="form-group")
+                label(for="closet") Closet Location
+                select(class="form-control" id="closetSelect" name="closet")
+                    each closet in closets
+                        option(value=closet)=`${closet.location}`
+            div(class="form-group")
+                label(for="name") Name
+                input(type="text" class="form-control" name="name" placeholder="Enter outfit name" required)
+            div(class="form-group")
+                label(for="season") Season
+                select(class="form-control" name="season")
+                    option(value="Spring") Spring
+                    option(value="Summer") Summer
+                    option(value="Fall") Fall
+                    option(value="Winter") Winter
+            div(class="form-group" id="attire")
+            div(class="form-group")
+                label(for="tag") Tag
+                input(type="text" class="form-control" name="tag" aria-describedby="tagHelp" placeholder="Enter tag")
+                small(id="tagHelp" class="form-text text-muted") A tag can be used to group different outfits together.
+            button(type="submit" class="btn btn-dark") Add Outfit
+
+    script.
+        // dynamically update displayed attire based on chosen closet
+
+        function populateAttire(piece) {
+            let attireChoiceDiv = document.createElement('div');
+            attireChoiceDiv.className += "form-check"
+
+            let attireChoiceInput = document.createElement('input');
+            attireChoiceInput.className +="form-check-input";
+            attireChoiceInput.type = "checkbox";
+            attireChoiceInput.value = piece.attire_id;
+            attireChoiceInput.id = piece.attire_id;
+            attireChoiceInput.name = "attireChoices";
+
+            let attireChoiceLabel = document.createElement('label');
+            attireChoiceLabel.className += "form-check-label";
+            attireChoiceLabel.htmlFor = "piece.attire_id";
+            attireChoiceLabel.textContent = piece.attire_name
+
+            attireChoiceDiv.appendChild(attireChoiceInput);
+            attireChoiceDiv.appendChild(attireChoiceLabel);
+            attireChoices.appendChild(attireChoiceDiv);
+        }
+
+        // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
+        const attire = !{JSON.stringify(attire).replace(/<\//g, '<\\/')};
+
+        // get selected closet location
+        const closetSelectElement = document.getElementById('closetSelect');
+        let selectedCloset = JSON.parse(closetSelectElement.value);
+        let selectedLocation = selectedCloset.location;
+
+        // display initial attire choices
+        const attireChoices = document.getElementById('attire');
+
+        let attireChoicesLabel = document.createElement('label');
+        attireChoicesLabel.htmlFor = "attire";
+        attireChoicesLabel.textContent = "Attire";
+        attireChoices.appendChild(attireChoicesLabel);
+
+        let validAttire = attire.filter(piece => piece.location === selectedLocation)
+
+        validAttire.forEach(piece => populateAttire(piece));
+
+        closetSelectElement.addEventListener('change', event => {
+            selectedCloset = JSON.parse(closetSelectElement.value);
+            selectedLocation = selectedCloset.location;
+
+            validAttire = attire.filter(e => e.location === selectedLocation)
+
+            // delete all nodes from attireChoices
+            while(attireChoices.firstChild) {
+                attireChoices.removeChild(attireChoices.firstChild);
+            }
+
+            // add label
+            let attireChoicesLabel = document.createElement('label');
+            attireChoicesLabel.htmlFor = "attire";
+            attireChoicesLabel.textContent = "Attire";
+            attireChoices.appendChild(attireChoicesLabel);
+
+            // add all valid attire
+            validAttire.forEach(piece => populateAttire(piece));
+        })
