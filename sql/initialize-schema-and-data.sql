@@ -123,7 +123,8 @@ INSERT INTO closet VALUES
     ('707', 'Bedroom'),
     ('955', 'Bedroom'),
     ('1010', 'Hallway'),
-    ('470', 'Bedroom');
+    ('470', 'Bedroom'),
+    ('123', 'Hallway');
     
 -- Initialize outfit (outfit_name, season, tag)
 INSERT INTO outfit VALUES
@@ -164,7 +165,8 @@ INSERT INTO attire VALUES
     ('123', 'Sneaker', 'Jordan 11 Retro Playoffs Bred (2019)', 'Jordan Brand', 'Bred', '10'),
     ('524', 'Pants', 'Sportswear Tech Fleece', 'Nike', 'Black', 'S'),
     ('601', 'Pants', 'Windproof Stretch Slim-Fit Chino Pants', 'Uniqlo', 'Black', '30'),
-    ('698', 'Pants', 'Ultra Stretch Skinny Fit Jeans', 'Uniqlo', 'Gray', '31');
+    ('698', 'Pants', 'Ultra Stretch Skinny Fit Jeans', 'Uniqlo', 'Gray', '31'),
+    ('999', 'Sneaker', 'Yeezy Boost 350 V2 Black (Non-Reflective)', 'Adidas', 'Black', '9');
     
 -- Initialize owned_by (closet_id, username)
 INSERT INTO owned_by VALUES
@@ -182,7 +184,8 @@ INSERT INTO owned_by VALUES
     ('707', 'PointOfReferences'),
     ('955', 'geometrieva'),
     ('1010', 'Potato559'),
-    ('470', 'FubsyGamr');
+    ('470', 'FubsyGamr'),
+    ('123', 'Eviscirator');
     
 -- Initialize outfit_contained_by_closet (outfit_name, closet_id)
 INSERT INTO outfit_contained_by_closet VALUES
@@ -223,7 +226,8 @@ INSERT INTO attire_contained_by_closet VALUES
     ('527', '676'),
     ('891', '676'),
     ('876', '676'),
-    ('633', '676');
+    ('633', '676'),
+    ('999', '123');
 
 -- Initialize is_composed_of (outfit_name, attire_id)
 INSERT INTO is_composed_of VALUES
