@@ -5,3 +5,25 @@ block content
     div(class="container")
         h1 Add Outfit
         include partials/error-message-alert
+    div(class="container")
+        form(action="/add-outfit" method="POST")
+            div(class="form-group")
+                label(for="closet") Closet Location
+                select(class="form-control" name="closet")
+                    each closet in closets
+                        option(value=closet)=`${closet.location}`
+            div(class="form-group")
+                label(for="name") Name
+                input(type="text" class="form-control" name="name" placeholder="Enter outfit name" required)
+            div(class="form-group")
+                label(for="season") Season
+                select(class="form-control" name="season")
+                    option(value="spring") Spring
+                    option(value="summer") Summer
+                    option(value="fall") Fall
+                    option(value="winter") Winter
+            div(class="form-group")
+                label(for="tag") Tag
+                input(type="text" class="form-control" name="tag" aria-describedby="tagHelp" placeholder="Enter tag")
+                small(id="tagHelp" class="form-text text-muted") A tag can be used to group different outfits together.
+            button(type="submit" class="btn btn-dark") Add Outfit
