@@ -141,7 +141,8 @@ router.post("/", (req, res) => {
                 JOIN
               attire USING (attire_id)
             WHERE
-                closet_id = '${chosenCloset.closet_id}';`;
+                closet_id = '${chosenCloset.closet_id}'
+            ORDER BY outfit_name;`;
             database.query(outfitQuery, (error, outfits) => {
               if (error) {
                 throw error;
