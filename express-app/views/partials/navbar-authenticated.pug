@@ -4,16 +4,20 @@ div(class="container-fluid")
         button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
             span(class="navbar-toggler-icon")
         div(class="collapse navbar-collapse" id="navbarSupportedContent")
-            ul(class="navbar-nav mr-auto")
-                li(class="nav-item")
-                    a(class="nav-link" href="./closet") Your Closet
-                li(class="nav-item")
-                    a(class="nav-link" href="./add-closet") Add Closet
-                li(class="nav-item")
-                    a(class="nav-link" href="./add-attire") Add Attire
-                li(class="nav-item")
-                    a(class="nav-link" href="./edit-attire") Edit Attire
-                li(class="nav-item")
-                    a(class="nav-link" href="./add-outfit") Add Outfit
+            ul(class="navbar-nav")
+                li(class="nav-item dropdown")
+                    a(class="nav-link dropdown-toggle" href="#" id="closetDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Closet
+                    div(class="dropdown-menu" aria-labelledby="closetDropdownMenuLink")
+                        a(class="dropdown-item" href="./closet") Your Closet
+                        a(class="dropdown-item" href="./add-closet") Add Closet
+                li(class="nav-item dropdown")
+                    a(class="nav-link dropdown-toggle" href="#" id="attireDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Attire
+                    div(class="dropdown-menu" aria-labelledby="attireDropdownMenuLink")
+                        a(class="dropdown-item" href="./add-attire") Add Attire
+                        a(class="dropdown-item" href="./edit-attire") Edit Attire
+                li(class="nav-item dropdown")
+                    a(class="nav-link dropdown-toggle" href="#" id="outfitDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Outfits
+                    div(class="dropdown-menu" aria-labelledby="outfitDropdownMenuLink")        
+                        a(class="dropdown-item" href="./add-outfit") Add Outfit
                 form(class ="form-inline" action="/logout?_method=DELETE" method="POST")
                     button(type="submit" class="btn btn-light") Logout
