@@ -1,29 +1,29 @@
-//TODO: friendlist.pug and add-friend.pug
+//TODO: remove-friend.pug
 const express = require("express");
 const router = express.Router();
 
 const database = require("../config/database");
 
-/* GET add-friend page */
+/* GET remove-friend page */
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("add-friend");
+    res.render("remove-attire");
   } else {
     res.redirect("/");
   }
 });
 
-/* POST add-friend page, redirecting to friends list*/
+/* POST remove-friend page, redirecting to friends list*/
 router.post("/", (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const username = req.user.username;
-      const newFriend = req.body.friend;
+      const oldFriend = req.body.friend;
 
-      //add new friend to user's friends list
-      let query = `REPLACE INTO is_friends_with SET
+      //delete old friend from user's friends list
+      let query = `DELETE FROM is_friends_with WHERE
     	  			username1 = '${username}',
-    	  			username2 = '${newFriend}';`;
+    	  			username2 = '${oldFriend}';`;
 
       database.query(query, err => {
         if (err) throw err;
@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
     });
     } catch (err) {
       console.error(err.stack);
-      res.redirect("/add-friend");
+      res.redirect("/remove-friend");
     } finally {
       res.redirect("/friendlist");
     }

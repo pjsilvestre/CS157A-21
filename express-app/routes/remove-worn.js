@@ -1,13 +1,13 @@
-//TODO: friendlist.pug and add-friend.pug
+//TODO: remove-worn.pug
 const express = require("express");
 const router = express.Router();
 
 const database = require("../config/database");
 
-/* GET add-friend page */
+/* GET remove-worn page */
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
-    res.render("add-friend");
+    res.render("remove-worn");
   } else {
     res.redirect("/");
   }
@@ -18,12 +18,16 @@ router.post("/", (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const username = req.user.username;
-      const newFriend = req.body.friend;
+      //TODO: add outfit_name field in remove-worn.pug
+      const outfit_name = req.body.outfit_name;
+      //TODO: add date field in remove-worn.pug
+      const date = req.body.date;
 
-      //add new friend to user's friends list
-      let query = `REPLACE INTO is_friends_with SET
-    	  			username1 = '${username}',
-    	  			username2 = '${newFriend}';`;
+      //remove worn attire from user's list
+      let query = `DELETE FROM worn_by WHERE
+    	  			username = '${username}',
+    	  			outfit_name = '${outfit_name}'
+    	  			date = '${date}';`;
 
       database.query(query, err => {
         if (err) throw err;
@@ -31,13 +35,15 @@ router.post("/", (req, res) => {
     });
     } catch (err) {
       console.error(err.stack);
-      res.redirect("/add-friend");
+      res.redirect("/remove-worn");
     } finally {
-      res.redirect("/friendlist");
+      res.redirect("/worn-list");
     }
   } else {
     res.redirect("/");
   }
 });
+
+
 
 module.exports = router;

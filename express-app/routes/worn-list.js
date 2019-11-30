@@ -1,25 +1,25 @@
-//TODO: friendlist.pug and add-friend.pug
+//TODO: worn-list.pug
 const express = require("express");
 const router = express.Router();
 
 const database = require("../config/database");
 
-/* GET friends list page */
+/* GET worn list page */
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     try {
-    	//username2 = friends of username1
+    	
       const query = `
             SELECT 
-                username2
+                outfit_name, date
             FROM
-                is_friends_with
+                worn_by
             WHERE
-            username1 = '${req.user.username}';`;
+            username = '${req.user.username}';`;
 
       database.query(query, (err, results) => {
         if (err) throw err;
-        res.render("friendlist", { user: req.user, results: results });
+        res.render("worn-list", { user: req.user, results: results });
       });
     } catch (err) {
       console.error(err.stack);
@@ -29,5 +29,7 @@ router.get("/", (req, res) => {
     res.redirect("/");
   }
 });
+
+
 
 module.exports = router;
