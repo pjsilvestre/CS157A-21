@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
     } catch (error) {
       console.log(error);
       let messages = { error: error };
-      res.render("closet", { messages });
+      res.render("index", { messages });
     }
   }
 });
@@ -157,7 +157,7 @@ router.post("/", (req, res) => {
     } catch (error) {
       console.log(error);
       let messages = { error: error };
-      res.render("closet", { messages });
+      res.render("index", { messages });
     }
   }
 });
