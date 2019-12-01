@@ -1,23 +1,22 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET closet page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
-    try {
-      const displayChoices = ["Attire", "Outfits"];
-
-      const closetQuery = `
+    const displayChoices = ['Attire', 'Outfits'];
+    const closetQuery = `
         SELECT 
           * 
         FROM closet 
           JOIN owned_by USING (closet_id) 
         WHERE username = '${req.user.username}';`;
 
+    try {
       database.query(closetQuery, (error, closets) => {
         if (error) {
           throw error;
@@ -40,42 +39,29 @@ router.get("/", (req, res) => {
             if (error) {
               throw error;
             } else {
-              attire = JSON.parse(JSON.stringify(attire));
-
-              res.render("closet", { closets, displayChoices, attire });
+              res.render('closet', { displayChoices, closets, attire });
             }
           });
         }
       });
     } catch (error) {
-      console.log(error);
       let messages = { error: error };
-      res.render("closet", { messages });
+      res.render('index', { messages });
     }
   }
 });
 
 /* GET closet page, depending on a chosen closet */
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
-      // set the first displayChoice in displayChoices to be the chosen displayChoice
-      const displayChoices = [];
+      // parse user's display and closet choices
+      let displayChoices;
       const displayChoice = req.body.displayChoice;
-      if (displayChoice === "Attire") {
-        displayChoices.push("Attire");
-        displayChoices.push("Outfits");
-      } else {
-        displayChoices.push("Outfits");
-        displayChoices.push("Attire");
-      }
 
-      // set the first closet in the closet-selector to be the chosen closet
-      const closets = [];
       const chosenCloset = JSON.parse(req.body.closet);
-      closets.push(chosenCloset);
 
       const closetQuery = `
         SELECT 
@@ -88,16 +74,24 @@ router.post("/", (req, res) => {
         if (error) {
           throw error;
         } else {
-          allClosets = JSON.parse(JSON.stringify(allClosets));
+          // set user's display and closet choices
+          if (displayChoice === 'Attire') {
+            displayChoices = ['Attire', 'Outfits'];
+          } else {
+            displayChoices = ['Outfits', 'Attire'];
+          }
 
-          // add all other other closets to closets
+          let closets = [chosenCloset];
+
+          // add other closets
           for (const closet of allClosets) {
             if (closet.closet_id !== chosenCloset.closet_id) {
               closets.push(closet);
             }
           }
 
-          if (displayChoice === "Attire") {
+          if (displayChoice === 'Attire') {
+            // get all of the attire from a user's chosen closet
             const attireQuery = `
               SELECT
                 type, attire_name, brand, color, size
@@ -118,11 +112,11 @@ router.post("/", (req, res) => {
               if (error) {
                 throw error;
               } else {
-                attire = JSON.parse(JSON.stringify(attire));
-                res.render("closet", { closets, displayChoices, attire });
+                res.render('closet', { closets, displayChoices, attire });
               }
             });
           } else {
+            // get all of the outfits from a user's chosen closet
             const outfitQuery = `
             SELECT 
               outfit_name, type, attire_name, brand, color, size
@@ -143,21 +137,20 @@ router.post("/", (req, res) => {
             WHERE
                 closet_id = '${chosenCloset.closet_id}'
             ORDER BY outfit_name;`;
+
             database.query(outfitQuery, (error, outfits) => {
               if (error) {
                 throw error;
               } else {
-                outfits = JSON.parse(JSON.stringify(outfits));
-                res.render("closet", { closets, displayChoices, outfits });
+                res.render('closet', { closets, displayChoices, outfits });
               }
             });
           }
         }
       });
     } catch (error) {
-      console.log(error);
       let messages = { error: error };
-      res.render("closet", { messages });
+      res.render('index', { messages });
     }
   }
 });

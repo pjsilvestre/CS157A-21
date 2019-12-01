@@ -1,5 +1,31 @@
+/* global styling */
+:root {
+  --table-header-color: #212529;
+}
 .container-fluid {
   width: 100%;
   padding: 0px;
   margin-bottom: 25px;
+}
+
+/* closet styling */
+
+#type-table-header {
+  color: var(--table-header-color);
+}
+
+#name-table-header {
+  color: var(--table-header-color);
+}
+
+#brand-table-header {
+  color: var(--table-header-color);
+}
+
+#color-table-header {
+  color: var(--table-header-color);
+}
+
+#size-table-header {
+  color: var(--table-header-color);
 }
