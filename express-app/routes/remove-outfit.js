@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
           const outfitQuery = `
             SELECT 
-              outfit_name
+              outfit_name, closet_id
             FROM
               user
                 JOIN
