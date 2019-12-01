@@ -142,7 +142,8 @@ INSERT INTO outfit VALUES
     ('New', 'Fall', NULL),
     ('Perfection', 'Winter', NULL),
     ('Inspo', 'Summer', NULL),
-    ('Premium', 'Fall', NULL);
+    ('Premium', 'Fall', NULL),
+    ('Comfy', 'Spring', NULL);
 
 -- Initialize attire (attire_id, type, attire_name, brand, color, size)
 INSERT INTO attire VALUES
@@ -166,7 +167,9 @@ INSERT INTO attire VALUES
     ('524', 'Pants', 'Sportswear Tech Fleece', 'Nike', 'Black', 'S'),
     ('601', 'Pants', 'Windproof Stretch Slim-Fit Chino Pants', 'Uniqlo', 'Black', '30'),
     ('698', 'Pants', 'Ultra Stretch Skinny Fit Jeans', 'Uniqlo', 'Gray', '31'),
-    ('999', 'Sneaker', 'Yeezy Boost 350 V2 Black (Non-Reflective)', 'Adidas', 'Black', '9');
+    ('999', 'Sneaker', 'Yeezy Boost 350 V2 Black (Non-Reflective)', 'Adidas', 'Black', '9'),
+    ('574', 'Pants', '3-Stripes Woven Joggers', 'Adidas', 'Black / White', 'S'),
+    ('333', 'Jacket', 'MA-1 Slim Fit / European Fit', 'Alpha Industries', 'Black', 'S');
     
 -- Initialize owned_by (closet_id, username)
 INSERT INTO owned_by VALUES
@@ -203,7 +206,8 @@ INSERT INTO outfit_contained_by_closet VALUES
     ('New', '707'),
     ('Perfection', '955'),
     ('Inspo', '1010'),
-    ('Premium', '470');
+    ('Premium', '470'),
+    ('Comfy', '123');
     
 -- Initialize attire_contained_by_closet (atitre_id, closet_id)
 INSERT INTO attire_contained_by_closet VALUES
@@ -227,7 +231,9 @@ INSERT INTO attire_contained_by_closet VALUES
     ('891', '676'),
     ('876', '676'),
     ('633', '676'),
-    ('999', '123');
+    ('999', '123'),
+    ('574', '123'),
+    ('333', '123');
 
 -- Initialize is_composed_of (outfit_name, attire_id)
 INSERT INTO is_composed_of VALUES
@@ -245,7 +251,10 @@ INSERT INTO is_composed_of VALUES
     ('Coordinated', '893'),
     ('Street', '123'),
     ('Street', '698'),
-    ('Street', '425');
+    ('Street', '425'),
+    ('Comfy', '999'),
+    ('Comfy', '574'),
+    ('Comfy', '333');
 
 -- Initialize worn_by (outfit_name, date, username)
 INSERT INTO worn_by VALUES

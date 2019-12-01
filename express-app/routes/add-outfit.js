@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET add-outfit page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
       const username = req.user.username;
@@ -37,21 +37,21 @@ router.get("/", (req, res) => {
               throw error;
             } else {
               attire = JSON.parse(JSON.stringify(attire));
-              res.render("add-outfit", { closets, attire });
+              res.render('add-outfit', { closets, attire });
             }
           });
         }
       });
     } catch (error) {
-      res.redirect("/");
+      res.redirect('/');
     }
   }
 });
 
 /* POST add-outfit page, redirecting to closet */
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
       const closet = JSON.parse(req.body.closet);
@@ -69,7 +69,7 @@ router.post("/", (req, res) => {
       // console.log(tag);
 
       if (attireChoices === undefined) {
-        const error = "No pieces selected!";
+        const error = 'No pieces selected!';
         throw error;
       }
 
@@ -102,23 +102,23 @@ router.post("/", (req, res) => {
                   });
                 });
               } else {
-								let insertOutfitIntoIsComposedOfQuery = `INSERT INTO is_composed_of VALUES ('${outfit_name}', '${attireChoices}');`;
+                let insertOutfitIntoIsComposedOfQuery = `INSERT INTO is_composed_of VALUES ('${outfit_name}', '${attireChoices}');`;
 
-								database.query(insertOutfitIntoIsComposedOfQuery, error => {
-									if (error) {
-										throw error;
-									}
-								});
+                database.query(insertOutfitIntoIsComposedOfQuery, error => {
+                  if (error) {
+                    throw error;
+                  }
+                });
               }
             }
           });
         }
       });
 
-      res.redirect("/closet");
+      res.redirect('/closet');
     } catch (error) {
       console.log(error);
-      res.redirect("/");
+      res.redirect('/');
     }
   }
 });
