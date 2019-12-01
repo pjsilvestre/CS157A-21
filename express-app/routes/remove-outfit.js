@@ -17,7 +17,28 @@ router.get('/', (req, res) => {
         } else {
           closets = JSON.parse(JSON.stringify(closets));
 
-          res.render('remove-outfit', { closets });
+          const outfitQuery = `
+            SELECT 
+              outfit_name
+            FROM
+              user
+                JOIN
+              owned_by USING (username)
+                JOIN
+              closet USING (closet_id)
+                JOIN
+              outfit_contained_by_closet USING (closet_id)
+            WHERE
+              username = '${username}';`;
+
+          database.query(outfitQuery, (error, outfits) => {
+            if (error) {
+              throw error;
+            } else {
+              outfits = JSON.parse(JSON.stringify(outfits));
+              res.render('remove-outfit', { closets, outfits });
+            }
+          });
         }
       });
     } catch (error) {
