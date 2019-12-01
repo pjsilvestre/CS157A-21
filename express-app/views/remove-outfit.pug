@@ -12,8 +12,69 @@ block content
                 select(class="form-control" id="closetSelect" name="closet")
                     each closet in closets
                         option(value=closet)=`${closet.location}`
-            div(class="form-group")
-                label(for="outfits") Outfits
-                select(class="form-control" name="outfit_name")
-                    each outfit in outfits
-                        option(value=outfit)=`${outfit.outfit_name}`
+            div(class="form-group" id="outfits")
+                //- label(for="outfits") Outfits
+                //- select(class="form-control" name="outfit_name")
+                //-     each outfit in outfits
+                //-         option(value=outfit)=`${outfit.outfit_name}`
+
+    script.
+        // dynamically update display outfits based on chosen closet
+
+        function populateOutfits(outfits) {
+            const outfitChoiceSelect = document.createElement('select');
+            outfitChoiceSelect.className += 'form-control';
+            outfitChoiceSelect.name = 'outfit_name';
+
+            outfits.forEach(outfit => {
+                console.log(outfit);
+
+                const outfitChoiceOption = document.createElement('option');
+                outfitChoiceOption.value = outfit;
+                outfitChoiceOption.name = 'outfit_name'
+                outfitChoiceOption.textContent = outfit.outfit_name;
+
+                outfitChoiceSelect.appendChild(outfitChoiceOption);
+            })
+
+            outfitChoices.appendChild(outfitChoiceSelect);
+        }
+
+        // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
+        const outfits = !{JSON.stringify(outfits).replace(/<\//g, '<\\/')};
+
+        // get selected closet location
+        const closetSelectElement = document.getElementById('closetSelect');
+        let selectedCloset = JSON.parse(closetSelectElement.value);
+        let selectedClosetID = selectedCloset.closet_id;
+
+        // display initial outfit choices
+        const outfitChoices = document.getElementById('outfits');
+
+        let outfitChoicesLabel = document.createElement('label');
+        outfitChoicesLabel.htmlFor = 'outfits';
+        outfitChoicesLabel.textContent = 'Outfits';
+        outfitChoices.appendChild(outfitChoicesLabel);
+
+        let validOutfits = outfits.filter(outfit => outfit.closet_id === selectedClosetID);
+
+        populateOutfits(validOutfits);
+
+        // update outfits upon closet selection
+        closetSelectElement.addEventListener('change', event => {
+            selectedCloset = JSON.parse(closetSelectElement.value);
+            selectedClosetID = selectedCloset.closet_id;
+
+            validOutfits = outfits.filter(outfit => outfit.closet_id === selectedClosetID);
+
+            // delete all nodes from outfitChoices
+            while(outfitChoices.firstChild) {
+                outfitChoices.removeChild(outfitChoices.firstChild);
+            }
+
+            // add label
+            outfitChoices.appendChild(outfitChoicesLabel);
+
+            //add all valid outfits
+            populateOutfits(validOutfits);
+        })
