@@ -1,23 +1,22 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET closet page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
-    try {
-      const displayChoices = ["Attire", "Outfits"];
-
-      const closetQuery = `
+    const displayChoices = ['Attire', 'Outfits'];
+    const closetQuery = `
         SELECT 
           * 
         FROM closet 
           JOIN owned_by USING (closet_id) 
         WHERE username = '${req.user.username}';`;
 
+    try {
       database.query(closetQuery, (error, closets) => {
         if (error) {
           throw error;
@@ -40,36 +39,33 @@ router.get("/", (req, res) => {
             if (error) {
               throw error;
             } else {
-              attire = JSON.parse(JSON.stringify(attire));
-
-              res.render("closet", { closets, displayChoices, attire });
+              res.render('closet', { displayChoices, closets, attire });
             }
           });
         }
       });
     } catch (error) {
-      console.log(error);
       let messages = { error: error };
-      res.render("index", { messages });
+      res.render('index', { messages });
     }
   }
 });
 
 /* GET closet page, depending on a chosen closet */
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
       // set the first displayChoice in displayChoices to be the chosen displayChoice
       const displayChoices = [];
       const displayChoice = req.body.displayChoice;
-      if (displayChoice === "Attire") {
-        displayChoices.push("Attire");
-        displayChoices.push("Outfits");
+      if (displayChoice === 'Attire') {
+        displayChoices.push('Attire');
+        displayChoices.push('Outfits');
       } else {
-        displayChoices.push("Outfits");
-        displayChoices.push("Attire");
+        displayChoices.push('Outfits');
+        displayChoices.push('Attire');
       }
 
       // set the first closet in the closet-selector to be the chosen closet
@@ -97,7 +93,7 @@ router.post("/", (req, res) => {
             }
           }
 
-          if (displayChoice === "Attire") {
+          if (displayChoice === 'Attire') {
             const attireQuery = `
               SELECT
                 type, attire_name, brand, color, size
@@ -119,7 +115,7 @@ router.post("/", (req, res) => {
                 throw error;
               } else {
                 attire = JSON.parse(JSON.stringify(attire));
-                res.render("closet", { closets, displayChoices, attire });
+                res.render('closet', { closets, displayChoices, attire });
               }
             });
           } else {
@@ -148,7 +144,7 @@ router.post("/", (req, res) => {
                 throw error;
               } else {
                 outfits = JSON.parse(JSON.stringify(outfits));
-                res.render("closet", { closets, displayChoices, outfits });
+                res.render('closet', { closets, displayChoices, outfits });
               }
             });
           }
@@ -157,7 +153,7 @@ router.post("/", (req, res) => {
     } catch (error) {
       console.log(error);
       let messages = { error: error };
-      res.render("index", { messages });
+      res.render('index', { messages });
     }
   }
 });
