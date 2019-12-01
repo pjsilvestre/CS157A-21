@@ -5,3 +5,11 @@ block content
     div(class="container")
         h1 Remove Outfit
         include partials/error-message-alert
+    div(class="container")
+        form(action="/remove-outfit" method="POST")
+            div(class="form-group")
+                label(for="closet") Closet Location
+                select(class="form-control" id="closetSelect" name="closet")
+                    if closets
+                        each closet in closets
+                            option(value=closet)=`${closet.location}`
