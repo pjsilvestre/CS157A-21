@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 						attire_contained_by_closet USING (closet_id)
 							JOIN
 						attire USING (attire_id)
-					WHERE username = 'Eviscirator';`;
+					WHERE username = '${username}';`;
 
           database.query(attireQuery, (error, attire) => {
             if (error) {
@@ -53,72 +53,67 @@ router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect('/');
   } else {
+    const user = req.user;
+    const closet = JSON.parse(req.body.closet);
+    const closet_id = closet.closet_id;
+    const outfit_name = req.body.name;
+    const season = req.body.season;
+    const attireChoices = req.body.attireChoices;
+    const tag = req.body.tag;
+
+    let insertOutfitIntoOutfitQuery = `
+      INSERT INTO outfit VALUES (
+        '${outfit_name}', 
+        '${season}',`;
+
+    if (tag === undefined) {
+      insertOutfitIntoOutfitQuery += ` NULL);`;
+    } else {
+      insertOutfitIntoOutfitQuery += ` '${tag}');`;
+    }
+
+    const insertOutfitIntoClosetQuery = `
+      INSERT INTO outfit_contained_by_closet VALUES (
+        '${outfit_name}', 
+        '${closet_id}');`;
+
+    let insertOutfitIntoIsComposedOfQuery = '';
+
+    if (Array.isArray(attireChoices)) {
+      attireChoices.forEach(attire_id => {
+        insertOutfitIntoIsComposedOfQuery += ` 
+        INSERT INTO is_composed_of VALUES (
+          '${outfit_name}', 
+          '${attire_id}');`;
+      });
+    } else {
+      insertOutfitIntoIsComposedOfQuery = `
+        INSERT INTO is_composed_of VALUES (
+          '${outfit_name}', 
+          '${attireChoices}');`;
+    }
+
+    const query = `
+      ${insertOutfitIntoOutfitQuery}
+      ${insertOutfitIntoClosetQuery}
+      ${insertOutfitIntoIsComposedOfQuery}`;
+
     try {
-      const closet = JSON.parse(req.body.closet);
-      const closet_id = closet.closet_id;
-      const outfit_name = req.body.name;
-      const season = req.body.season;
-      let attireChoices = req.body.attireChoices;
-      let tag = req.body.tag;
-
-      // console.log(closet);
-      // console.log(outfit_name);
-      // console.log(season);
-      console.log(attireChoices);
-      console.log(typeof attireChoices);
-      // console.log(tag);
-
       if (attireChoices === undefined) {
         const error = 'No pieces selected!';
         throw error;
       }
 
-      let insertOutfitIntoOutfitQuery = `INSERT INTO outfit VALUES ('${outfit_name}', '${season}',`;
-
-      if (tag === undefined) {
-        insertOutfitIntoOutfitQuery += ` NULL);`;
-      } else {
-        insertOutfitIntoOutfitQuery += ` '${tag}');`;
-      }
-
-      database.query(insertOutfitIntoOutfitQuery, error => {
+      database.query(query, error => {
         if (error) {
           throw error;
         } else {
-          let insertOutfitIntoClosetQuery = `INSERT INTO outfit_contained_by_closet VALUES ('${outfit_name}', '${closet_id}');`;
-
-          database.query(insertOutfitIntoClosetQuery, error => {
-            if (error) {
-              throw error;
-            } else {
-              if (Array.isArray(attireChoices)) {
-                attireChoices.forEach(attire_id => {
-                  let insertOutfitIntoIsComposedOfQuery = `INSERT INTO is_composed_of VALUES ('${outfit_name}', '${attire_id}');`;
-
-                  database.query(insertOutfitIntoIsComposedOfQuery, error => {
-                    if (error) {
-                      throw error;
-                    }
-                  });
-                });
-              } else {
-                let insertOutfitIntoIsComposedOfQuery = `INSERT INTO is_composed_of VALUES ('${outfit_name}', '${attireChoices}');`;
-
-                database.query(insertOutfitIntoIsComposedOfQuery, error => {
-                  if (error) {
-                    throw error;
-                  }
-                });
-              }
-            }
-          });
+          res.redirect('closet');
         }
       });
-
-      res.redirect('/closet');
     } catch (error) {
-      console.log(error);
-      res.redirect('/');
+      let messages = { error: error };
+      res.render('index', { user, messages });
     }
   }
 });
