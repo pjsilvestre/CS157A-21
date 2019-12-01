@@ -9,14 +9,11 @@ block content
         form(action="/remove-outfit" method="POST")
             div(class="form-group")
                 label(for="closet") Closet Location
-                select(class="form-control" id="closetSelect" name="closet")
+                select(class="form-control" id="closetSelect")
                     each closet in closets
-                        option(value=closet)=`${closet.location}`
+                        option(value=closet.closet_id)=`${closet.location}`
             div(class="form-group" id="outfits")
-                //- label(for="outfits") Outfits
-                //- select(class="form-control" name="outfit_name")
-                //-     each outfit in outfits
-                //-         option(value=outfit)=`${outfit.outfit_name}`
+            button(type="submit" class="btn btn-dark") Remove Outfit
 
     script.
         // dynamically update display outfits based on chosen closet
@@ -30,7 +27,7 @@ block content
                 console.log(outfit);
 
                 const outfitChoiceOption = document.createElement('option');
-                outfitChoiceOption.value = outfit;
+                outfitChoiceOption.value = outfit.outfit_name;
                 outfitChoiceOption.name = 'outfit_name'
                 outfitChoiceOption.textContent = outfit.outfit_name;
 
@@ -45,8 +42,7 @@ block content
 
         // get selected closet location
         const closetSelectElement = document.getElementById('closetSelect');
-        let selectedCloset = JSON.parse(closetSelectElement.value);
-        let selectedClosetID = selectedCloset.closet_id;
+        let selectedClosetID = JSON.parse(closetSelectElement.value);
 
         // display initial outfit choices
         const outfitChoices = document.getElementById('outfits');
@@ -62,8 +58,7 @@ block content
 
         // update outfits upon closet selection
         closetSelectElement.addEventListener('change', event => {
-            selectedCloset = JSON.parse(closetSelectElement.value);
-            selectedClosetID = selectedCloset.closet_id;
+            selectedClosetID = JSON.parse(closetSelectElement.value);
 
             validOutfits = outfits.filter(outfit => outfit.closet_id === selectedClosetID);
 

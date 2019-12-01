@@ -47,4 +47,39 @@ router.get('/', (req, res) => {
   }
 });
 
+/* POST remove-outfit page, redirecting closet */
+router.post('/', (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    const outfit_name = req.body.outfit_name;
+
+    const removeOutfitFromOutfitQuery = `
+      DELETE FROM outfit 
+      WHERE outfit_name = '${outfit_name}';`;
+
+    const removeOutfitFromClosetQuery = `
+      DELETE FROM outfit_contained_by_closet 
+      WHERE outfit_name = '${outfit_name}';`;
+
+    const removeOutfitFromIsComposedOfQuery = `
+    DELETE FROM is_composed_of
+    WHERE outfit_name = '${outfit_name}';`;
+
+    const query = `${removeOutfitFromOutfitQuery} ${removeOutfitFromClosetQuery} ${removeOutfitFromIsComposedOfQuery}`;
+
+    try {
+      database.query(query, error => {
+        if (error) {
+          throw error;
+        } else {
+          res.redirect('closet');
+        }
+      });
+    } catch (error) {
+      res.redirect('closet', { messages: error });
+    }
+  }
+});
+
 module.exports = router;
