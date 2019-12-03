@@ -24,7 +24,8 @@ router.get('/', (req, res) => {
 
       database.query(closetQuery, (error, closets) => {
         if (error) {
-          throw error;
+          let messages = { error: error.message };
+          res.render('index', { user: req.user, messages });
         } else if (closets.length === 0) {
           let messages = { error: 'No attire to remove!' };
           res.render('index', { user: req.user, messages });
@@ -48,7 +49,8 @@ router.get('/', (req, res) => {
 
           database.query(query, (error, attire) => {
             if (error) {
-              throw error;
+              let messages = { error: error.message };
+              res.render('index', { user: req.user, messages });
             } else {
               attire = JSON.parse(JSON.stringify(attire));
               res.render('remove-attire', { closets, attire });
