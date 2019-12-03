@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
       });
     } catch (error) {
       let messages = { error: error };
-      res.render('index', { messages });
+      res.render('index', { user: req.user, messages });
     }
   }
 });
@@ -150,7 +150,7 @@ router.post('/', (req, res) => {
       });
     } catch (error) {
       let messages = { error: error };
-      res.render('index', { messages });
+      res.render('index', { user: req.user, messages });
     }
   }
 });

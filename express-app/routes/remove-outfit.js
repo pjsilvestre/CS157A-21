@@ -42,7 +42,8 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      res.render('remove-outfit', { messages: error });
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
     }
   }
 });
@@ -77,7 +78,8 @@ router.post('/', (req, res) => {
         }
       });
     } catch (error) {
-      res.redirect('closet', { messages: error });
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
     }
   }
 });

@@ -1,12 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET edit-attire page. */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     const query = `
     SELECT 
@@ -22,21 +22,25 @@ router.get("/", (req, res) => {
     WHERE
     username = '${req.user.username}';`;
 
-    database.query(query, (error, results) => {
-      if (error) {
-        let messages = { error: error };
-        res.redirect("/closet", { messages });
-      } else {
-        res.render("edit-attire", { results: results });
-      }
-    });
+    try {
+      database.query(query, (error, results) => {
+        if (error) {
+          throw error;
+        } else {
+          res.render('edit-attire', { results: results });
+        }
+      });
+    } catch (error) {
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
+    }
   }
 });
 
 /* POST edit-attire page. */
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     const attireID = req.body.attireID;
     const newType = req.body.newType;
@@ -53,14 +57,18 @@ router.post("/", (req, res) => {
                   size='${newSize}'
                 WHERE attire_id=${attireID};`;
 
-    database.query(query, error => {
-      if (error) {
-        let messages = { error: error };
-        res.render("edit-attire", { messages });
-      } else {
-        res.redirect("/closet");
-      }
-    });
+    try {
+      database.query(query, error => {
+        if (error) {
+          throw error;
+        } else {
+          res.redirect('/closet');
+        }
+      });
+    } catch (error) {
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
+    }
   }
 });
 
