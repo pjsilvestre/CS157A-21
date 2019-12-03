@@ -12,22 +12,22 @@ block content
                 select(class="form-control" id="closetSelect")
                     each closet in closets
                         option(value=closet.closet_id)=`${closet.location}`
-            div(class="form-group" id="attires")
+            div(class="form-group" id="attire")
             button(type="submit" class="btn btn-dark") Remove Attire
 
     script.
         // dynamically update display attire based on chosen closet
 
-        function populateAttires(attires) {
+        function populateAttire(attire) {
             const attireChoiceSelect = document.createElement('select');
             attireChoiceSelect.className += 'form-control';
             attireChoiceSelect.name = 'attire_name';
 
-            attires.forEach(attire => {
+            attire.forEach(piece => {
                 const attireChoiceOption = document.createElement('option');
-                attireChoiceOption.value = attire.attire_name;
-                attireChoiceOption.name = 'attire_name'
-                attireChoiceOption.textContent = attire.attire_name;
+                attireChoiceOption.value = piece.attire_id;
+                attireChoiceOption.name = 'attire_id'
+                attireChoiceOption.textContent = piece.attire_name;
 
                 attireChoiceSelect.appendChild(attireChoiceOption);
             })
@@ -36,29 +36,29 @@ block content
         }
 
         // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
-        const attires = !{JSON.stringify(attires).replace(/<\//g, '<\\/')};
+        const attire = !{JSON.stringify(attire).replace(/<\//g, '<\\/')};
 
         // get selected closet location
         const closetSelectElement = document.getElementById('closetSelect');
         let selectedClosetID = JSON.parse(closetSelectElement.value);
 
         // display initial attire choices
-        const attireChoices = document.getElementById('attires');
+        const attireChoices = document.getElementById('attire');
 
         let attireChoicesLabel = document.createElement('label');
-        attireChoicesLabel.htmlFor = 'attires';
-        attireChoicesLabel.textContent = 'Attires';
+        attireChoicesLabel.htmlFor = 'attire';
+        attireChoicesLabel.textContent = 'Attire';
         attireChoices.appendChild(attireChoicesLabel);
 
-        let validAttires = attire.filter(attire => attire.closet_id === selectedClosetID);
+        let validAttire = attire.filter(attire => attire.closet_id === selectedClosetID);
 
-        populateAttire(validAttires);
+        populateAttire(validAttire);
 
         // update attire upon closet selection
         closetSelectElement.addEventListener('change', event => {
             selectedClosetID = JSON.parse(closetSelectElement.value);
 
-            validAttires = attire.filter(attire => attire.closet_id === selectedClosetID);
+            validAttire = attire.filter(attire => attire.closet_id === selectedClosetID);
 
             // delete all nodes from attireChoices
             while(attireChoices.firstChild) {
@@ -69,5 +69,5 @@ block content
             attireChoices.appendChild(attireChoicesLabel);
 
             //add all valid attire
-            populateAttires(validAttires);
+            populateAttire(validAttire);
         })
