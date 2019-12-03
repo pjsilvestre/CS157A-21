@@ -10,10 +10,16 @@ router.get('/', (req, res) => {
   } else {
     try {
       const username = req.user.username;
+
       let closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+
       database.query(closetQuery, (error, closets) => {
         if (error) {
           throw error;
+        } else if (closets.length === 0) {
+          let messages = { error: 'Add a closet first!' };
+          res.render('index', { user: req.user, messages });
+          return;
         } else {
           closets = JSON.parse(JSON.stringify(closets));
           res.render('add-attire', { closets });
