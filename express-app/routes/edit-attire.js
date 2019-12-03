@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error };
+      let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
     }
   }
@@ -64,14 +64,14 @@ router.post('/', (req, res) => {
     try {
       database.query(query, error => {
         if (error) {
-          let messages = { error: error };
+          let messages = { error: error.message };
           res.render('index', { user: req.user, messages });
         } else {
           res.redirect('/closet');
         }
       });
     } catch (error) {
-      let messages = { error: error };
+      let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
     }
   }

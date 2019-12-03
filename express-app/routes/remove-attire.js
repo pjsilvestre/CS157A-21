@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error };
+      let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
     }
   }
