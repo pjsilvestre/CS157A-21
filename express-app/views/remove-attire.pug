@@ -13,7 +13,11 @@ block content
                     each closet in closets
                         option(value=closet.closet_id)=`${closet.location}`
             div(class="form-group" id="attire")
-            button(type="submit" class="btn btn-dark") Remove Attire
+            if attire
+                button(type="submit" class="btn btn-dark") Remove Attire
+            else
+                button(type="submit" class="btn btn-dark" disabled) Remove Attire
+
 
     script.
         // dynamically update display attire based on chosen closet
@@ -21,7 +25,7 @@ block content
         function populateAttire(attire) {
             const attireChoiceSelect = document.createElement('select');
             attireChoiceSelect.className += 'form-control';
-            attireChoiceSelect.name = 'attire_name';
+            attireChoiceSelect.name = 'attire_id';
 
             attire.forEach(piece => {
                 const attireChoiceOption = document.createElement('option');
