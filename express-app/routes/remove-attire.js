@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
         if (error) {
           let messages = { error: error.message };
           res.render('index', { user: req.user, messages });
+          return;
         } else if (closets.length === 0) {
           let messages = { error: 'No attire to remove!' };
           res.render('index', { user: req.user, messages });
@@ -51,9 +52,11 @@ router.get('/', (req, res) => {
             if (error) {
               let messages = { error: error.message };
               res.render('index', { user: req.user, messages });
+              return;
             } else {
               attire = JSON.parse(JSON.stringify(attire));
               res.render('remove-attire', { closets, attire });
+              return;
             }
           });
         }
@@ -61,6 +64,7 @@ router.get('/', (req, res) => {
     } catch (error) {
       let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
+      return;
     }
   }
 });
@@ -105,6 +109,7 @@ router.post('/', (req, res) => {
         if (error) {
           let messages = { error: error };
           res.render('index', { user: req.user, messages });
+          return;
         } else {
           res.redirect('closet');
         }
@@ -112,6 +117,7 @@ router.post('/', (req, res) => {
     } catch (error) {
       let messages = { error: error };
       res.render('index', { user: req.user, messages });
+      return;
     }
   }
 });

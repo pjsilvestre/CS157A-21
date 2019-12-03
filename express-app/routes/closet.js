@@ -79,6 +79,10 @@ router.post('/', (req, res) => {
         if (error) {
           let messages = { error: error.message };
           res.render('index', { user: req.user, messages });
+          return;
+        } else if (allClosets.length === 0) {
+          let messages = { error: 'No closets to display!' };
+          res.render('index', { user: req.user, messages });
         } else {
           // set user's display and closet choices
           if (displayChoice === 'Attire') {
@@ -118,8 +122,10 @@ router.post('/', (req, res) => {
               if (error) {
                 let messages = { error: error.message };
                 res.render('index', { user: req.user, messages });
+                return;
               } else {
                 res.render('closet', { closets, displayChoices, attire });
+                return;
               }
             });
           } else {
@@ -149,8 +155,10 @@ router.post('/', (req, res) => {
               if (error) {
                 let messages = { error: error.message };
                 res.render('index', { user: req.user, messages });
+                return;
               } else {
                 res.render('closet', { closets, displayChoices, outfits });
+                return;
               }
             });
           }
@@ -159,6 +167,7 @@ router.post('/', (req, res) => {
     } catch (error) {
       let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
+      return;
     }
   }
 });
