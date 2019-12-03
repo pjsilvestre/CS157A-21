@@ -19,7 +19,11 @@ router.get('/', (req, res) => {
     try {
       database.query(closetQuery, (error, closets) => {
         if (error) {
-          throw error;
+          let messages = { error: error.message };
+          res.render('index', { user: req.user, messages });
+        } else if (closets.length === 0) {
+          let messages = { error: 'No closets to display!' };
+          res.render('index', { user: req.user, messages });
         } else {
           const attireQuery = `
             SELECT
@@ -37,7 +41,8 @@ router.get('/', (req, res) => {
 
           database.query(attireQuery, (error, attire) => {
             if (error) {
-              throw error;
+              let messages = { error: error.message };
+              res.render('index', { user: req.user, messages });
             } else {
               res.render('closet', { displayChoices, closets, attire });
             }
@@ -45,7 +50,7 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error };
+      let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
     }
   }
@@ -72,7 +77,8 @@ router.post('/', (req, res) => {
 
       database.query(closetQuery, (error, allClosets) => {
         if (error) {
-          throw error;
+          let messages = { error: error.message };
+          res.render('index', { user: req.user, messages });
         } else {
           // set user's display and closet choices
           if (displayChoice === 'Attire') {
@@ -110,7 +116,8 @@ router.post('/', (req, res) => {
 
             database.query(attireQuery, (error, attire) => {
               if (error) {
-                throw error;
+                let messages = { error: error.message };
+                res.render('index', { user: req.user, messages });
               } else {
                 res.render('closet', { closets, displayChoices, attire });
               }
@@ -140,7 +147,8 @@ router.post('/', (req, res) => {
 
             database.query(outfitQuery, (error, outfits) => {
               if (error) {
-                throw error;
+                let messages = { error: error.message };
+                res.render('index', { user: req.user, messages });
               } else {
                 res.render('closet', { closets, displayChoices, outfits });
               }
@@ -149,7 +157,7 @@ router.post('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error };
+      let messages = { error: error.message };
       res.render('index', { user: req.user, messages });
     }
   }
