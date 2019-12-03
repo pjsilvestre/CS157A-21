@@ -25,7 +25,11 @@ router.get('/', (req, res) => {
     try {
       database.query(query, (error, results) => {
         if (error) {
-          throw error;
+          let messages = { error: error.message };
+          res.render('index', { user: req.user, messages });
+        } else if (results.length === 0) {
+          let messages = { error: 'No attire to edit!' };
+          res.render('index', { user: req.user, messages });
         } else {
           res.render('edit-attire', { results: results });
         }
@@ -60,7 +64,8 @@ router.post('/', (req, res) => {
     try {
       database.query(query, error => {
         if (error) {
-          throw error;
+          let messages = { error: error };
+          res.render('index', { user: req.user, messages });
         } else {
           res.redirect('/closet');
         }
