@@ -1,0 +1,75 @@
+extends layout
+
+block content
+    include partials/navbar-authenticated
+    div(class="container")
+        h1 Remove Attire
+        include partials/error-message-alert
+    div(class="container")
+        form(action="/remove-attire" method="POST")
+            div(class="form-group")
+                label(for="closet") Closet Location
+                select(class="form-control" id="closetSelect")
+                    each closet in closets
+                        option(value=closet.closet_id)=`${closet.location}`
+            div(class="form-group" id="attires")
+            button(type="submit" class="btn btn-dark") Remove Attire
+
+    script.
+        // dynamically update display attire based on chosen closet
+
+        function populateAttires(attires) {
+            const attireChoiceSelect = document.createElement('select');
+            attireChoiceSelect.className += 'form-control';
+            attireChoiceSelect.name = 'attire_name';
+
+            attires.forEach(attire => {
+                console.log(attire);
+
+                const attireChoiceOption = document.createElement('option');
+                attireChoiceOption.value = attire.attire_name;
+                attireChoiceOption.name = 'attire_name'
+                attireChoiceOption.textContent = attire.attire_name;
+
+                attireChoiceSelect.appendChild(attireChoiceOption);
+            })
+
+            attireChoices.appendChild(attireChoiceSelect);
+        }
+
+        // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
+        const attires = !{JSON.stringify(attires).replace(/<\//g, '<\\/')};
+
+        // get selected closet location
+        const closetSelectElement = document.getElementById('closetSelect');
+        let selectedClosetID = JSON.parse(closetSelectElement.value);
+
+        // display initial attire choices
+        const attireChoices = document.getElementById('attires');
+
+        let attireChoicesLabel = document.createElement('label');
+        attireChoicesLabel.htmlFor = 'attires';
+        attireChoicesLabel.textContent = 'Attires';
+        attireChoices.appendChild(attireChoicesLabel);
+
+        let validAttires = attire.filter(attire => attire.closet_id === selectedClosetID);
+
+        populateAttire(validAttires);
+
+        // update attire upon closet selection
+        closetSelectElement.addEventListener('change', event => {
+            selectedClosetID = JSON.parse(closetSelectElement.value);
+
+            validAttires = attire.filter(attire => attire.closet_id === selectedClosetID);
+
+            // delete all nodes from oattireChoices
+            while(attireChoices.firstChild) {
+                attireChoices.removeChild(attireChoices.firstChild);
+            }
+
+            // add label
+            attireChoices.appendChild(attireChoicesLabel);
+
+            //add all valid attire
+            populateAttires(validAttires);
+        })
