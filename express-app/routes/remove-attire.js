@@ -103,7 +103,8 @@ router.post('/', (req, res) => {
     try {
       database.query(query, error => {
         if (error) {
-          throw error;
+          let messages = { error: error };
+          res.render('index', { user: req.user, messages });
         } else {
           res.redirect('closet');
         }
