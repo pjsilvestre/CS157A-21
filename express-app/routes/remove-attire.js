@@ -17,18 +17,18 @@ router.get('/', (req, res) => {
         closets = JSON.parse(JSON.stringify(closets));
       }
       const query = `
-	            SELECT 
-	                attire_id
-	            FROM
-	                user
-	                    JOIN
-	                owned_by USING (username)
-			            JOIN
-		            attire_contained_by_closet USING (closet_id)
-			            JOIN
-		            attire USING (attire_id)
-	            WHERE
-	            username = '${username}';`;
+              SELECT 
+                  attire_id
+              FROM
+                  user
+                      JOIN
+                  owned_by USING (username)
+                  JOIN
+                attire_contained_by_closet USING (closet_id)
+                  JOIN
+                attire USING (attire_id)
+              WHERE
+              username = '${username}';`;
 
       database.query(query, (error, attires) => {
         if (error) {
