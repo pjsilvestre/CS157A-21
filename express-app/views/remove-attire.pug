@@ -24,8 +24,6 @@ block content
             attireChoiceSelect.name = 'attire_name';
 
             attires.forEach(attire => {
-                console.log(attire);
-
                 const attireChoiceOption = document.createElement('option');
                 attireChoiceOption.value = attire.attire_name;
                 attireChoiceOption.name = 'attire_name'
@@ -62,7 +60,7 @@ block content
 
             validAttires = attire.filter(attire => attire.closet_id === selectedClosetID);
 
-            // delete all nodes from oattireChoices
+            // delete all nodes from attireChoices
             while(attireChoices.firstChild) {
                 attireChoices.removeChild(attireChoices.firstChild);
             }
