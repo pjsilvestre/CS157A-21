@@ -1,34 +1,41 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET add-attire page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     try {
       const username = req.user.username;
+
       let closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+
       database.query(closetQuery, (error, closets) => {
         if (error) {
           throw error;
+        } else if (closets.length === 0) {
+          let messages = { error: 'Add a closet first!' };
+          res.render('index', { user: req.user, messages });
+          return;
         } else {
           closets = JSON.parse(JSON.stringify(closets));
-          res.render("add-attire", { closets });
+          res.render('add-attire', { closets });
         }
       });
     } catch (error) {
-      res.render("closet"), { messages: error };
+      let messages = { error: error };
+      res.render('index'), { user: req.user, messages };
     }
   }
 });
 
 /* POST add-attire page, redirecting to closet*/
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     const closet = JSON.parse(req.body.closet);
     const closet_id = closet.closet_id;
@@ -63,9 +70,10 @@ router.post("/", (req, res) => {
         });
       });
 
-      res.redirect("/closet");
+      res.redirect('/closet');
     } catch (error) {
-      res.render("add-attire"), { messages: error };
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
     }
   }
 });

@@ -1,21 +1,21 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET add-closet page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
-    res.render("add-closet");
+    res.render('add-closet');
   }
 });
 
 /* POST add-closet page, redirecting to closet */
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (!req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
     const username = req.user.username;
     const closet_id = Date.now();
@@ -36,10 +36,11 @@ router.post("/", (req, res) => {
           }
         });
 
-        res.redirect("/closet");
+        res.redirect('/closet');
       });
     } catch (error) {
-      res.render("add-closet", { messages: error });
+      let messages = { error: error };
+      res.render('index', { user: req.user, messages });
     }
   }
 });

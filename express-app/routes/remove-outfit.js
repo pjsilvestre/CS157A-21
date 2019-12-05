@@ -13,7 +13,11 @@ router.get('/', (req, res) => {
       const closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
       database.query(closetQuery, (error, closets) => {
         if (error) {
-          throw error;
+          let messages = { error: error };
+          res.render('index', { user: req.user, messages });
+        } else if (closets.length === 0) {
+          let messages = { error: 'No closets to remove outfits from!' };
+          res.render('index', { user: req.user, messages });
         } else {
           closets = JSON.parse(JSON.stringify(closets));
 
@@ -33,7 +37,11 @@ router.get('/', (req, res) => {
 
           database.query(outfitQuery, (error, outfits) => {
             if (error) {
-              throw error;
+              let messages = { error: error.message };
+              res.render('index', { user: req.user, messages });
+            } else if (outfits.length === 0) {
+              let messages = { error: 'No outfits to remove!' };
+              res.render('index', { user: req.user, messages });
             } else {
               outfits = JSON.parse(JSON.stringify(outfits));
               res.render('remove-outfit', { closets, outfits });
@@ -42,7 +50,8 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      res.render('remove-outfit', { messages: error });
+      let messages = { error: error.message };
+      res.render('index', { user: req.user, messages });
     }
   }
 });
@@ -71,13 +80,15 @@ router.post('/', (req, res) => {
     try {
       database.query(query, error => {
         if (error) {
-          throw error;
+          let messages = { error: error.message };
+          res.render('index', { user: req.user, messages });
         } else {
           res.redirect('closet');
         }
       });
     } catch (error) {
-      res.redirect('closet', { messages: error });
+      let messages = { error: error.message };
+      res.render('index', { user: req.user, messages });
     }
   }
 });
