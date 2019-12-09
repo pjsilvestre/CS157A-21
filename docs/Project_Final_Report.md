@@ -138,7 +138,7 @@ Access control will be role-based. Standard users will be allowed to perform nor
 # Design
 ## Entity / Relationship Diagram
 
-![ER Diagram](../images/database_design_3.0.png)
+![ER Diagram](./images/database_design_3.0.png)
 
 ## Entity Set Descriptions
 
@@ -230,28 +230,28 @@ Access control will be role-based. Standard users will be allowed to perform nor
 ### Entity Set Tables
 
 - user
-  ![user](../images/table-screenshots-design-v3/user.png)
+  ![user](./images/table-screenshots-design-v3/user.png)
 - closet
-  ![closet](../images/table-screenshots-design-v3/closet.png)
+  ![closet](./images/table-screenshots-design-v3/closet.png)
 - outfit
-  ![outfit](../images/table-screenshots-design-v3/outfit.png)
+  ![outfit](./images/table-screenshots-design-v3/outfit.png)
 - attire
-  ![attire](../images/table-screenshots-design-v3/attire.png)
+  ![attire](./images/table-screenshots-design-v3/attire.png)
 
 ### Relationships Tables
 
 - owns
-  ![owns](../images/table-screenshots-design-v3/owns.png)
+  ![owns](./images/table-screenshots-design-v3/owns.png)
 - closet_contains_outfit
-  ![closet_contains_outfit](../images/table-screenshots-design-v3/closet_contains_outfit.png)
+  ![closet_contains_outfit](./images/table-screenshots-design-v3/closet_contains_outfit.png)
 - closet_contains_attire
-  ![closet_contains_attire](../images/table-screenshots-design-v3/closet_contains_attire.png)
+  ![closet_contains_attire](./images/table-screenshots-design-v3/closet_contains_attire.png)
 - is_composed_of
-  ![is_composed_of](../images/table-screenshots-design-v3/is_composed_of.png)
+  ![is_composed_of](./images/table-screenshots-design-v3/is_composed_of.png)
 - wears
-  ![wears](../images/table-screenshots-design-v3/wears.png)
+  ![wears](./images/table-screenshots-design-v3/wears.png)
 - is_friends_with
-  ![is_friends_with](../images/table-screenshots-design-v3/is_friends_with.png)
+  ![is_friends_with](./images/table-screenshots-design-v3/is_friends_with.png)
   
 # Implementation
 TODO
