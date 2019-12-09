@@ -1,238 +1,238 @@
 extends layout
 
 block content
-    include partials/navbar-authenticated
-    div(class="container")
-        h1 Your Closet
-        include partials/error-message-alert
-        form(class="form-inline" action="/closet" method="POST")
-            div(class="form-group")
-                select(class="form-control" name="closet" id="closet" onchange="this.form.submit()")
-                    each closet in closets
-                        option(value=closet)=`${closet.location}`
-            div(class="form-group")
-                select(class="form-control" name="displayChoice" id="displayChoice" onchange="this.form.submit()")
-                    each displayChoice in displayChoices
-                        option(value=displayChoice)=`${displayChoice}`
-        if attire
-            div(class="container")
-                table(class="table")
-                    thead
-                        tr
-                            th(scope="col")
-                                a(href='#' id=('type-table-header')) Type ▲▼
-                            th(scope="col")
-                                a(href='#' id=('name-table-header')) Name ▲▼
-                            th(scope="col")
-                                a(href='#' id=('brand-table-header')) Brand ▲▼
-                            th(scope="col")
-                                a(href='#' id=('color-table-header')) Color ▲▼
-                            th(scope="col")
-                                a(href='#' id=('size-table-header')) Size ▲▼
-                    tbody(id="attire-table-body")
-                        each piece in attire
-                            tr
-                                td=`${piece.type}`
-                                td=`${piece.attire_name}`
-                                td=`${piece.brand}`
-                                td=`${piece.color}`
-                                td=`${piece.size}`
-        else
-            div(class="container")
-                table(class="table")
-                    thead
-                        tr
-                            th(scope="col") Outfit Name
-                            th(scope="col") Type 
-                            th(scope="col") Name
-                            th(scope="col") Brand
-                            th(scope="col") Color
-                            th(scope="col") Size
-                    tbody
-                        each piece in outfits
-                            tr
-                                td=`${piece.outfit_name}`
-                                td=`${piece.type}`
-                                td=`${piece.attire_name}`
-                                td=`${piece.brand}`
-                                td=`${piece.color}`
-                                td=`${piece.size}`
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Your Closet
+    include partials/error-message-alert
+    form(class="form-inline" action="/closet" method="POST")
+      div(class="form-group")
+        select(class="form-control" name="closet" id="closet" onchange="this.form.submit()")
+          each closet in closets
+            option(value=closet)=`${closet.location}`
+      div(class="form-group")
+        select(class="form-control" name="displayChoice" id="displayChoice" onchange="this.form.submit()")
+          each displayChoice in displayChoices
+            option(value=displayChoice)=`${displayChoice}`
     if attire
-        script.
-            // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
-            //- let attire = !{JSON.stringify(attire).replace(/<\//g, '<\\/')};
-            let attire = !{JSON.stringify(attire)};
+      div(class="container")
+        table(class="table")
+          thead
+            tr
+              th(scope="col")
+                a(href='#' id=('type-table-header')) Type ▲▼
+              th(scope="col")
+                a(href='#' id=('name-table-header')) Name ▲▼
+              th(scope="col")
+                a(href='#' id=('brand-table-header')) Brand ▲▼
+              th(scope="col")
+                a(href='#' id=('color-table-header')) Color ▲▼
+              th(scope="col")
+                a(href='#' id=('size-table-header')) Size ▲▼
+          tbody(id="attire-table-body")
+            each piece in attire
+              tr
+                td=`${piece.type}`
+                td=`${piece.attire_name}`
+                td=`${piece.brand}`
+                td=`${piece.color}`
+                td=`${piece.size}`
+    else
+      div(class="container")
+        table(class="table")
+          thead
+            tr
+              th(scope="col") Outfit Name
+              th(scope="col") Type 
+              th(scope="col") Name
+              th(scope="col") Brand
+              th(scope="col") Color
+              th(scope="col") Size
+          tbody
+            each piece in outfits
+              tr
+                td=`${piece.outfit_name}`
+                td=`${piece.type}`
+                td=`${piece.attire_name}`
+                td=`${piece.brand}`
+                td=`${piece.color}`
+                td=`${piece.size}`
+  if attire
+    script.
+      // unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
+      //- let attire = !{JSON.stringify(attire).replace(/<\//g, '<\\/')};
+      let attire = !{JSON.stringify(attire)};
 
 
-            // sorting state variables
-            let typeAscending = false;
-            let nameAscending = false;
-            let brandAscending = false;
-            let colorAscending = false;
-            let sizeAscending = false;
+      // sorting state variables
+      let typeAscending = false;
+      let nameAscending = false;
+      let brandAscending = false;
+      let colorAscending = false;
+      let sizeAscending = false;
 
-            // elements
-            const typeTableHeaderElement = document.getElementById('type-table-header');
-            const nameTableHeaderElement = document.getElementById('name-table-header');
-            const brandTableHeaderElement = document.getElementById('brand-table-header');
-            const colorTableHeaderElement = document.getElementById('color-table-header');
-            const sizeTableHeaderElement = document.getElementById('size-table-header');
-            const attireTableBodyElement = document.getElementById('attire-table-body');
+      // elements
+      const typeTableHeaderElement = document.getElementById('type-table-header');
+      const nameTableHeaderElement = document.getElementById('name-table-header');
+      const brandTableHeaderElement = document.getElementById('brand-table-header');
+      const colorTableHeaderElement = document.getElementById('color-table-header');
+      const sizeTableHeaderElement = document.getElementById('size-table-header');
+      const attireTableBodyElement = document.getElementById('attire-table-body');
 
-            // comparison functions
-            const stringCompare = (a, b) => {
-                let aUpperCase = a.toUpperCase();
-                let bUpperCase = b.toUpperCase();
+      // comparison functions
+      const stringCompare = (a, b) => {
+        let aUpperCase = a.toUpperCase();
+        let bUpperCase = b.toUpperCase();
 
-                if (aUpperCase < bUpperCase) {
-                    return -1;
-                } else if ( aUpperCase > bUpperCase) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            };
+        if (aUpperCase < bUpperCase) {
+          return -1;
+        } else if ( aUpperCase > bUpperCase) {
+          return 1;
+        } else {
+          return 0;
+        }
+      };
 
-            const typeCompare = (a, b) => stringCompare(a.type, b.type);
-            const nameCompare = (a, b) => stringCompare(a.attire_name, b.attire_name);
-            const brandCompare = (a, b) => stringCompare(a.brand, b.brand);
-            const colorCompare = (a, b) => stringCompare(a.color, b.color);
-            const sizeCompare = (a, b) => stringCompare(a.size, b.size);
+      const typeCompare = (a, b) => stringCompare(a.type, b.type);
+      const nameCompare = (a, b) => stringCompare(a.attire_name, b.attire_name);
+      const brandCompare = (a, b) => stringCompare(a.brand, b.brand);
+      const colorCompare = (a, b) => stringCompare(a.color, b.color);
+      const sizeCompare = (a, b) => stringCompare(a.size, b.size);
 
-            // table population function
-            const populateAttire = () => {
-                // delete all rows
-                while (attireTableBodyElement.firstChild) {
-                    attireTableBodyElement.removeChild(attireTableBodyElement.firstChild);
-                }
+      // table population function
+      const populateAttire = () => {
+        // delete all rows
+        while (attireTableBodyElement.firstChild) {
+          attireTableBodyElement.removeChild(attireTableBodyElement.firstChild);
+        }
 
-                attire.forEach(piece => {
-                    let tableRow = document.createElement('tr');
+        attire.forEach(piece => {
+          let tableRow = document.createElement('tr');
 
-                    let tableDataType = document.createElement('td');
-                    tableDataType.textContent = piece.type;
+          let tableDataType = document.createElement('td');
+          tableDataType.textContent = piece.type;
 
-                    let tableDataName = document.createElement('td');
-                    tableDataName.textContent = piece.attire_name;
+          let tableDataName = document.createElement('td');
+          tableDataName.textContent = piece.attire_name;
 
-                    let tableDataBrand = document.createElement('td');
-                    tableDataBrand.textContent = piece.brand;
+          let tableDataBrand = document.createElement('td');
+          tableDataBrand.textContent = piece.brand;
 
-                    let tableDataColor = document.createElement('td');
-                    tableDataColor.textContent = piece.color;
+          let tableDataColor = document.createElement('td');
+          tableDataColor.textContent = piece.color;
 
-                    let tableDataSize = document.createElement('td');
-                    tableDataSize.textContent = piece.size;
+          let tableDataSize = document.createElement('td');
+          tableDataSize.textContent = piece.size;
 
-                    tableRow.appendChild(tableDataType);
-                    tableRow.appendChild(tableDataName);
-                    tableRow.appendChild(tableDataBrand);
-                    tableRow.appendChild(tableDataColor);
-                    tableRow.appendChild(tableDataSize);
+          tableRow.appendChild(tableDataType);
+          tableRow.appendChild(tableDataName);
+          tableRow.appendChild(tableDataBrand);
+          tableRow.appendChild(tableDataColor);
+          tableRow.appendChild(tableDataSize);
 
-                    attireTableBodyElement.appendChild(tableRow);
-                })
-            }
+          attireTableBodyElement.appendChild(tableRow);
+        })
+      }
 
-            // table header function
-            const setTableHeaders = (element) => {
-                typeTableHeaderElement.textContent = 'Type ▲▼';
-                nameTableHeaderElement.textContent = 'Name ▲▼';
-                brandTableHeaderElement.textContent = 'Brand ▲▼';
-                colorTableHeaderElement.textContent = 'Color ▲▼';
-                sizeTableHeaderElement.textContent = 'Size ▲▼';
+      // table header function
+      const setTableHeaders = (element) => {
+        typeTableHeaderElement.textContent = 'Type ▲▼';
+        nameTableHeaderElement.textContent = 'Name ▲▼';
+        brandTableHeaderElement.textContent = 'Brand ▲▼';
+        colorTableHeaderElement.textContent = 'Color ▲▼';
+        sizeTableHeaderElement.textContent = 'Size ▲▼';
 
-                switch (element) {
-                    case 'type' : {
-                        typeTableHeaderElement.textContent = typeAscending ? 'Type ▲' : 'Type ▼';
-                        break;
-                    };
-                    case 'name' : {
-                        nameTableHeaderElement.textContent = nameAscending ? 'Name ▲' : 'Name ▼';
-                        break;
-                    };
-                    case 'brand' : {
-                        brandTableHeaderElement.textContent = brandAscending ? 'Brand ▲' : 'Brand ▼';
-                        break;
-                    };
-                    case 'color' : {
-                        colorTableHeaderElement.textContent = colorAscending ? 'Color ▲' : 'Color ▼';
-                        break;
-                    };
-                    case 'size' : {
-                        sizeTableHeaderElement.textContent = sizeAscending ? 'Size ▲' : 'Size ▼';
-                        break;
-                    };
-                }
-            }
+        switch (element) {
+          case 'type' : {
+            typeTableHeaderElement.textContent = typeAscending ? 'Type ▲' : 'Type ▼';
+            break;
+          };
+          case 'name' : {
+            nameTableHeaderElement.textContent = nameAscending ? 'Name ▲' : 'Name ▼';
+            break;
+          };
+          case 'brand' : {
+            brandTableHeaderElement.textContent = brandAscending ? 'Brand ▲' : 'Brand ▼';
+            break;
+          };
+          case 'color' : {
+            colorTableHeaderElement.textContent = colorAscending ? 'Color ▲' : 'Color ▼';
+            break;
+          };
+          case 'size' : {
+            sizeTableHeaderElement.textContent = sizeAscending ? 'Size ▲' : 'Size ▼';
+            break;
+          };
+        }
+      }
 
-            // event listeners
-            typeTableHeaderElement.addEventListener('click', () => {
-                if (typeAscending) {
-                    typeAscending = false;
-                    setTableHeaders('type');
-                    attire.sort(typeCompare).reverse();
-                    populateAttire();
-                } else {
-                    typeAscending = true;
-                    setTableHeaders('type');
-                    attire.sort(typeCompare);
-                    populateAttire();
-                }
-            });;
+      // event listeners
+      typeTableHeaderElement.addEventListener('click', () => {
+        if (typeAscending) {
+          typeAscending = false;
+          setTableHeaders('type');
+          attire.sort(typeCompare).reverse();
+          populateAttire();
+        } else {
+          typeAscending = true;
+          setTableHeaders('type');
+          attire.sort(typeCompare);
+          populateAttire();
+        }
+      });;
 
-            nameTableHeaderElement.addEventListener('click', () => {
-                if (nameAscending) {
-                    nameAscending = false;
-                    setTableHeaders('name');
-                    attire.sort(nameCompare).reverse();
-                    populateAttire();
-                } else {
-                    nameAscending = true;
-                    setTableHeaders('name');
-                    attire.sort(nameCompare);
-                    populateAttire();
-                }
-            });;
+      nameTableHeaderElement.addEventListener('click', () => {
+        if (nameAscending) {
+          nameAscending = false;
+          setTableHeaders('name');
+          attire.sort(nameCompare).reverse();
+          populateAttire();
+        } else {
+          nameAscending = true;
+          setTableHeaders('name');
+          attire.sort(nameCompare);
+          populateAttire();
+        }
+      });;
 
-            brandTableHeaderElement.addEventListener('click', () => {
-                if (brandAscending) {
-                    brandAscending = false;
-                    setTableHeaders('brand');
-                    attire.sort(brandCompare).reverse();
-                    populateAttire();
-                } else {
-                    brandAscending = true;
-                    setTableHeaders('brand');
-                    attire.sort(brandCompare);
-                    populateAttire();
-                }
-            });;
+      brandTableHeaderElement.addEventListener('click', () => {
+        if (brandAscending) {
+          brandAscending = false;
+          setTableHeaders('brand');
+          attire.sort(brandCompare).reverse();
+          populateAttire();
+        } else {
+          brandAscending = true;
+          setTableHeaders('brand');
+          attire.sort(brandCompare);
+          populateAttire();
+        }
+      });;
 
-            colorTableHeaderElement.addEventListener('click', () => {
-                if (colorAscending) {
-                    colorAscending = false;
-                    setTableHeaders('color');
-                    attire.sort(colorCompare).reverse();
-                    populateAttire();
-                } else {
-                    colorAscending = true;
-                    setTableHeaders('color');
-                    attire.sort(colorCompare);
-                    populateAttire();
-                }
-            });;
+      colorTableHeaderElement.addEventListener('click', () => {
+        if (colorAscending) {
+          colorAscending = false;
+          setTableHeaders('color');
+          attire.sort(colorCompare).reverse();
+          populateAttire();
+        } else {
+          colorAscending = true;
+          setTableHeaders('color');
+          attire.sort(colorCompare);
+          populateAttire();
+        }
+      });;
 
-            sizeTableHeaderElement.addEventListener('click', () => {
-                if (sizeAscending) {
-                    sizeAscending = false;
-                    setTableHeaders('size');
-                    attire.sort(sizeCompare).reverse();
-                    populateAttire();
-                } else {
-                    sizeAscending = true;
-                    setTableHeaders('size');
-                    attire.sort(sizeCompare);
-                    populateAttire();
-                }
-            });;
+      sizeTableHeaderElement.addEventListener('click', () => {
+        if (sizeAscending) {
+          sizeAscending = false;
+          setTableHeaders('size');
+          attire.sort(sizeCompare).reverse();
+          populateAttire();
+        } else {
+          sizeAscending = true;
+          setTableHeaders('size');
+          attire.sort(sizeCompare);
+          populateAttire();
+        }
+      });;
