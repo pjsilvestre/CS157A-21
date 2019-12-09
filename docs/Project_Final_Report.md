@@ -44,7 +44,7 @@ This application will be based in the fashion and clothing domain.
 
 ### Structure
 
-![Three-tier architecture diagram](./images/three-tier-architecture.png)
+![Three-tier architecture diagram](./images/three-tier-architecture-v2.png)
 
 ### Hardware/Software
 
