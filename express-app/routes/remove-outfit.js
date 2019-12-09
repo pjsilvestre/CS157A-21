@@ -10,7 +10,16 @@ router.get('/', (req, res) => {
   } else {
     try {
       const username = req.user.username;
-      const closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+      const closetQuery = `
+        SELECT 
+          * 
+        FROM 
+          closet 
+            JOIN 
+          owned_by USING (closet_id) 
+        WHERE 
+          username = '${username}';`;
+
       database.query(closetQuery, (error, closets) => {
         if (error) {
           let messages = { error: error };
@@ -65,20 +74,32 @@ router.post('/', (req, res) => {
 
     const removeOutfitFromOutfitQuery = `
       DELETE FROM outfit 
-      WHERE outfit_name = '${outfit_name}';`;
+      WHERE 
+        outfit_name = '${outfit_name}';`;
 
     const removeOutfitFromClosetQuery = `
       DELETE FROM outfit_contained_by_closet 
-      WHERE outfit_name = '${outfit_name}';`;
+      WHERE 
+        outfit_name = '${outfit_name}';`;
 
     const removeOutfitFromIsComposedOfQuery = `
-    DELETE FROM is_composed_of
-    WHERE outfit_name = '${outfit_name}';`;
+      DELETE FROM is_composed_of
+      WHERE 
+        outfit_name = '${outfit_name}';`;
 
-    const query = `${removeOutfitFromOutfitQuery} ${removeOutfitFromClosetQuery} ${removeOutfitFromIsComposedOfQuery}`;
+    const removeOutfitFromWornByQuery = `
+      SET SQL_SAFE_UPDATES=0;
+      DELETE FROM worn_by
+      WHERE 
+        outfit_name = '${outfit_name}';
+      SET SQL_SAFE_UPDATES=1;`;
+
+    const removeOutfitQuery = `${removeOutfitFromOutfitQuery} 
+      ${removeOutfitFromClosetQuery} ${removeOutfitFromIsComposedOfQuery}
+      ${removeOutfitFromWornByQuery}`;
 
     try {
-      database.query(query, error => {
+      database.query(removeOutfitQuery, error => {
         if (error) {
           let messages = { error: error.message };
           res.render('index', { user: req.user, messages });
