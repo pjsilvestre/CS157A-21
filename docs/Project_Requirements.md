@@ -61,7 +61,7 @@ This application will be based in the fashion and clothing domain.
 
 ### Web Server
 
-* Apache Tomcat
+* Node.js & Express
 
 ### Application Languages / Interfaces
 
@@ -71,7 +71,6 @@ This application will be based in the fashion and clothing domain.
 * HTML
 * CSS
 * JavaScript
-* JSP
 
 ## Functional Requirements in Detail
 
@@ -104,11 +103,6 @@ color, size, material type, and gender.
 * Users will be able to remove existing pieces from their collection.
 * The application will successfuly delete selected pieces from the users wardrobe.
 
-### Saving Favorite Outfits
-
-* Users will be able to create an outfit by selecting several existing pieces in their collection.
-* The application will store selected outfits as a list within the user's collection, ready for browsing.
-
 ## Non-Functional Issues in Detail
 
 ### Graphical User Interface
@@ -133,9 +127,6 @@ The team strives to create an aesthetic graphical user interface that aims to ex
   * The navigation bar will feature options for adding, updating, and removing pieces.
   * When the user chooses to add a new piece, the app will present an easy-to-use form, allowing for user input.
   * When updating and/or removing pieces, the app will present current information on a piece, in addition to confirming any changes/deletions.
-
-* Saving Favorite Outfits
-  * When assembling an outfit, the app will show the different pieces in the outfit as the user picks and chooses.
 
 ### Security
 
