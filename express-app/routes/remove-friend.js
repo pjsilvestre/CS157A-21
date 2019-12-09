@@ -21,9 +21,11 @@ router.post("/", (req, res) => {
       const oldFriend = req.body.friend;
 
       //delete old friend from user's friends list
-      let query = `DELETE FROM is_friends_with WHERE
-    	  			username1 = '${username}',
-    	  			username2 = '${oldFriend}';`;
+      let query = `
+        DELETE FROM is_friends_with 
+        WHERE
+          username1 = '${username}',
+          username2 = '${oldFriend}';`;
 
       database.query(query, err => {
         if (err) throw err;

@@ -8,22 +8,22 @@ router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect('/');
   } else {
-    const query = `
-    SELECT 
-        attire_id, type, attire_name, brand, color, size
-    FROM
+    const attireQuery = `
+      SELECT 
+          attire_id, type, attire_name, brand, color, size
+      FROM
         user
-            JOIN
+          JOIN
         owned_by USING (username)
-        JOIN
-      attire_contained_by_closet USING (closet_id)
-        JOIN
-      attire USING (attire_id)
-    WHERE
-    username = '${req.user.username}';`;
+          JOIN
+        attire_contained_by_closet USING (closet_id)
+          JOIN
+        attire USING (attire_id)
+      WHERE
+        username = '${req.user.username}';`;
 
     try {
-      database.query(query, (error, results) => {
+      database.query(attireQuery, (error, results) => {
         if (error) {
           let messages = { error: error.message };
           res.render('index', { user: req.user, messages });
@@ -53,16 +53,20 @@ router.post('/', (req, res) => {
     const newColor = req.body.newColor;
     const newSize = req.body.newSize;
 
-    let query = `UPDATE attire SET 
-                  type='${newType}', 
-                  attire_name='${newAttireName}', 
-                  brand='${newBrand}', 
-                  color='${newColor}', 
-                  size='${newSize}'
-                WHERE attire_id=${attireID};`;
+    let updateAttireQuery = `
+      UPDATE 
+        attire 
+      SET 
+        type='${newType}', 
+        attire_name='${newAttireName}', 
+        brand='${newBrand}', 
+        color='${newColor}', 
+        size='${newSize}'
+      WHERE 
+        attire_id=${attireID};`;
 
     try {
-      database.query(query, error => {
+      database.query(updateAttireQuery, error => {
         if (error) {
           let messages = { error: error.message };
           res.render('index', { user: req.user, messages });

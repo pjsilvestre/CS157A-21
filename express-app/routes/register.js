@@ -1,32 +1,35 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const bcrypt = require("bcrypt");
-const database = require("../config/database");
+const bcrypt = require('bcrypt');
+const database = require('../config/database');
 
 const saltRounds = 10;
 
 /* GET register page. */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect('/');
   } else {
-    res.render("register");
+    res.render('register');
   }
 });
 
 /* POST register page. */
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   const hashed_password = await bcrypt.hashSync(req.body.password, saltRounds);
 
-  const query = `INSERT INTO user VALUES ('${req.body.username}', '${hashed_password}');`;
+  const addUserQuery = `
+    INSERT INTO user VALUES (
+      '${req.body.username}', 
+      '${hashed_password}');`;
 
-  database.query(query, error => {
+  database.query(addUserQuery, error => {
     if (error) {
-      let messages = { error: "Username already taken." };
-      res.render("register", { messages });
+      let messages = { error: 'Username already taken.' };
+      res.render('register', { messages });
     } else {
-      res.redirect("/login");
+      res.redirect('/login');
     }
   });
 });

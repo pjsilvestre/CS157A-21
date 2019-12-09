@@ -1,52 +1,52 @@
 extends layout
 
 block content
-    include partials/navbar-authenticated
-    div(class="container")
-        h1 Edit Attire
-        include partials/error-message-alert
-        form(action='/edit-attire' method='POST')
-            div(class='form-group')
-                label(for="attireNameSelect") Choose Attire
-                select(class="form-control" id="attireNameSelect")
-                    each attire in results
-                        option=`${attire.attire_name}`
-            div(class='form-group')
-                label(for="attireID") Attire ID
-                input(type="text" class="form-control" name= "attireID" id="attireID" value=`${results[0].attire_id}` readonly)
-            div(class='form-group')
-                label(for="newType") New Type
-                input(type="text" class="form-control" name="newType" id="newType" value=`${results[0].type}`)
-            div(class='form-group')
-                label(for="newAttireName") New Attire Name
-                input(type="text" class="form-control" name="newAttireName" id="newAttireName" value=`${results[0].attire_name}`)
-            div(class='form-group')
-                label(for="newBrand") New Brand
-                input(type="text" class="form-control" name="newBrand" id="newBrand" value=`${results[0].brand}`)
-            div(class='form-group')
-                label(for="newColor") New Color
-                input(type="text" class="form-control" name="newColor" id="newColor" value=`${results[0].color}`)
-            div(class='form-group')
-                label(for="newSize") New Size
-                input(type="text" class="form-control" name="newSize" id="newSize" value=`${results[0].size}`)
-            button(type='submit' class='btn btn-dark') Edit Attire
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Edit Attire
+    include partials/error-message-alert
+    form(action='/edit-attire' method='POST')
+      div(class='form-group')
+        label(for="attireNameSelect") Choose Attire
+        select(class="form-control" id="attireNameSelect")
+          each attire in results
+            option=`${attire.attire_name}`
+      div(class='form-group')
+        label(for="attireID") Attire ID
+        input(type="text" class="form-control" name= "attireID" id="attireID" value=`${results[0].attire_id}` readonly)
+      div(class='form-group')
+        label(for="newType") New Type
+        input(type="text" class="form-control" name="newType" id="newType" value=`${results[0].type}`)
+      div(class='form-group')
+        label(for="newAttireName") New Attire Name
+        input(type="text" class="form-control" name="newAttireName" id="newAttireName" value=`${results[0].attire_name}`)
+      div(class='form-group')
+        label(for="newBrand") New Brand
+        input(type="text" class="form-control" name="newBrand" id="newBrand" value=`${results[0].brand}`)
+      div(class='form-group')
+        label(for="newColor") New Color
+        input(type="text" class="form-control" name="newColor" id="newColor" value=`${results[0].color}`)
+      div(class='form-group')
+        label(for="newSize") New Size
+        input(type="text" class="form-control" name="newSize" id="newSize" value=`${results[0].size}`)
+      button(type='submit' class='btn btn-dark') Edit Attire
 
 
-    script.
-        //dynamically update form content based on chosen attire
+  script.
+    //dynamically update form content based on chosen attire
 
-        //unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
-        const results = !{JSON.stringify(results).replace(/<\//g, '<\\/')};
+    //unescaped code interpolation; see https://stackoverflow.com/questions/8698534/how-to-pass-variable-from-jade-template-file-to-a-script-file
+    const results = !{JSON.stringify(results).replace(/<\//g, '<\\/')};
 
-        const nameSelectElement = document.getElementById('attireNameSelect');
+    const nameSelectElement = document.getElementById('attireNameSelect');
 
-        nameSelectElement.addEventListener('change', event => {
-            const selectedAttire = results.find(element => element.attire_name === nameSelectElement.value);
+    nameSelectElement.addEventListener('change', event => {
+      const selectedAttire = results.find(element => element.attire_name === nameSelectElement.value);
 
-            document.getElementById('attireID').value = selectedAttire.attire_id
-            document.getElementById('newType').value = selectedAttire.type;
-            document.getElementById('newAttireName').value = selectedAttire.attire_name;
-            document.getElementById('newBrand').value = selectedAttire.brand;
-            document.getElementById('newColor').value = selectedAttire.color;
-            document.getElementById('newSize').value = selectedAttire.size;
-        });
+      document.getElementById('attireID').value = selectedAttire.attire_id
+      document.getElementById('newType').value = selectedAttire.type;
+      document.getElementById('newAttireName').value = selectedAttire.attire_name;
+      document.getElementById('newBrand').value = selectedAttire.brand;
+      document.getElementById('newColor').value = selectedAttire.color;
+      document.getElementById('newSize').value = selectedAttire.size;
+    });

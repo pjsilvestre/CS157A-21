@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
   } else {
     const displayChoices = ['Attire', 'Outfits'];
     const closetQuery = `
-        SELECT 
-          * 
-        FROM closet 
-          JOIN owned_by USING (closet_id) 
-        WHERE username = '${req.user.username}';`;
+      SELECT 
+        * 
+      FROM closet 
+        JOIN owned_by USING (closet_id) 
+      WHERE username = '${req.user.username}';`;
 
     try {
       database.query(closetQuery, (error, closets) => {
@@ -37,7 +37,8 @@ router.get('/', (req, res) => {
                 JOIN
               attire USING (attire_id)
             WHERE
-              username = '${req.user.username}' AND closet_id = '${closets[0].closet_id}';`;
+              username = '${req.user.username}' AND 
+              closet_id = '${closets[0].closet_id}';`;
 
           database.query(attireQuery, (error, attire) => {
             if (error) {
@@ -116,7 +117,8 @@ router.post('/', (req, res) => {
                   JOIN
                 attire USING (attire_id)
               WHERE
-                username = '${req.user.username}' AND location = '${chosenCloset.location}'`;
+                username = '${req.user.username}' AND 
+                location = '${chosenCloset.location}'`;
 
             database.query(attireQuery, (error, attire) => {
               if (error) {
@@ -131,25 +133,25 @@ router.post('/', (req, res) => {
           } else {
             // get all of the outfits from a user's chosen closet
             const outfitQuery = `
-            SELECT 
-              outfit_name, type, attire_name, brand, color, size
-            FROM
-              user
-                JOIN
-              owned_by USING (username)
-                JOIN
-              closet USING (closet_id)
-                JOIN
-              outfit_contained_by_closet USING (closet_id)
-                JOIN
-              is_composed_of USING (outfit_name)
-                JOIN
-              attire_contained_by_closet USING (closet_id, attire_id)
-                JOIN
-              attire USING (attire_id)
-            WHERE
-                closet_id = '${chosenCloset.closet_id}'
-            ORDER BY outfit_name;`;
+              SELECT 
+                outfit_name, type, attire_name, brand, color, size
+              FROM
+                user
+                  JOIN
+                owned_by USING (username)
+                  JOIN
+                closet USING (closet_id)
+                  JOIN
+                outfit_contained_by_closet USING (closet_id)
+                  JOIN
+                is_composed_of USING (outfit_name)
+                  JOIN
+                attire_contained_by_closet USING (closet_id, attire_id)
+                  JOIN
+                attire USING (attire_id)
+              WHERE
+                  closet_id = '${chosenCloset.closet_id}'
+              ORDER BY outfit_name;`;
 
             database.query(outfitQuery, (error, outfits) => {
               if (error) {

@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    include partials/navbar-authenticated
-    div(class="container")
-        h1 Add Friend
-        include partials/error-message-alert
-        form(action="/add-friend" method="POST")
-            div(class="form-group")
-                label(for="friend") Friend
-                input(type="text" class="form-control" name="friend" aria-describedby="addHelp" placeholder="Enter user" required)
-                small(id="addHelp" class="form-text text-muted") Enter a username to add.
-            button(type="submit" class="btn btn-dark") Add Friend
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Add Friend
+    include partials/error-message-alert
+    form(action="/add-friend" method="POST")
+      div(class="form-group")
+        label(for="friend") Friend
+        input(type="text" class="form-control" name="friend" aria-describedby="addHelp" placeholder="Enter user" required)
+        small(id="addHelp" class="form-text text-muted") Enter a username to add.
+      button(type="submit" class="btn btn-dark") Add Friend

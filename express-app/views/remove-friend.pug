@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    include partials/navbar-authenticated
-    div(class="container")
-        h1 Remove Friend
-        include partials/error-message-alert
-        form(action="/remove-friend" method="POST")
-            div(class="form-group")
-                label(for="friend") Friend
-                input(type="text" class="form-control" name="friend" aria-describedby="removeHelp" placeholder="Enter user" required)
-                small(id="removeHelp" class="form-text text-muted") Enter a username for removal.
-            button(type="submit" class="btn btn-dark") Remove Friend
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Remove Friend
+    include partials/error-message-alert
+    form(action="/remove-friend" method="POST")
+      div(class="form-group")
+        label(for="friend") Friend
+        input(type="text" class="form-control" name="friend" aria-describedby="removeHelp" placeholder="Enter user" required)
+        small(id="removeHelp" class="form-text text-muted") Enter a username for removal.
+      button(type="submit" class="btn btn-dark") Remove Friend
