@@ -9,12 +9,12 @@ router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const query = `
-            SELECT 
-              outfit_name, date
-            FROM
-              worn_by
-            WHERE
-              username = '${req.user.username}';`;
+        SELECT 
+          outfit_name, date
+        FROM
+          worn_by
+        WHERE
+          username = '${req.user.username}';`;
 
       database.query(query, (err, results) => {
         if (err) throw err;

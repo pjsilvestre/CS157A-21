@@ -10,7 +10,15 @@ router.get('/', (req, res) => {
   } else {
     try {
       const username = req.user.username;
-      let closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+      let closetQuery = `
+        SELECT 
+          * 
+        FROM 
+          closet 
+            JOIN 
+          owned_by USING (closet_id) 
+        WHERE username = '${username}';`;
+
       database.query(closetQuery, (error, closets) => {
         if (error) {
           throw error;
@@ -18,19 +26,19 @@ router.get('/', (req, res) => {
           closets = JSON.parse(JSON.stringify(closets));
 
           let attireQuery = `
-					SELECT 
-						location, attire_id, attire_name
-					FROM
-						user
-							JOIN
-						owned_by USING (username)
-							JOIN
-						closet USING (closet_id)
-							JOIN
-						attire_contained_by_closet USING (closet_id)
-							JOIN
-						attire USING (attire_id)
-					WHERE username = '${username}';`;
+            SELECT 
+              location, attire_id, attire_name
+            FROM
+              user
+                JOIN
+              owned_by USING (username)
+                JOIN
+              closet USING (closet_id)
+                JOIN
+              attire_contained_by_closet USING (closet_id)
+                JOIN
+              attire USING (attire_id)
+            WHERE username = '${username}';`;
 
           database.query(attireQuery, (error, attire) => {
             if (error) {

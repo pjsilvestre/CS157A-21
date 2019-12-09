@@ -22,14 +22,21 @@ router.post('/', (req, res) => {
     const location = req.body.location;
 
     try {
-      let insertClosetIntoClosetQuery = `INSERT INTO closet VALUES ('${closet_id}', '${location}');`;
+      let insertClosetIntoClosetQuery = `
+        INSERT INTO closet VALUES (
+          '${closet_id}', 
+          '${location}');`;
 
       database.query(insertClosetIntoClosetQuery, error => {
         if (error) {
           throw error;
         }
 
-        let insertClosetIntoOwnedByQuery = `INSERT INTO owned_by VALUES ('${closet_id}', '${username}');`;
+        let insertClosetIntoOwnedByQuery = `
+        INSERT INTO owned_by VALUES (
+          '${closet_id}', 
+          '${username}');`;
+
         database.query(insertClosetIntoOwnedByQuery, error => {
           if (error) {
             throw error;

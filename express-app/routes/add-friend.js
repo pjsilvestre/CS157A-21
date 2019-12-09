@@ -22,8 +22,8 @@ router.post("/", (req, res) => {
 
       //add new friend to user's friends list
       let query = `REPLACE INTO is_friends_with SET
-    	  			username1 = '${username}',
-    	  			username2 = '${newFriend}';`;
+              username1 = '${username}',
+              username2 = '${newFriend}';`;
 
       database.query(query, err => {
         if (err) throw err;

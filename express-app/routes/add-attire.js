@@ -11,7 +11,15 @@ router.get('/', (req, res) => {
     try {
       const username = req.user.username;
 
-      let closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+      let closetQuery = `
+        SELECT 
+          * 
+        FROM 
+          closet 
+            JOIN 
+          owned_by USING (closet_id) 
+        WHERE 
+          username = '${username}';`;
 
       database.query(closetQuery, (error, closets) => {
         if (error) {
@@ -48,20 +56,24 @@ router.post('/', (req, res) => {
     const size = req.body.size;
 
     try {
-      let insertAttireIntoAttireQuery = `INSERT INTO attire VALUES (
-        '${attire_id}',
-        '${type}',
-        '${attire_name}',
-        '${brand}',
-        '${color}',
-        '${size}');`;
+      let insertAttireIntoAttireQuery = `
+        INSERT INTO attire VALUES (
+          '${attire_id}',
+          '${type}',
+          '${attire_name}',
+          '${brand}',
+          '${color}',
+          '${size}');`;
 
       database.query(insertAttireIntoAttireQuery, error => {
         if (error) {
           throw error;
         }
 
-        let insertAttireIntoClosetQuery = `INSERT INTO attire_contained_by_closet VALUES ('${attire_id}', '${closet_id}');`;
+        let insertAttireIntoClosetQuery = `
+          INSERT INTO attire_contained_by_closet VALUES (
+              '${attire_id}', 
+              '${closet_id}');`;
 
         database.query(insertAttireIntoClosetQuery, error => {
           if (error) {

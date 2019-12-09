@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
         } else {
           closets = JSON.parse(JSON.stringify(closets));
 
-          const query = `
+          const attireQuery = `
             SELECT 
                 attire_id, attire_name, closet_id
             FROM
@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
             WHERE
               username = '${username}';`;
 
-          database.query(query, (error, attire) => {
+          database.query(attireQuery, (error, attire) => {
             if (error) {
               let messages = { error: error.message };
               res.render('index', { user: req.user, messages });
