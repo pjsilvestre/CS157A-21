@@ -85,7 +85,11 @@ router.post('/', (req, res) => {
       WHERE attire_id = '${attire_id}';`;
 
     /*
-    The schema for "is_composed_of" is (outfit_name, attire_id), where both are keys. Although we want to delete all entries matching our chosen attire_id, MySQL rejects this, as it wants a WHERE clause with both an outfit_name and attire_id. To simplify this, we can turn off safe update mode before the query, and turn it back on after the query.
+    The schema for "is_composed_of" is (outfit_name, attire_id), where both are 
+    keys. Although we want to delete all entries matching our chosen attire_id, 
+    MySQL rejects this, as it wants a WHERE clause with both an outfit_name and 
+    attire_id. To simplify this, we can turn off safe update mode before the 
+    query, and turn it back on after the query.
     */
 
     const removeAttireFromIsComposedOfQuery = `
@@ -94,24 +98,98 @@ router.post('/', (req, res) => {
       WHERE attire_id ='${attire_id}';
       SET SQL_SAFE_UPDATES=1;`;
 
-    const removeAttireQuery = `${removeAttireFromAttireQuery} ${removeAttireFromAttireContainedByClosetQuery} ${removeAttireFromIsComposedOfQuery}`;
-
-    /* 
-    If all of the attire associated with an outfit was removed, logically, the outfit ceases to exist. For an outfit, if there's no corresponding entry in "is_composed_of", remove the outfit from "outfit", "outfit_contained_by_closet", "is_composed_of", and "worn_by"
-
-    TODO
-    */
-
-    const query = `${removeAttireQuery}`;
+    const removeAttireQuery = `${removeAttireFromAttireQuery} 
+    ${removeAttireFromAttireContainedByClosetQuery} 
+    ${removeAttireFromIsComposedOfQuery}`;
 
     try {
-      database.query(query, error => {
+      database.query(removeAttireQuery, error => {
         if (error) {
           let messages = { error: error };
           res.render('index', { user: req.user, messages });
           return;
         } else {
+          /*
+          If all of the attire associated with an outfit was removed, logically,
+          the outfit ceases to exist. For an outfit, if there's no corresponding
+          entry in "is_composed_of", remove the outfit from "outfit", 
+          "outfit_contained_by_closet", "is_composed_of", and "worn_by"
+          */
+          const username = req.user.username;
+          const outfitQuery = `
+           SELECT 
+             outfit_name
+           FROM
+             owned_by
+               JOIN
+             outfit_contained_by_closet USING (closet_id)
+           WHERE
+             username = '${username}';`;
+
+          database.query(outfitQuery, (error, outfits) => {
+            if (error) {
+              let messages = { error: "Outfits couldn't be accessed!" };
+              res.render('index', { user: req.user, messages });
+              return;
+            } else {
+              outfits.forEach(outfit => {
+                const outfit_name = outfit.outfit_name;
+                const outfitInIsComposedOfQuery = `
+                  SELECT DISTINCT
+                    outfit_Name
+                  FROM
+                    is_composed_of
+                  WHERE
+                    outfit_name = '${outfit_name}'`;
+
+                database.query(outfitInIsComposedOfQuery, (error, results) => {
+                  if (error) {
+                    let messages = {
+                      error: "is_composed_of couldn't be accessed!",
+                    };
+                    res.render('index', { user: req.user, messages });
+                    return;
+                  } else {
+                    if (results.length === 0) {
+                      const removeOutfitFromOutfitQuery = `
+                        DELETE FROM outfit 
+                        WHERE 
+                          outfit_name = '${outfit_name}';`;
+
+                      const removeOutfitFromClosetQuery = `
+                        DELETE FROM outfit_contained_by_closet 
+                        WHERE 
+                          outfit_name = '${outfit_name}';`;
+
+                      const removeOutfitFromWornByQuery = `
+                        SET SQL_SAFE_UPDATES=0;
+                        DELETE FROM worn_by
+                        WHERE 
+                          outfit_name = '${outfit_name}';
+                        SET SQL_SAFE_UPDATES=1;`;
+
+                      const removeOutfitQuery = `${removeOutfitFromOutfitQuery} 
+                        ${removeOutfitFromClosetQuery} 
+                        ${removeOutfitFromWornByQuery}`;
+
+                      database.query(removeOutfitQuery, error => {
+                        if (error) {
+                          let messages = {
+                            error: "Outfit couldn't be deleted!",
+                          };
+                          res.render('index', { user: req.user, messages });
+                          return;
+                        }
+                      });
+                    }
+                  }
+                });
+              });
+            }
+          });
+
           res.redirect('closet');
+          return;
         }
       });
     } catch (error) {
