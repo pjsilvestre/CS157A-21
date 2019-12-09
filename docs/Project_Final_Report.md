@@ -1,44 +1,68 @@
 # whatdoiwear.today - Final Report
-## Team 21
-* [Devin Gonzales](https://github.com/DJGonzales96)
-* [Claire Lin](https://github.com/clairelin23)
-* [Patrick Silvestre](https://github.com/pjsilvestre)
 
-# Requirements 
+## Team 21
+
+- [Devin Gonzales](https://github.com/DJGonzales96)
+- [Claire Lin](https://github.com/clairelin23)
+- [Patrick Silvestre](https://github.com/pjsilvestre)
+
+# Requirements
+
 ## Project Description in Detail
 
 ### Goal
 
-The goal of this project is to facilitate a user-friendly application capable of providing users with a convenient way to collect, organize and share various articles of clothing in an ever growing market of apparel. Users will be presented with recommended outfits based on their current clothing selection and supplied with sufficient collection, sorting and searching options in their wardrobe as well as a comfortable GUI to aid user interaction.
+The goal of this project was to create a user-friendly application capable of
+providing users with a convenient way to collect, organize and share various
+articles of clothing in an ever growing market of apparel. Users are presented
+with collection and sorting functionality in their closets via a GUI.
 
 ### Motivation
 
-This project was inspired by an absence in similar applications among the industry. Music, TV, and literature are all examples of domains with limitless streaming, collection and sharing capabilities. The fashion industry is a comparably large source of income expenditure among multiple demographics with very limited technical representation. This application seeks to bring similar functionality of other social media or streaming services by allowing users to share and collect their favorite clothing items and brands in an adaptable, easy to follow format.
+This project was inspired by an absence in similar applications among the
+industry. Music, TV, and literature are all examples of domains with limitless
+streaming, collection and sharing capabilities. The fashion industry is a
+comparably large source of income expenditure among multiple demographics
+with very limited technical representation. This application seeks to bring
+similar functionality of other social media or streaming services by allowing
+users to collect (and eventually share) their favorite clothing items and brands
+in an easy manner.
 
 ### Stakeholders
 
-* Students / Young Adults; Women; Professionals
-  * This demographic has the desire to maintain a fashionable appearance.
-  * In addition, they often have physical closets and often look for ways reduce time spent on outfit planning.
+- Students / Young Adults; Women; Professionals
 
-* Project Team
-  * The team is concerned with creating and maintaining the app as necessary.
+  - This demographic has the desire to maintain a fashionable appearance.
+
+  - In addition, they often have physical closets and often look for ways reduce
+    time spent on outfit planning.
+
+- Project Team
+
+  - The team is concerned with creating and maintaining the app as necessary.
 
 ### Application Domain
 
-This application will be based in the fashion and clothing domain.
+This application is based in the fashion and clothing domain.
 
 ### User Benefits
 
-* Clear Clothing Organization
-  * Users will be able to come up with outfit ideas more conveniently as they can clearly view their entire closet.
-  * Users will no longer need to go through the steps of pulling out a piece of clothing from physical closet, try to pair it with another piece, and put/fold it back if not satisfied with the pairing. Users can decide their outfits in the application, and pick out the specific pieces in their physical closet.
+- Clear Clothing Organization
 
-* Reduced Spending on Clothing
-  * Users will be able to avoid buying clothing similar to the ones they already own. The application provides an easy and organized view of the user's entire clothing collection.  
+  - Users will be able to come up with outfit ideas more conveniently as they
+    can clearly view their entire closet.
 
-* Find out personal style
-  * Users will be able to discover their personal clothing preferences by viewing what clothing pieces they wear the most often. 
+  - Users will no longer need to go through the steps of pulling out a piece of
+    clothing from a physical closet, trying to pair it with another piece, and
+    putting it back if not satisfied with the pairing. Instead, users can create
+    outfits via their virtual closet.
+
+- Reduced Spending on Clothing
+
+  - Users will be able to avoid buying clothing similar to the ones they already
+    own. The application provides an easy and organized view of the user's
+    entire
+    clothing collection.
 
 ## System Environment in Detail
 
@@ -48,94 +72,174 @@ This application will be based in the fashion and clothing domain.
 
 ### Hardware/Software
 
-* Development Operating Systems
-  * macOS Mojave
-  * Windows 10
-* IDEs
-  * Eclipse IDE for Java EE
+- Development Operating Systems
+
+  - macOS Mojave / Catalina
+
+  - Windows 10
+
+- IDEs / Text Editors
+
+  - Eclipse IDE for Java EE
+
+  - Visual Studio Code
 
 ### RDBMS
 
-* MySQL 8.0.17
+- MySQL 8.0.17
 
-### Web Server
+### Web Server, Middleware, Dependencies
 
-* Node.js & Express
+- Node.js
 
-### Application Languages / Interfaces
+- Express
 
-* Java
-* Java Database Connectivity (JDBC)
-* XML / JSON
-* HTML
-* CSS
-* JavaScript
+- mysql
+
+  - Node.js driver for MySQL
+
+- express-session
+
+  - session handling
+
+- passport
+
+  - user authentication
+
+- bcrypt
+
+  - password hashing
+
+* Bootstrap
+
+  - UI elements
+
+### Languages
+
+- HTML (via Pug templating engine)
+
+- CSS
+
+- JavaScript
 
 ## Functional Requirements in Detail
 
 ### Account Creation and Login
 
-* New users will be able to create and register for accounts through an authentication sheet including username and password.
-* Returning users will be able to log in to their accounts by inputting the correct credentials.
+- New users can register for accounts.
 
-### Adding Pieces
+- New accounts are persisted in the database.
 
-* Users will be able to add a piece of clothing to their collection through an on-screen prompt.
-* Users will be able to uplaod a picture of the clothing and enter text descriptions of the clothing, such as type, brand,   
-color, size, material type, and gender. 
-* The application will store this piece of clothing and all relevant information in the users wardrobe collection.
+- Returning users can log in to their accounts provided correct credentials.
 
+### Adding Attire
 
-### Viewing the Closet
+- Users can add a piece of attire to their closet
 
-* Users will be able to view their collected clothing articles in a list format. Additionally, users will be able to sort their wardrobe via various clothing characteristics. 
-* Users may tag clothing items as their most frequently or least frequently worn pieces.
-* The application will retrieve all aggregated clothing articles in a user's saved collection and display them for view in a separate page.
+- Users can enter text descriptions of the attire, such as type,
+  brand, color, and size.
 
-### Updating Pieces
+- The application stores this piece of attire and all relevant information
+  in the database.
 
-* Users will be able to edit information/characteristics of an existing clothing in their collection.
-* The application will save the edited information.
+### Viewing Attire
 
-### Removing Pieces
+- Users can view the attire in their closet in a list format. Additionally,
+  users can sort attire in their closet based on certain attributes (e.g brand).
 
-* Users will be able to remove existing pieces from their collection.
-* The application will successfuly delete selected pieces from the users wardrobe.
+### Updating Attire
+
+- Users can edit the information for existing attire in their closet.
+
+- The application persists this edited information in the database.
+
+### Removing Attire
+
+- Users can remove existing attire from their closet.
+
+- The application successfully deletes the selected piece from the database..
+
+### Adding Outfits
+
+- Users can organize attire into outfits, primarily based on an outfit name.
+
+### Viewing Outfits
+
+- Similar to viewing attire, users can also view their outfits in their closet.
+
+### Removing Outfits
+
+- Users can remove outfits from their closet.
+
+### Adding Worn Entries
+
+- Users can record an outfit they wore on a certain day.
+
+### Viewing Worn Entries
+
+- Users can view a history of outfits they wore over time.
+
+### Removing Worn Entries
+
+- Users can remove worn entries.
+
+### Adding Friends
+
+- Users can add other users to their friendlist. This functionality is more akin
+  to "following" in other social networks, rather than actual "friending".
+
+### Viewing Friends
+
+- Users can view their friendlist, and their friends' outfits.
+
+### Removing Friends
+
+- Users can remove friends.
 
 ## Non-Functional Issues in Detail
 
 ### Graphical User Interface
 
-The team strives to create an aesthetic graphical user interface that aims to exhibit the best qualities of user interface design, from clarity to consistency. The front end will be built using a combination of custom CSS, in addition to the potential usage of third-party frameworks such as Bootstrap.
+The team strove to create an aesthetic graphical user interface that aims to
+exhibit the best qualities of user interface design, from clarity to
+consistency. The front end was built in HTML via the Pug templating engine, and
+heavily utilized the CSS library Bootstrap.
 
-* Account Creation and Login
-  * Upon opening the app, the user will be greeted with a login form, in addition to a link to an account creation form.
-    * The account creation form will be similar in nature to that of the login form.
-  * After successful login, the user will be presented with the main screen of the app, a visual display of their current closet, in addition to a navigation bar used for accessing additional functions.
+- Account Creation and Login
 
-* Requesting Pieces
-  * The navigation bar will feature an option for requesting pieces.
-  * Once the user opts to request a piece, a search bar will appear, allowing for user input.
-  * Once the user finishes entering their input, the closet will reflect the result of their search.
+  - Upon opening the app, the user can navigate to an account creation page or
+    login page.
 
-* Viewing the Closet
-  * The user can freely browse their closet, with pieces represented via text and images.
-  * The GUI will reflect any constraints set by the user, such as if a user opts to see all shirts by a certain brand.
+    - The account creation form prompts the user to input a username and
+      password.
 
-* Adding, Updating, and Removing Pieces
-  * The navigation bar will feature options for adding, updating, and removing pieces.
-  * When the user chooses to add a new piece, the app will present an easy-to-use form, allowing for user input.
-  * When updating and/or removing pieces, the app will present current information on a piece, in addition to confirming any changes/deletions.
+    - The login form is similar to the account creation form.
+
+  - After successful login, the user is presented with the home page with their
+    name and a navigation bar to navigate the app.
+
+- Viewing the Closet
+
+  - The user can freely browse their closets, with pieces represented via text.
+
+- Adding, Updating, and Removing Attire
+
+  - The navigation bar features options for adding, updating, and removing
+    attire.
+
+  - When the user chooses to add a new piece, the app presents an
+    easy-to-use form, allowing for user input.
+
+  - When updating pieces, the app presents current information on a piece.
 
 ### Security
 
-We aim to ensure that a given user can see only their closet, and that a given closet can only be seen by its respective user. Security will be implemented through the use of basic access authentication, that is, a user name and password when making HTTP requests. User credentials will be securely stored in a database not visible to standard users.
-
-### Access Control
-
-Access control will be role-based. Standard users will be allowed to perform normal functions as described by our functional requirements (e.g. adding clothes, viewing the closet, etc.). Admin users will be allowed to perform additional functions to ensure proper functionality of the database application.
+We aim to ensure that a given user can see only their closet, and that a given
+closet can only be seen by its respective user. This is implemented through
+user authentication and sessions.
 
 # Design
+
 ## Entity / Relationship Diagram
 
 ![ER Diagram](./images/database_design_3.0.png)
@@ -225,7 +329,7 @@ Access control will be role-based. Standard users will be allowed to perform nor
 | worn_by                    | {O, D, U}                                   | OD &rarr; U                             | Yes                      | Yes              |
 | is_friends_with            | {U<sub>1</sub>, U<sub>2</sub>}              | (none)                                  | N/A                      | Yes (by default) |
 
-## Tables
+## Tables TODO: update
 
 ### Entity Set Tables
 
@@ -252,23 +356,27 @@ Access control will be role-based. Standard users will be allowed to perform nor
   ![wears](./images/table-screenshots-design-v3/wears.png)
 - is_friends_with
   ![is_friends_with](./images/table-screenshots-design-v3/is_friends_with.png)
-  
+
 # Implementation
+
 TODO
 
 # Conclusion
-## Team Retrospective
-  - Devin Gonzales
-  
-  This project served as a challenging introduction into full-stack development with the inclusion of both front-end and back-end components. Developing in JavaScript utilizing Node.js and Express has taught me a lot about server-side design and the difficulties that come with not only ensuring complete functionality of a web application but also designing an effective UI for a client. I learned first-hand the role of a database in the back-end of an application as well as how databases interact with the server to bring functionality to an application. My experience with this project has also given me an acute disdain for Node's package manager and the challenges that come with debugging npm. Despite these challenges, this project has provided an opportunity for me and my team to grow as programmers and gain experience developing applications.
 
-  - Claire Lin
-  
-  TODO
-  
-  - Patrick Silvestre 
-  
-  TODO
+## Team Retrospective
+
+- Devin Gonzales
+
+This project served as a challenging introduction into full-stack development with the inclusion of both front-end and back-end components. Developing in JavaScript utilizing Node.js and Express has taught me a lot about server-side design and the difficulties that come with not only ensuring complete functionality of a web application but also designing an effective UI for a client. I learned first-hand the role of a database in the back-end of an application as well as how databases interact with the server to bring functionality to an application. My experience with this project has also given me an acute disdain for Node's package manager and the challenges that come with debugging npm. Despite these challenges, this project has provided an opportunity for me and my team to grow as programmers and gain experience developing applications.
+
+- Claire Lin
+
+TODO
+
+- Patrick Silvestre
+
+TODO
 
 ## Future Improvements
-TODO
+
+Because clothes
