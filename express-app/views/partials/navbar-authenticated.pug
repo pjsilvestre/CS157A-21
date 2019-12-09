@@ -21,5 +21,17 @@ div(class="container-fluid")
                     div(class="dropdown-menu" aria-labelledby="outfitDropdownMenuLink")        
                         a(class="dropdown-item" href="./add-outfit") Add Outfit
                         a(class="dropdown-item" href="./remove-outfit") Remove Outfit
+                li(class="nav-item dropdown")
+                    a(class="nav-link dropdown-toggle" href="#" id="wornDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Worn
+                    div(class="dropdown-menu" aria-labelledby="wornDropdownMenuLink")        
+                        a(class="dropdown-item" href="./worn-list") View Worn History
+                        a(class="dropdown-item" href="./remove-worn") Remove Worn Record 
+                body   &nbsp &nbsp &nbsp
+                
+                form(class ="form-inline" )
+                    a(href="./add-worn") 
+                      button(type="button",class="btn btn-info") Record What You Wear today!
+                body   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
                 form(class ="form-inline" action="/logout?_method=DELETE" method="POST")
                     button(type="submit" class="btn btn-light") Logout
+                    

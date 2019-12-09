@@ -32,18 +32,17 @@ router.post("/", (req, res) => {
       database.query(query, err => {
         if (err) throw err;
       });
-    });
-    } catch (err) {
+     } 
+    catch (err) {
       console.error(err.stack);
       res.redirect("/remove-worn");
-    } finally {
+    } 
+    finally {
       res.redirect("/worn-list");
     }
   } else {
     res.redirect("/");
   }
 });
-
-
 
 module.exports = router;

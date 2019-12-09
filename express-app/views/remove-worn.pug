@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    include partials/navbar-authenticated
+    div(class="container")
+        h1 Remove My Worn Record
+        include partials/error-message-alert
+    div(class="container")
+        form(action="/remove-worn" method="POST")
+            div(class="form-group")
+                label(for="date") Choose date of worn record you'd like to change
+                input(type="date" class="form-control" name="date"  required)
+            div(class="form-group")
+                //label(for="closet") Outfit
+                //select(class="form-control" id="outfitSelect")

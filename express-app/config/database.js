@@ -9,4 +9,9 @@ const connection = mysql.createPool({
   multipleStatements: "true"
 });
 
+connection.getConnection(function(err, connection) {
+  if (err) throw err;
+  console.log("mySQL successfully connected!");
+})
+
 module.exports = connection;

@@ -24,6 +24,9 @@ const removeAttireRouter = require('./routes/remove-attire');
 const addClosetRouter = require('./routes/add-closet');
 const addOutfitRouter = require('./routes/add-outfit');
 const removeOutfitRouter = require('./routes/remove-outfit');
+const addWornRouter = require('./routes/add-worn');
+const wornListRouter = require('./routes/worn-list');
+const removeWornRouter = require('./routes/remove-worn');
 
 const app = express();
 
@@ -63,6 +66,9 @@ app.use('/remove-attire', removeAttireRouter);
 app.use('/add-closet', addClosetRouter);
 app.use('/add-outfit', addOutfitRouter);
 app.use('/remove-outfit', removeOutfitRouter);
+app.use('/add-worn', addWornRouter);
+app.use('/worn-list',wornListRouter);
+app.use('/remove-worn',removeWornRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
