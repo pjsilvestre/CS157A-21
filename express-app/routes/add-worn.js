@@ -1,17 +1,26 @@
 //TODO: add-worn.pug
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const database = require("../config/database");
+const database = require('../config/database');
 
 /* GET add-worn page */
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (!req.isAuthenticated()) {
     res.redirect('/');
   } else {
     try {
       const username = req.user.username;
-      const closetQuery = `SELECT * FROM closet JOIN owned_by USING (closet_id) WHERE username = '${username}';`;
+      const closetQuery = `
+        SELECT 
+          * 
+        FROM 
+          closet 
+            JOIN 
+          owned_by USING (closet_id) 
+        WHERE 
+          username = '${username}';`;
+
       database.query(closetQuery, (error, closets) => {
         if (error) {
           let messages = { error: error };
@@ -58,7 +67,7 @@ router.get("/", (req, res) => {
 });
 
 /* POST add-worn page*/
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const username = req.user.username;
@@ -68,29 +77,26 @@ router.post("/", (req, res) => {
       const date = req.body.date;
 
       //add new worn attire to user's list
-      let query = `INSERT INTO worn_by SET
-    	  			username = '${username}',
-    	  			outfit_name = '${outfit_name}',
-    	  			date = '${date}';`;
+      let query = `
+        INSERT INTO 
+          worn_by 
+        SET
+          username = '${username}',
+          outfit_name = '${outfit_name}',
+          date = '${date}';`;
 
       database.query(query, err => {
         if (err) throw err;
       });
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err.stack);
-      res.redirect("/add-worn");
-    } 
-    finally {
-      res.redirect("/worn-list");
+      res.redirect('/add-worn');
+    } finally {
+      res.redirect('/worn-list');
     }
-  } 
-  else {
-    res.redirect("/");
+  } else {
+    res.redirect('/');
   }
 });
-
-
-
 
 module.exports = router;

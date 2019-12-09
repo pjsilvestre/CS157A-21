@@ -67,8 +67,8 @@ app.use('/add-closet', addClosetRouter);
 app.use('/add-outfit', addOutfitRouter);
 app.use('/remove-outfit', removeOutfitRouter);
 app.use('/add-worn', addWornRouter);
-app.use('/worn-list',wornListRouter);
-app.use('/remove-worn',removeWornRouter);
+app.use('/worn-list', wornListRouter);
+app.use('/remove-worn', removeWornRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

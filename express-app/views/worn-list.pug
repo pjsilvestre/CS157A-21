@@ -1,22 +1,22 @@
 extends layout
 
 block content
-    include partials/navbar-authenticated
-    div(class="container")
-        h1 Your Worn History
-        include partials/error-message-alert
-        form(class="form-inline" action="/worn-list" method="GET")
-            div(class="container")
-                table(class="table")
-                    thead
-                        tr
-                            th(scope="col")
-                                a(href='#' id=('date-table-header')) Date 
-                            th(scope="col")
-                                a(href='#' id=('outfit-table-header')) Outfit Name 
-                    tbody(id="worn-list-table-body")
-                        each piece in results
-                            tr
-                                td=`${piece.date}`
-                                td=`${piece.outfit_name}`   
-    
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Your Worn History
+    include partials/error-message-alert
+    form(class="form-inline" action="/worn-list" method="GET")
+      div(class="container")
+        table(class="table")
+          thead
+            tr
+              th(scope="col")
+                a(href='#' id=('date-table-header')) Date 
+              th(scope="col")
+                a(href='#' id=('outfit-table-header')) Outfit Name 
+          tbody(id="worn-list-table-body")
+            each piece in results
+              tr
+                td=`${piece.date}`
+                td=`${piece.outfit_name}`   
+
