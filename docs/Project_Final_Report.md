@@ -365,18 +365,39 @@ TODO
 
 ## Team Retrospective
 
-- Devin Gonzales
+Devin Gonzales
 
-This project served as a challenging introduction into full-stack development with the inclusion of both front-end and back-end components. Developing in JavaScript utilizing Node.js and Express has taught me a lot about server-side design and the difficulties that come with not only ensuring complete functionality of a web application but also designing an effective UI for a client. I learned first-hand the role of a database in the back-end of an application as well as how databases interact with the server to bring functionality to an application. My experience with this project has also given me an acute disdain for Node's package manager and the challenges that come with debugging npm. Despite these challenges, this project has provided an opportunity for me and my team to grow as programmers and gain experience developing applications.
+- This project served as a challenging introduction into full-stack development
+  with the inclusion of both front-end and back-end components. Developing in
+  JavaScript utilizing Node.js and Express has taught me a lot about server-side
+  design and the difficulties that come with not only ensuring complete
+  functionality of a web application but also designing an effective UI for a
+  client. I learned first-hand the role of a database in the back-end of an
+  application as well as how databases interact with the server to bring
+  functionality to an application. My experience with this project has also
+  given me an acute disdain for Node's package manager and the challenges
+  that come with debugging npm. Despite these challenges, this project has
+  provided an opportunity for me and my team to grow as programmers and gain
+  experience developing applications.
 
-- Claire Lin
+Claire Lin
 
-TODO
+- TODO
 
-- Patrick Silvestre
+Patrick Silvestre
 
-TODO
+- whatdoiwear.today was an interesting exercise in full-stack web development.
+  I had limited experience with HTML, CSS, and JavaScript via a CMPE 131
+  project. This class's project was considerably more complex, and I had to
+  learn a order of magnitude more about server-side website programming. I
+  learned several lessons for the future, such as, "start implementation early",
+  "schema changes are expensive", and "technical debt will need to be repaid".
 
 ## Future Improvements
 
-Because clothes
+Fashion is primarily visual in nature. As such, allowing users to upload
+pictures as they add attire to their closet is the next logical step for
+whatdoiwear.today. A potential, yet lofty, goal is to create a central datastore
+of attire so users do not need to enter details about attire that could be
+instead scraped from the internet, such as the brand or color of a certain piece
+of attire.
