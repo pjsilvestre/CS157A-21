@@ -329,7 +329,7 @@ user authentication and sessions.
 | worn_by                    | {O, D, U}                                   | OD &rarr; U                             | Yes                      | Yes              |
 | is_friends_with            | {U<sub>1</sub>, U<sub>2</sub>}              | (none)                                  | N/A                      | Yes (by default) |
 
-## Tables TODO: update
+## Tables
 
 ### Entity Set Tables
 
