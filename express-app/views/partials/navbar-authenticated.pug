@@ -1,25 +1,36 @@
 div(class="container-fluid")    
-    nav(class="navbar navbar-expand-xl navbar-dark bg-dark")
-        a(class="navbar-brand" href="/") whatdoiwear.today
-        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
-            span(class="navbar-toggler-icon")
-        div(class="collapse navbar-collapse" id="navbarSupportedContent")
-            ul(class="navbar-nav")
-                li(class="nav-item dropdown")
-                    a(class="nav-link dropdown-toggle" href="#" id="closetDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Closet
-                    div(class="dropdown-menu" aria-labelledby="closetDropdownMenuLink")
-                        a(class="dropdown-item" href="./closet") Your Closet
-                        a(class="dropdown-item" href="./add-closet") Add Closet
-                li(class="nav-item dropdown")
-                    a(class="nav-link dropdown-toggle" href="#" id="attireDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Attire
-                    div(class="dropdown-menu" aria-labelledby="attireDropdownMenuLink")
-                        a(class="dropdown-item" href="./add-attire") Add Attire
-                        a(class="dropdown-item" href="./edit-attire") Edit Attire
-                        a(class="dropdown-item" href='./remove-attire') Remove Attire
-                li(class="nav-item dropdown")
-                    a(class="nav-link dropdown-toggle" href="#" id="outfitDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Outfits
-                    div(class="dropdown-menu" aria-labelledby="outfitDropdownMenuLink")        
-                        a(class="dropdown-item" href="./add-outfit") Add Outfit
-                        a(class="dropdown-item" href="./remove-outfit") Remove Outfit
-                form(class ="form-inline" action="/logout?_method=DELETE" method="POST")
-                    button(type="submit" class="btn btn-light") Logout
+  nav(class="navbar navbar-expand-xl navbar-dark bg-dark")
+    a(class="navbar-brand" href="/") whatdoiwear.today
+    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+      span(class="navbar-toggler-icon")
+    div(class="collapse navbar-collapse" id="navbarSupportedContent")
+      ul(class="navbar-nav")
+        li(class="nav-item dropdown")
+          a(class="nav-link dropdown-toggle" href="#" id="closetDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Closet
+          div(class="dropdown-menu" aria-labelledby="closetDropdownMenuLink")
+            a(class="dropdown-item" href="./closet") Your Closet
+            a(class="dropdown-item" href="./add-closet") Add Closet
+        li(class="nav-item dropdown")
+          a(class="nav-link dropdown-toggle" href="#" id="attireDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Attire
+          div(class="dropdown-menu" aria-labelledby="attireDropdownMenuLink")
+            a(class="dropdown-item" href="./add-attire") Add Attire
+            a(class="dropdown-item" href="./edit-attire") Edit Attire
+            a(class="dropdown-item" href='./remove-attire') Remove Attire
+        li(class="nav-item dropdown")
+          a(class="nav-link dropdown-toggle" href="#" id="outfitDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Outfits
+          div(class="dropdown-menu" aria-labelledby="outfitDropdownMenuLink")        
+            a(class="dropdown-item" href="./add-outfit") Add Outfit
+            a(class="dropdown-item" href="./remove-outfit") Remove Outfit
+        li(class="nav-item dropdown")
+          a(class="nav-link dropdown-toggle" href="#" id="wornDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Worn
+          div(class="dropdown-menu" aria-labelledby="wornDropdownMenuLink")        
+            a(class="dropdown-item" href="./worn-list") View Worn History
+            a(class="dropdown-item" href="./remove-worn") Remove Worn Record 
+        body   &nbsp &nbsp &nbsp
+
+        form(class ="form-inline" )
+          a(href="./add-worn") 
+            button(type="button" class="btn btn-info") Record What You Wear today!
+        body   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+        form(class ="form-inline" action="/logout?_method=DELETE" method="POST")
+          button(type="submit" class="btn btn-light") Logout
