@@ -264,27 +264,27 @@ user authentication and sessions.
 
 ## Relationship Descriptions
 
-### closet "owned_by" user
+### closet `owned_by` user
 
 - Many closets are owned by one user (many-one from closet to user).
 
-### "outfit_contained_by_closet"
+### `outfit_contained_by_closet`
 
 - Many outfits are contained by one closet (many-one from outfits to closet).
 
-### "attire_contained_by_closet"
+### `attire_contained_by_closet`
 
 - Many pieces of attire are contained by one closet (many-one from attire to closet).
 
-### outfit "is_composed_of" attire
+### outfit `is_composed_of` attire
 
 - Many outfits are composed of many pieces of attire (many-many from outfit to attire).
 
-### outfit "worn_by" user
+### outfit `worn_by` user
 
 - Many outfits are worn by one user, with one outfit per date (many-one from outfit to user).
 
-### user<sub>1</sub> "is_friends_with" user<sub>2</sub>
+### user<sub>1</sub> `is_friends_with` user<sub>2</sub>
 
 - Many users can be friends with many (other) users (many-many from user<sub>1</sub> to user<sub>2</sub>).
 
@@ -431,264 +431,264 @@ pertains to the most prominent entity set of the app: attire.
 
 ### Read
 
-- Functionality related to reading `attire` can be found in `closet.js`.
+Functionality related to reading attire can be found in `closet.js`.
 
-- To view their `attire`, a user can navigate to their `closet`.
+To view their attire, a user can navigate to their closet.
 
-  ![read-01](./images/implementation-final-report/read-01.png)
+![read-01](./images/implementation-final-report/read-01.png)
 
-- Upon navigating to their `closet`, a user is presented with their attire in
-  tabular form.
+Upon navigating to their closet, a user is presented with their attire in
+tabular form.
 
-  ![read-02](./images/implementation-final-report/read-02.png)
+![read-02](./images/implementation-final-report/read-02.png)
 
-- We first obtained a user's closets:
+We first obtained a user's closets.
 
-  ```sql
-  SELECT
-    *
-  FROM closet
-    JOIN owned_by USING (closet_id)
-  WHERE username = '${req.user.username}';
-  ```
+```sql
+SELECT
+  *
+FROM closet
+  JOIN owned_by USING (closet_id)
+WHERE username = '${req.user.username}';
+```
 
-- We then obtained the attire in the user's default closet:
+We then obtained the attire in the user's default closet:
 
-  ```sql
-  SELECT
-    type, attire_name, brand, color, size
-  FROM
-    user
-      JOIN
-    owned_by USING (username)
-      JOIN
-    attire_contained_by_closet USING (closet_id)
-      JOIN
-    attire USING (attire_id)
-  WHERE
-    username = '${req.user.username}' AND
-    closet_id = '${closets[0].closet_id}';
-  ```
+```sql
+SELECT
+  type, attire_name, brand, color, size
+FROM
+  user
+    JOIN
+  owned_by USING (username)
+    JOIN
+  attire_contained_by_closet USING (closet_id)
+    JOIN
+  attire USING (attire_id)
+WHERE
+  username = '${req.user.username}' AND
+  closet_id = '${closets[0].closet_id}';
+```
 
 ### Create
 
-- Functionality related to adding `attire` can be found in `add-attire.js`.
+Functionality related to adding attire can be found in `add-attire.js`.
 
-- To add attire, a user can navigate to `add-attire`.
+To add attire, a user can navigate to add-attire.
 
-  ![create-01](./images/implementation-final-report/create-01.png)
+![create-01](./images/implementation-final-report/create-01.png)
 
-- The `add-attire` page features a form where a user inputs details related to a
-  piece of a attire.
+The add-attire page features a form where a user inputs details related to a
+piece of a attire.
 
-  ![create-02](./images/implementation-final-report/create-02.png)
+![create-02](./images/implementation-final-report/create-02.png)
 
-- The user can then add a piece's details.
+The user can then add a piece's details.
 
-  ![create-03](./images/implementation-final-report/create-03.png)
+![create-03](./images/implementation-final-report/create-03.png)
 
-- After the user submits the form, they are redirected to their `closet`.
+After the user submits the form, they are redirected to their closet.
 
-  ![create-04](./images/implementation-final-report/create-04.png)
+![create-04](./images/implementation-final-report/create-04.png)
 
-- We first obtained a user's closets:
+We first obtained a user's closets:
 
-  ```sql
-  SELECT
-    *
-  FROM
-    closet
-      JOIN
-    owned_by USING (closet_id)
-  WHERE
-    username = '${username}';
-  ```
+```sql
+SELECT
+  *
+FROM
+  closet
+    JOIN
+  owned_by USING (closet_id)
+WHERE
+  username = '${username}';
+```
 
-- We then added the piece to `attire` and `attire_contained_by_closet`:
+We then added the piece to `attire` and `attire_contained_by_closet`:
 
-  ```sql
-  INSERT INTO attire VALUES (
-    '${attire_id}',
-    '${type}',
-    '${attire_name}',
-    '${brand}',
-    '${color}',
-    '${size}');
+```sql
+INSERT INTO attire VALUES (
+  '${attire_id}',
+  '${type}',
+  '${attire_name}',
+  '${brand}',
+  '${color}',
+  '${size}');
 
-  INSERT INTO attire_contained_by_closet VALUES (
-    '${attire_id}',
-    '${closet_id}');
-  ```
+INSERT INTO attire_contained_by_closet VALUES (
+  '${attire_id}',
+  '${closet_id}');
+```
 
 ### Update
 
-- Functionality related to editing `attire` can be found in `edit-attire.js`.
+Functionality related to editing attire can be found in `edit-attire.js`.
 
-- To edit attire, a user can navigate to `edit-attire`.
+To edit attire, a user can navigate to edit-attire.
 
-  ![update-01](./images/implementation-final-report/update-01.png)
+![update-01](./images/implementation-final-report/update-01.png)
 
-- A user can choose a piece to edit.
+A user can choose a piece to edit.
 
-  ![update-02](./images/implementation-final-report/update-02.png)
+![update-02](./images/implementation-final-report/update-02.png)
 
-- A user can then edit a piece's information, such as its size.
+A user can then edit a piece's information, such as its size.
 
-  ![update-03](./images/implementation-final-report/update-03.png)
+![update-03](./images/implementation-final-report/update-03.png)
 
-- After the user submits the form, they are redirected to their `closet`.
+After the user submits the form, they are redirected to their closet.
 
-  ![update-04](./images/implementation-final-report/update-04.png)
+![update-04](./images/implementation-final-report/update-04.png)
 
-- We first obtained all of the attire associated with the user:
+We first obtained all of the attire associated with the user:
 
-  ```sql
-  SELECT
-      attire_id, type, attire_name, brand, color, size
-  FROM
-    user
-      JOIN
-    owned_by USING (username)
-      JOIN
-    attire_contained_by_closet USING (closet_id)
-      JOIN
-    attire USING (attire_id)
-  WHERE
-    username = '${req.user.username}';
-  ```
+```sql
+SELECT
+    attire_id, type, attire_name, brand, color, size
+FROM
+  user
+    JOIN
+  owned_by USING (username)
+    JOIN
+  attire_contained_by_closet USING (closet_id)
+    JOIN
+  attire USING (attire_id)
+WHERE
+  username = '${req.user.username}';
+```
 
-- We then updated the piece in `attire`:
+We then updated the piece in `attire`:
 
-  ```sql
-  UPDATE
-    attire
-  SET
-    type='${newType}',
-    attire_name='${newAttireName}',
-    brand='${newBrand}',
-    color='${newColor}',
-    size='${newSize}'
-  WHERE
-    attire_id=${attireID};
-  ```
+```sql
+UPDATE
+  attire
+SET
+  type='${newType}',
+  attire_name='${newAttireName}',
+  brand='${newBrand}',
+  color='${newColor}',
+  size='${newSize}'
+WHERE
+  attire_id=${attireID};
+```
 
 ### Delete
 
-- Functionality related to deleting `attire` can be found in `remove-attire.js`
+Functionality related to deleting attire can be found in `remove-attire.js`
 
-- To remove attire,, a user can navigate to `remove-attire`.
+To remove attire,, a user can navigate to remove-attire.
 
-  ![delete-01](./images/implementation-final-report/delete-01.png)
+![delete-01](./images/implementation-final-report/delete-01.png)
 
-- A user can chose a piece to delete.
+A user can chose a piece to delete.
 
-  ![delete-02](./images/implementation-final-report/delete-02.png)
+![delete-02](./images/implementation-final-report/delete-02.png)
 
-- After the user submits the form, they are redirected to their `closet`.
+After the user submits the form, they are redirected to their closet.
 
-  ![delete-03](./images/implementation-final-report/delete-03.png)
+![delete-03](./images/implementation-final-report/delete-03.png)
 
-- We first obtained a user's closets:
+We first obtained a user's closets:
 
-  ```sql
-  SELECT DISTINCT
-    closet_id, location
-  FROM
-    closet
-      JOIN
-    owned_by USING (closet_id)
-      JOIN
-    attire_contained_by_closet USING (closet_id)
-  WHERE username = '${username}';`;
-  ```
+```sql
+SELECT DISTINCT
+  closet_id, location
+FROM
+  closet
+    JOIN
+  owned_by USING (closet_id)
+    JOIN
+  attire_contained_by_closet USING (closet_id)
+WHERE username = '${username}';`;
+```
 
-- After a closet has been selected, we obtain the attire associated with that
-  closet:
+After a closet has been selected, we obtain the attire associated with that
+closet:
 
-  ```sql
-  SELECT
-    attire_id, attire_name, closet_id
-  FROM
-    user
-      JOIN
-    owned_by USING (username)
-      JOIN
-    attire_contained_by_closet USING (closet_id)
-      JOIN
-    attire USING (attire_id)
-  WHERE
-    username = '${username}';
-  ```
+```sql
+SELECT
+  attire_id, attire_name, closet_id
+FROM
+  user
+    JOIN
+  owned_by USING (username)
+    JOIN
+  attire_contained_by_closet USING (closet_id)
+    JOIN
+  attire USING (attire_id)
+WHERE
+  username = '${username}';
+```
 
-- We then delete the piece from `attire`, `attire_contained_by_closet`, and
-  `is_composed_of`. The schema for `is_composed_of` is (`outfit_name`,
-  `attire_id`),
-  where both are keys. Although we want to delete all entries matching our
-  chosen `attire_id`, MySQL rejects this, as it wants a `WHERE` clause with both
-  an `outfit_name` and `attire_id`. To simplify this, we can turn off safe
-  update mode before the query, and turn it back on after the query. Not sure if
-  kosher, but the involves a more complex query.
+We then delete the piece from `attire`, `attire_contained_by_closet`, and
+`is_composed_of`. The schema for `is_composed_of` is (outfit_name,
+attire_id),
+where both are keys. Although we want to delete all entries matching our
+chosen attire_id, MySQL rejects this, as it wants a `WHERE` clause with both
+an outfit_name and attire_id. To simplify this, we can turn off safe
+update mode before the query, and turn it back on after the query. Not sure if
+kosher, but the alternative involves a more complex query.
 
-  ```sql
-  DELETE FROM attire
-  WHERE attire_id = '${attire_id}';
+```sql
+DELETE FROM attire
+WHERE attire_id = '${attire_id}';
 
-  DELETE FROM attire_contained_by_closet
-  WHERE attire_id = '${attire_id}';
+DELETE FROM attire_contained_by_closet
+WHERE attire_id = '${attire_id}';
 
-  SET SQL_SAFE_UPDATES=0;
-  DELETE FROM is_composed_of
-  WHERE attire_id ='${attire_id}';
-  SET SQL_SAFE_UPDATES=1;`;
-  ```
+SET SQL_SAFE_UPDATES=0;
+DELETE FROM is_composed_of
+WHERE attire_id ='${attire_id}';
+SET SQL_SAFE_UPDATES=1;`;
+```
 
-- If all of the pieces associated with an outfit are removed, logically,
-  the outfit ceases to exist. For an outfit, if there's no corresponding
-  entry in `is_composed_of`, we remove the outfit from `outfit`,
-  `outfit_contained_by_closet`, `is_composed_of`, and `worn_by`. We start by
-  getting all outfits associated with a user:
+If all of the pieces associated with an outfit are removed, logically,
+the outfit ceases to exist. For an outfit, if there's no corresponding
+entry in `is_composed_of`, we remove the outfit from `outfit`,
+`outfit_contained_by_closet`, `is_composed_of`, and `worn_by`. We start by
+getting all outfits associated with a user:
 
-  ```sql
-  SELECT
-    outfit_name
-  FROM
-    owned_by
-      JOIN
-    outfit_contained_by_closet USING (closet_id)
-  WHERE
-    username = '${username}';
-  ```
+```sql
+SELECT
+  outfit_name
+FROM
+  owned_by
+    JOIN
+  outfit_contained_by_closet USING (closet_id)
+WHERE
+  username = '${username}';
+```
 
-- We can then check to see if there is still at least one piece of attire
-  in the outfit by checking that we get at least one result from the following
-  query:
+We can then check to see if there is still at least one piece of attire
+in the outfit by checking that we get at least one result from the following
+query:
 
-  ```sql
-  SELECT DISTINCT
-    outfit_Name
-  FROM
-    is_composed_of
-  WHERE
-    outfit_name = '${outfit_name}';
-  ```
+```sql
+SELECT DISTINCT
+  outfit_Name
+FROM
+  is_composed_of
+WHERE
+  outfit_name = '${outfit_name}';
+```
 
-- If the previous query returns no results, we delete the `outfit`:
+If the previous query returns no results, we delete the outfit:
 
-  ```sql
-  DELETE FROM outfit
-  WHERE
-    outfit_name = '${outfit_name}';
+```sql
+DELETE FROM outfit
+WHERE
+  outfit_name = '${outfit_name}';
 
-  DELETE FROM outfit_contained_by_closet
-  WHERE
-    outfit_name = '${outfit_name}';
+DELETE FROM outfit_contained_by_closet
+WHERE
+  outfit_name = '${outfit_name}';
 
-  SET SQL_SAFE_UPDATES=0;
-  DELETE FROM worn_by
-  WHERE
-    outfit_name = '${outfit_name}';
-  SET SQL_SAFE_UPDATES=1;
-  ```
+SET SQL_SAFE_UPDATES=0;
+DELETE FROM worn_by
+WHERE
+  outfit_name = '${outfit_name}';
+SET SQL_SAFE_UPDATES=1;
+```
 
 # Conclusion
 
@@ -711,22 +711,21 @@ Devin Gonzales
 
 Claire Lin
 
-- Through this project, I learned programming languages such as HTML, Node.JS, 
-  mySQL, and frameworks for full-stack web development. I also gained a valueable 
-  lesson in teamwork. I learned that constant communicate with the team is 
-  especially important when everyone has a busy schedule and that the programming 
-  langauges we were using were new to us. I was not very active in comminicating 
-  because I always felt that I had to make progress before I could update my 
-  teammates. If I ever got stuck, I would keep working and not update my teammates 
-  about my problems. I, later, realized that not constatnly updating my team about 
-  my progress can resulted in my team confused about my progress and worried if the 
-  project can be completed by deadlines. Now, I try to update my team on any problems 
-  I faced or progress made. Besides, I learned that having respect towards each 
-  others' work is essential to maintaining good work spirit. I felt that I am not as 
-  proficient in the HTML and Node.JS as my teamates are even though I spent a lot 
-  of time learning them. But, whenever I made a commit, my teammates would affirm my 
+- Through this project, I learned programming languages such as HTML, Node.JS,
+  mySQL, and frameworks for full-stack web development. I also gained a valueable
+  lesson in teamwork. I learned that constant communicate with the team is
+  especially important when everyone has a busy schedule and that the programming
+  langauges we were using were new to us. I was not very active in comminicating
+  because I always felt that I had to make progress before I could update my
+  teammates. If I ever got stuck, I would keep working and not update my teammates
+  about my problems. I, later, realized that not constatnly updating my team about
+  my progress can resulted in my team confused about my progress and worried if the
+  project can be completed by deadlines. Now, I try to update my team on any problems
+  I faced or progress made. Besides, I learned that having respect towards each
+  others' work is essential to maintaining good work spirit. I felt that I am not as
+  proficient in the HTML and Node.JS as my teamates are even though I spent a lot
+  of time learning them. But, whenever I made a commit, my teammates would affirm my
   work, which encourages and motivates me to keep working on the project.
-
 
 Patrick Silvestre
 
