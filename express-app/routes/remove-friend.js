@@ -24,11 +24,11 @@ router.get('/', (req, res) => {
     try {
       database.query(friendQuery, (error, friends) => {
         if (error) {
-          let messages = { error: error.message };
+          const messages = { error: error.message };
           res.render('index', { user: req.user, messages });
           return;
         } else if (friends.length === 0) {
-          let messages = { error: 'No friends to remove!' };
+          const messages = { error: 'No friends to remove!' };
           res.render('index', { user: req.user, messages });
           return;
         } else {
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error.message };
+      const messages = { error: error.message };
       res.render('index', { user: req.user, messages });
       return;
     }
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
     try {
       database.query(removeFriendQuery, error => {
         if (error) {
-          let messages = { error: "Friend couldn't be removed!" };
+          const messages = { error: "Friend couldn't be removed!" };
           res.render('index', { user: req.user, messages });
           return;
         } else {
@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
         }
       });
     } catch (error) {
-      let messages = { error: error.message };
+      const messages = { error: error.message };
       res.render('index', { user: req.user, messages });
       return;
     }

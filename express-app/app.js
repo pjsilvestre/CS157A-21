@@ -33,6 +33,7 @@ const addWornRouter = require('./routes/add-worn');
 const wornListRouter = require('./routes/worn-list');
 const removeWornRouter = require('./routes/remove-worn');
 
+const addFriendRouter = require('./routes/add-friend');
 const friendListRouter = require('./routes/friend-list');
 const removeFriendRouter = require('./routes/remove-friend');
 
@@ -80,6 +81,7 @@ app.use('/add-worn', addWornRouter);
 app.use('/worn-list', wornListRouter);
 app.use('/remove-worn', removeWornRouter);
 
+app.use('/add-friend', addFriendRouter);
 app.use('/friend-list', friendListRouter);
 app.use('/remove-friend', removeFriendRouter);
 
