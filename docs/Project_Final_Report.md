@@ -359,7 +359,336 @@ user authentication and sessions.
 
 # Implementation
 
-TODO
+## Overview
+
+whatdoiwear.today is a Node.js & Express application which focuses on CRUD
+functionality via SQL queries. The team focused on comprehensive create, read,
+update, and delete functionality for the app's most prominent entity set:
+attire. Afterwards, the team added create, read, and delete functionality for
+the app's other entity sets, such as outfits and friends.
+
+## Running whatdoiwear.today
+
+### Downloading the App
+
+Run the following using your shell:
+
+```sh
+git git@github.com:pjsilvestre/CS157A-21.git
+cd CS157A-21/express-app
+```
+
+### Setting up MySQL
+
+Make sure you have [MySQL](https://www.mysql.com/) installed, and start your
+server using your shell:
+
+```sh
+sudo mysql.server start
+```
+
+If your MySQL root password is not `password`, you can change it as follows
+using your shell, then MySQL:
+
+```sh
+$ mysql -u root -h localhost -p
+Enter your password: ****************
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+```
+
+Alternatively, navigate to `express-app/config/database.js`, and change
+authentication details as necessary.
+
+### Populating the Database
+
+Run the following using MySQL, replacing `<...>` with the directory containing
+`CS157A-21`:
+
+```sh
+mysql> source <...>/CS157A-21/sql/initialize-schema-and-data.sql
+```
+
+Alternatively, use a tool like
+[MySQL Workbench](https://www.mysql.com/products/workbench/) to run the script.
+
+### Running the App
+
+Make sure you have [Node.js](nodejs.org) installed, then run the following using your shell, making sure you're in the `CS157A-21/express-app` directory:
+
+```sh
+npm install
+npm run start
+```
+
+The app should now be running on [localhost:3000](localhost:3000). For
+experimentation purposes, use any of the predefined accounts, all of which have
+the password `password`.
+
+## CRUD Functionality - Attire
+
+For brevity, we will detail CRUD functionality as it
+pertains to the most prominent entity set of the app: attire.
+
+### Read
+
+- Functionality related to reading `attire` can be found in `closet.js`.
+
+- To view their `attire`, a user can navigate to their `closet`.
+
+  ![read-01](./images/implementation-final-report/read-01.png)
+
+- Upon navigating to their `closet`, a user is presented with their attire in
+  tabular form.
+
+  ![read-02](./images/implementation-final-report/read-02.png)
+
+- We first obtained a user's closets:
+
+  ```sql
+  SELECT
+    *
+  FROM closet
+    JOIN owned_by USING (closet_id)
+  WHERE username = '${req.user.username}';
+  ```
+
+- We then obtained the attire in the user's default closet:
+
+  ```sql
+  SELECT
+    type, attire_name, brand, color, size
+  FROM
+    user
+      JOIN
+    owned_by USING (username)
+      JOIN
+    attire_contained_by_closet USING (closet_id)
+      JOIN
+    attire USING (attire_id)
+  WHERE
+    username = '${req.user.username}' AND
+    closet_id = '${closets[0].closet_id}';
+  ```
+
+### Create
+
+- Functionality related to adding `attire` can be found in `add-attire.js`.
+
+- To add attire, a user can navigate to `add-attire`.
+
+  ![create-01](./images/implementation-final-report/create-01.png)
+
+- The `add-attire` page features a form where a user inputs details related to a
+  piece of a attire.
+
+  ![create-02](./images/implementation-final-report/create-02.png)
+
+- The user can then add a piece's details.
+
+  ![create-03](./images/implementation-final-report/create-03.png)
+
+- After the user submits the form, they are redirected to their `closet`.
+
+  ![create-04](./images/implementation-final-report/create-04.png)
+
+- We first obtained a user's closets:
+
+  ```sql
+  SELECT
+    *
+  FROM
+    closet
+      JOIN
+    owned_by USING (closet_id)
+  WHERE
+    username = '${username}';
+  ```
+
+- We then added the piece to `attire` and `attire_contained_by_closet`:
+
+  ```sql
+  INSERT INTO attire VALUES (
+    '${attire_id}',
+    '${type}',
+    '${attire_name}',
+    '${brand}',
+    '${color}',
+    '${size}');
+
+  INSERT INTO attire_contained_by_closet VALUES (
+    '${attire_id}',
+    '${closet_id}');
+  ```
+
+### Update
+
+- Functionality related to editing `attire` can be found in `edit-attire.js`.
+
+- To edit attire, a user can navigate to `edit-attire`.
+
+  ![update-01](./images/implementation-final-report/update-01.png)
+
+- A user can choose a piece to edit.
+
+  ![update-02](./images/implementation-final-report/update-02.png)
+
+- A user can then edit a piece's information, such as its size.
+
+  ![update-03](./images/implementation-final-report/update-03.png)
+
+- After the user submits the form, they are redirected to their `closet`.
+
+  ![update-04](./images/implementation-final-report/update-04.png)
+
+- We first obtained all of the attire associated with the user:
+
+  ```sql
+  SELECT
+      attire_id, type, attire_name, brand, color, size
+  FROM
+    user
+      JOIN
+    owned_by USING (username)
+      JOIN
+    attire_contained_by_closet USING (closet_id)
+      JOIN
+    attire USING (attire_id)
+  WHERE
+    username = '${req.user.username}';
+  ```
+
+- We then updated the piece in `attire`:
+
+  ```sql
+  UPDATE
+    attire
+  SET
+    type='${newType}',
+    attire_name='${newAttireName}',
+    brand='${newBrand}',
+    color='${newColor}',
+    size='${newSize}'
+  WHERE
+    attire_id=${attireID};
+  ```
+
+### Delete
+
+- Functionality related to deleting `attire` can be found in `remove-attire.js`
+
+- To remove attire,, a user can navigate to `remove-attire`.
+
+  ![delete-01](./images/implementation-final-report/delete-01.png)
+
+- A user can chose a piece to delete.
+
+  ![delete-02](./images/implementation-final-report/delete-02.png)
+
+- After the user submits the form, they are redirected to their `closet`.
+
+  ![delete-03](./images/implementation-final-report/delete-03.png)
+
+- We first obtained a user's closets:
+
+  ```sql
+  SELECT DISTINCT
+    closet_id, location
+  FROM
+    closet
+      JOIN
+    owned_by USING (closet_id)
+      JOIN
+    attire_contained_by_closet USING (closet_id)
+  WHERE username = '${username}';`;
+  ```
+
+- After a closet has been selected, we obtain the attire associated with that
+  closet:
+
+  ```sql
+  SELECT
+    attire_id, attire_name, closet_id
+  FROM
+    user
+      JOIN
+    owned_by USING (username)
+      JOIN
+    attire_contained_by_closet USING (closet_id)
+      JOIN
+    attire USING (attire_id)
+  WHERE
+    username = '${username}';
+  ```
+
+- We then delete the piece from `attire`, `attire_contained_by_closet`, and
+  `is_composed_of`. The schema for `is_composed_of` is (`outfit_name`,
+  `attire_id`),
+  where both are keys. Although we want to delete all entries matching our
+  chosen `attire_id`, MySQL rejects this, as it wants a `WHERE` clause with both
+  an `outfit_name` and `attire_id`. To simplify this, we can turn off safe
+  update mode before the query, and turn it back on after the query. Not sure if
+  kosher, but the involves a more complex query.
+
+  ```sql
+  DELETE FROM attire
+  WHERE attire_id = '${attire_id}';
+
+  DELETE FROM attire_contained_by_closet
+  WHERE attire_id = '${attire_id}';
+
+  SET SQL_SAFE_UPDATES=0;
+  DELETE FROM is_composed_of
+  WHERE attire_id ='${attire_id}';
+  SET SQL_SAFE_UPDATES=1;`;
+  ```
+
+- If all of the pieces associated with an outfit are removed, logically,
+  the outfit ceases to exist. For an outfit, if there's no corresponding
+  entry in `is_composed_of`, we remove the outfit from `outfit`,
+  `outfit_contained_by_closet`, `is_composed_of`, and `worn_by`. We start by
+  getting all outfits associated with a user:
+
+  ```sql
+  SELECT
+    outfit_name
+  FROM
+    owned_by
+      JOIN
+    outfit_contained_by_closet USING (closet_id)
+  WHERE
+    username = '${username}';
+  ```
+
+- We can then check to see if there is still at least one piece of attire
+  in the outfit by checking that we get at least one result from the following
+  query:
+
+  ```sql
+  SELECT DISTINCT
+    outfit_Name
+  FROM
+    is_composed_of
+  WHERE
+    outfit_name = '${outfit_name}';
+  ```
+
+- If the previous query returns no results, we delete the `outfit`:
+
+  ```sql
+  DELETE FROM outfit
+  WHERE
+    outfit_name = '${outfit_name}';
+
+  DELETE FROM outfit_contained_by_closet
+  WHERE
+    outfit_name = '${outfit_name}';
+
+  SET SQL_SAFE_UPDATES=0;
+  DELETE FROM worn_by
+  WHERE
+    outfit_name = '${outfit_name}';
+  SET SQL_SAFE_UPDATES=1;
+  ```
 
 # Conclusion
 
