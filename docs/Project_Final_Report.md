@@ -334,28 +334,28 @@ user authentication and sessions.
 ### Entity Set Tables
 
 - user
-  ![user](./images/table-screenshots-design-v3/user.png)
+  ![user](./images/table-screenshots-final-report/user.png)
 - closet
-  ![closet](./images/table-screenshots-design-v3/closet.png)
+  ![closet](./images/table-screenshots-final-report/closet.png)
 - outfit
-  ![outfit](./images/table-screenshots-design-v3/outfit.png)
+  ![outfit](./images/table-screenshots-final-report/outfit.png)
 - attire
-  ![attire](./images/table-screenshots-design-v3/attire.png)
+  ![attire](./images/table-screenshots-final-report/attire.png)
 
 ### Relationships Tables
 
-- owns
-  ![owns](./images/table-screenshots-design-v3/owns.png)
-- closet_contains_outfit
-  ![closet_contains_outfit](./images/table-screenshots-design-v3/closet_contains_outfit.png)
-- closet_contains_attire
-  ![closet_contains_attire](./images/table-screenshots-design-v3/closet_contains_attire.png)
+- owned_by
+  ![owned_by](./images/table-screenshots-final-report/owned_by.png)
+- outfit_contained_by_closet
+  ![outfit_contained_by_closet](./images/table-screenshots-final-report/outfit_contained_by_closet.png)
+- attire_contained_by_closet
+  ![attire_contained_by_closet](./images/table-screenshots-final-report/attire_contained_by_closet.png)
 - is_composed_of
-  ![is_composed_of](./images/table-screenshots-design-v3/is_composed_of.png)
-- wears
-  ![wears](./images/table-screenshots-design-v3/wears.png)
+  ![is_composed_of](./images/table-screenshots-final-report/is_composed_of.png)
+- worn_by
+  ![worn_by](./images/table-screenshots-final-report/worn_by.png)
 - is_friends_with
-  ![is_friends_with](./images/table-screenshots-design-v3/is_friends_with.png)
+  ![is_friends_with](./images/table-screenshots-final-report/is_friends_with.png)
 
 # Implementation
 
