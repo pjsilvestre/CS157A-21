@@ -248,19 +248,23 @@ user authentication and sessions.
 
 ### user
 
-- User is an entity set with two attributes: a unique username and password. They key of user is username. The user entity set represents users of the application and their login information.
+- User is an entity set with two attributes: a unique username and password. The key of user is username. The user entity set represents users of the application and their login information.
 
 ### closet
 
-- Closet is an entity set corresponding to a users's physical closet. The key of a closet is closet_id. The closet entity set consists of a collection of clothing the users save as outfits (multiple clothing pieces) or as attire (individual clothing pieces).
+- Closet is an entity set corresponding to a users's physical closet. The key of
+  a closet is closet_id. The closet entity set consists of a collection of
+  clothing the users save as outfits (multiple clothing pieces) or as attire (individual clothing pieces).
 
 ### outfit
 
-- The outfit entity set has three attributes: a unique name, a season, and a tag. The key of an outfit is outfit_name. The outfit entity set consists of "mini-collections" of clothing pieces that the users save as outfits. The tag allows a user to organize different outfits into groups.
+- The outfit entity set has three attributes: a unique name, a season, and a
+  tag. The key of an outfit is outfit_name. The outfit entity set consists of "mini-collections" of clothing pieces that the users save as outfits. The tag allows a user to organize different outfits into groups.
 
 ### attire
 
-- The attire entity set has six attributes: attire_id, type, name, brand, color, and size. The key of a piece of attire is attire_id. The attire entity set consists of all the individual clothing pieces the users save.
+- The attire entity set has six attributes: attire_id, type, name, brand, color, and size. The key of a piece of attire is attire_id. The attire entity set
+  consists of all the individual clothing pieces the users save.
 
 ## Relationship Descriptions
 
@@ -274,7 +278,8 @@ user authentication and sessions.
 
 ### `attire_contained_by_closet`
 
-- Many pieces of attire are contained by one closet (many-one from attire to closet).
+- Many pieces of attire are contained by one closet (many-one from attire to
+  closet).
 
 ### outfit `is_composed_of` attire
 
@@ -282,7 +287,8 @@ user authentication and sessions.
 
 ### outfit `worn_by` user
 
-- Many outfits are worn by one user, with one outfit per date (many-one from outfit to user).
+- Many outfits are worn by one user, with one outfit per date (many-one from
+  outfit to user).
 
 ### user<sub>1</sub> `is_friends_with` user<sub>2</sub>
 
@@ -712,20 +718,13 @@ Devin Gonzales
 Claire Lin
 
 - Through this project, I learned programming languages such as HTML, Node.JS,
-  mySQL, and frameworks for full-stack web development. I also gained a valueable
-  lesson in teamwork. I learned that constant communicate with the team is
-  especially important when everyone has a busy schedule and that the programming
-  langauges we were using were new to us. I was not very active in comminicating
-  because I always felt that I had to make progress before I could update my
-  teammates. If I ever got stuck, I would keep working and not update my teammates
-  about my problems. I, later, realized that not constatnly updating my team about
-  my progress can resulted in my team confused about my progress and worried if the
-  project can be completed by deadlines. Now, I try to update my team on any problems
-  I faced or progress made. Besides, I learned that having respect towards each
-  others' work is essential to maintaining good work spirit. I felt that I am not as
-  proficient in the HTML and Node.JS as my teamates are even though I spent a lot
-  of time learning them. But, whenever I made a commit, my teammates would affirm my
-  work, which encourages and motivates me to keep working on the project.
+  mySQL, and frameworks for full-stack web development. I also gained a
+  valueable lesson in teamwork. I learned that constant communicate with the
+  team is especially important when everyone has a busy schedule and that the programming langauges we were using were new to us. I was not very active in comminicating because I always felt that I had to make progress before I could update my teammates. If I ever got stuck, I would keep working and not update
+  my teammates about my problems. I, later, realized that not constatnly
+  updating my team about my progress can resulted in my team confused about my progress and worried if the project can be completed by deadlines. Now, I try
+  to update my team on any problems I faced or progress made. Besides, I learned that having respect towards each others' work is essential to maintaining good work spirit. I felt that I am not as proficient in the HTML and Node.JS as my teamates are even though I spent a lot of time learning them. But, whenever I made a commit, my teammates would affirm my work, which encourages and
+  motivates me to keep working on the project.
 
 Patrick Silvestre
 
