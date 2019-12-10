@@ -711,7 +711,22 @@ Devin Gonzales
 
 Claire Lin
 
-- TODO
+- Through this project, I learned programming languages such as HTML, Node.JS, 
+  mySQL, and frameworks for full-stack web development. I also gained a valueable 
+  lesson in teamwork. I learned that constant communicate with the team is 
+  especially important when everyone has a busy schedule and that the programming 
+  langauges we were using were new to us. I was not very active in comminicating 
+  because I always felt that I had to make progress before I could update my 
+  teammates. If I ever got stuck, I would keep working and not update my teammates 
+  about my problems. I, later, realized that not constatnly updating my team about 
+  my progress can resulted in my team confused about my progress and worried if the 
+  project can be completed by deadlines. Now, I try to update my team on any problems 
+  I faced or progress made. Besides, I learned that having respect towards each 
+  others' work is essential to maintaining good work spirit. I felt that I am not as 
+  proficient in the HTML and Node.JS as my teamates are even though I spent a lot 
+  of time learning them. But, whenever I made a commit, my teammates would affirm my 
+  work, which encourages and motivates me to keep working on the project.
+
 
 Patrick Silvestre
 
