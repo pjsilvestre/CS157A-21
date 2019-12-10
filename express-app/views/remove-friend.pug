@@ -8,6 +8,7 @@ block content
     form(action="/remove-friend" method="POST")
       div(class="form-group")
         label(for="friend") Friend
-        input(type="text" class="form-control" name="friend" aria-describedby="removeHelp" placeholder="Enter user" required)
-        small(id="removeHelp" class="form-text text-muted") Enter a username for removal.
+        select(class="form-control" name="username")
+          each friend in friends
+            option(value=friend.username)=`${friend.username}`
       button(type="submit" class="btn btn-dark") Remove Friend

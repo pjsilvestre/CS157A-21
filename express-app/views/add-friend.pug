@@ -7,7 +7,9 @@ block content
     include partials/error-message-alert
     form(action="/add-friend" method="POST")
       div(class="form-group")
-        label(for="friend") Friend
-        input(type="text" class="form-control" name="friend" aria-describedby="addHelp" placeholder="Enter user" required)
-        small(id="addHelp" class="form-text text-muted") Enter a username to add.
+        label(for="friend") Friend 
+        datalist(id="usernames")
+          each username in usernames
+            option(value=username.username)
+        input(list="usernames" class="form-control" name="friend" aria-describedby="addHelp" placeholder="Enter user" required)
       button(type="submit" class="btn btn-dark") Add Friend
