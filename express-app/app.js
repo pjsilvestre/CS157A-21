@@ -15,27 +15,31 @@ const session = require('express-session');
 
 // router dependencies
 const indexRouter = require('./routes/index');
+
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
+
+const addClosetRouter = require('./routes/add-closet');
 const closetRouter = require('./routes/closet');
+
 const addAttireRouter = require('./routes/add-attire');
 const editAttireRouter = require('./routes/edit-attire');
 const removeAttireRouter = require('./routes/remove-attire');
-const addClosetRouter = require('./routes/add-closet');
+
 const addOutfitRouter = require('./routes/add-outfit');
 const removeOutfitRouter = require('./routes/remove-outfit');
+
 const addWornRouter = require('./routes/add-worn');
 const wornListRouter = require('./routes/worn-list');
 const removeWornRouter = require('./routes/remove-worn');
+
+const friendListRouter = require('./routes/friend-list');
 
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-// allow form data access inside req(uest) variables in POST methods
-app.use(express.urlencoded({ extended: false }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -57,18 +61,25 @@ app.use(flash());
 app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
+
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+
+app.use('/add-closet', addClosetRouter);
 app.use('/closet', closetRouter);
+
 app.use('/add-attire', addAttireRouter);
 app.use('/edit-attire', editAttireRouter);
 app.use('/remove-attire', removeAttireRouter);
-app.use('/add-closet', addClosetRouter);
+
 app.use('/add-outfit', addOutfitRouter);
 app.use('/remove-outfit', removeOutfitRouter);
+
 app.use('/add-worn', addWornRouter);
 app.use('/worn-list', wornListRouter);
 app.use('/remove-worn', removeWornRouter);
+
+app.use('/friend-list', friendListRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

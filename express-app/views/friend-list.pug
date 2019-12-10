@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  include partials/navbar-authenticated
+  div(class="container")
+    h1 Your Friends' Outfits
+    include partials/error-message-alert
+    div(class="container")
+      table(class="table")
+        thead
+          tr
+            th(scope="col") Friend
+            th(scope="col") Outfit Name
+            th(scope="col") Piece
+        tbody()
+          each result in results
+            tr
+              td=`${result.username}`
+              td=`${result.outfit_name}`
+              td=`${result.attire_name}`
