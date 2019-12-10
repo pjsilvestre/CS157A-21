@@ -394,9 +394,9 @@ Claire Lin
   project can be completed by deadlines. Now, I try to update my team on any problems 
   I faced or progress made. Besides, I learned that having respect towards each 
   others' work is essential to maintaining good work spirit. I felt that I am not as 
-  proficient in the HTML and Node.JS as my teamates are. But, whenever I made a 
-  commit, my teammates would affirm my work, which encourages and motivates me to 
-  keep working on the project.
+  proficient in the HTML and Node.JS as my teamates are even though I spent a lot 
+  of time learning them. But, whenever I made a commit, my teammates would affirm my 
+  work, which encourages and motivates me to keep working on the project.
 
 
 Patrick Silvestre
