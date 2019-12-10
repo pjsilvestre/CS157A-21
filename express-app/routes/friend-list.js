@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     // get all friends' outfits
     const friendOutfitQuery = `
       SELECT 
-        username, outfit_name, attire_name
+        username, outfit_name, brand, attire_name
       FROM
         owned_by
             JOIN
@@ -34,6 +34,7 @@ router.get('/', (req, res) => {
       ORDER BY
         username,
         outfit_name,
+        brand,
         attire_name;`;
 
     try {
