@@ -34,6 +34,7 @@ const wornListRouter = require('./routes/worn-list');
 const removeWornRouter = require('./routes/remove-worn');
 
 const friendListRouter = require('./routes/friend-list');
+const removeFriendRouter = require('./routes/remove-friend');
 
 const app = express();
 
@@ -80,6 +81,7 @@ app.use('/worn-list', wornListRouter);
 app.use('/remove-worn', removeWornRouter);
 
 app.use('/friend-list', friendListRouter);
+app.use('/remove-friend', removeFriendRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
