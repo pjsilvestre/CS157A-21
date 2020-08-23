@@ -18,6 +18,8 @@ This repo contains the project developed by Team 21 ([Devin Gonzales](https://gi
 
 ## Running in Development Mode
 
+(Tested on Ubuntu 20.04)
+
 ### Downloading the App
 
 Run the following using your shell:
@@ -29,16 +31,16 @@ cd CS157A-21/express-app
 
 ### Setting up MySQL
 
-Make sure you have [MySQL](https://www.mysql.com/) installed, and start your server using your shell:
+Make sure you have [MySQL](https://www.mysql.com/) installed, and start your server if not running already:
 
 ```sh
-sudo mysql.server start
+sudo service mysql start
 ```
 
 If your MySQL root password is not `password`, you can change it as follows using your shell, then MySQL:
 
 ```sh
-$ mysql -u root -h localhost -p
+$ sudo mysql -u root -h localhost -p
 Enter your password: ****************
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 ```
@@ -47,10 +49,10 @@ Alternatively, navigate to `express-app/config/database.js`, and change authenti
 
 ### Populating the Database
 
-Run the following using MySQL, replacing `<...>` with the directory containing `CS157A-21`:
+Run the following using MySQL:
 
 ```sh
-mysql> source <...>/CS157A-21/sql/initialize-schema-and-data.sql
+mysql> source ../sql/initialize-schema-and-data.sql
 ```
 
 ### Running the App
