@@ -65,3 +65,7 @@ npm run devstart
 ```
 
 The app should now be running on [localhost:3000](localhost:3000).
+
+### Screenshots
+
+See [Final Report - Implementation](https://github.com/pjsilvestre/whatdoiwear.today/blob/master/docs/Project_Final_Report.md#implementation).
